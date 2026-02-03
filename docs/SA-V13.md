@@ -469,15 +469,29 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
+### Q31: Sector Performance vs Peers
+- Category: Momentum
+- Max: +1 / Min: -1
+- Logic: Compare stock's 1M return vs its sector average 1M return.
+  | Condition | Points |
+  |-----------|--------|
+  | Outperforms sector by > 10% | +1 |
+  | Within ±10% of sector | 0 |
+  | Underperforms sector by > 10% | -1 |
+- Data Source: FMP sector performance + stock quote
+- Rationale: Relative strength vs peers indicates stock-specific quality beyond market/sector movement.
+
+---
+
 ## Final Score Calculation
 - **Raw Score** = Sum of assigned points from all questions
 **Current Config Reference (V13):**
-- **Max Raw Score:** 70 points
-- **Min Raw Score:** -41 points
-- **Span:** 111 points
+- **Max Raw Score:** 71 points
+- **Min Raw Score:** -42 points
+- **Span:** 113 points
 **Normalization Formula (auto-calculated from config):**
 `((Raw Score - Min) / (Max - Min)) × 100`
-*Current equivalent:* `((Raw Score + 41) / 111) × 100`
+*Current equivalent:* `((Raw Score + 42) / 113) × 100`
 
 ---
 
