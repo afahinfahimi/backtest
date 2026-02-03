@@ -10,6 +10,16 @@
 
 ---
 
+## Portfolio Concentration Limits
+| Sector Group | Max Positions |
+|-------------|---------------|
+| Pharma/Medical | 2 |
+| Crypto | 2 |
+| Mining/Commodities | 2 |
+| Oil/Gas/Energy | 2 |
+
+---
+
 ## MS V12 Overview
 
 The Master Score (MS) is the final decision layer. SA and MC are indicators — only the MS issues trading signals.
