@@ -412,15 +412,42 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
+### Q27: Sustained Downtrend
+- **Category:** Risk Penalty
+- **Max:** 0 / **Min:** -3
+- **Logic:** Check 1D, 5D, and 1M price changes. If ALL THREE are negative, deduct -3 points.
+- **Conditions:**
+  - 1D < 0% AND 5D < 0% AND 1M < 0%: **-3**
+  - Otherwise: **0**
+- **Data Source:** Quote endpoint (price changes)
+- **Rationale:** A stock showing red across all three durations has no positive momentum at any timeframe. Wait for at least one reversal signal before entering, even if fundamentals score high.
+
+---
+
+### Q28: Sudden Drop / Slide
+- **Category:** Risk Penalty
+- **Max:** 0 / **Min:** -3
+- **Logic:** Check for abnormal price drops. Triggered if EITHER condition is true (no stacking — max penalty is -3):
+  - **Condition A (Single-Day Shock):** Any ONE of the last 3 trading days individually shows a price drop of ≥7%. Each day is evaluated separately (close-to-close). A 7% collective drop over 2-3 days does NOT trigger this — it must be a single day's move.
+  - **Condition B (5-Day Slide):** The cumulative 5-trading-day return is ≤ -10%.
+- **Conditions:**
+  - Either A or B true: **-3**
+  - Neither true: **0**
+- **Data Source:** Historical daily prices (last 5 trading days, close prices)
+- **Self-Healing:** Condition A clears once the drop day falls outside the 3-day lookback window. If the decline continues, Condition B sustains the penalty.
+- **Rationale:** A sudden large drop signals unknown negative information the score hasn't captured yet. Penalize to encourage waiting for clarity.
+
+---
+
 ## Final Score Calculation
 
 - **Raw Score** = Sum of assigned points from all questions
 
 **V13 Score Ranges:**
 - **Max Raw Score:** 70 points
-- **Min Raw Score:** -29 points
+- **Min Raw Score:** -35 points
 
-**Normalization Formula:** `((Raw Score + 29) / 99) × 100`
+**Normalization Formula:** `((Raw Score + 35) / 99) × 100`
 
 
 ---
