@@ -302,7 +302,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Max Points: 0
 - Min Point: -3
 
-**Combined Penalty Cap:** If both Q18 AND Q19 trigger, apply -5 total (not cumulative)
+**Combined Penalty Cap:** If both questions trigger, apply -5 total (not cumulative)
 
 ---
 
@@ -418,11 +418,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **V13 Score Ranges:**
 - **Max Raw Score:** 70 points
-- **Min Raw Score:** -26 points
+- **Min Raw Score:** -29 points
 
-**Normalization Formula:** `((Raw Score + 26) / 96) × 100`
+**Normalization Formula:** `((Raw Score + 29) / 99) × 100`
 
-*Note: The denominator is set to 96 so that a perfect 70-point stock scores ~100%, and the minimum -26 point stock scores 0%.*
 
 ---
 
@@ -435,7 +434,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | 50-60 | 113 | 60% | +4.5% |
 | <50 | 48 | 42% | +0.0% |
 
-*Based on 224 stock-date observations across 5 dates (July 9, Aug 6, Nov 3, Dec 1, Dec 9, 2025). Excluded: Crypto and Pharma/Biotech sectors.*
+*Based on 224 stock-date observations across 6 dates (July 9, Aug 6, Nov 3, Dec 1, Dec 9, 2025). Excluded: Crypto and Pharma/Biotech sectors.*
 
 ---
 
