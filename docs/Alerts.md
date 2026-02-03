@@ -30,26 +30,7 @@ Surface risk factors that scores may not fully capture.
 
 | Flag | Icon | Trigger | Color |
 |------|------|---------|-------|
-| Short Squeeze Risk | 🩳 | Short % of float > 20% + increasing | Red-M |
-| Low Float | 🎯 | Float < 20M shares | Orange-M |
 | Earnings Soon | ⚠️ | Earnings within 14 days | Yellow-M |
-
----
-
-## 3. SECTOR FLAGS
-
-Identify sector-specific risk profiles.
-
-| Flag | Icon | Trigger | Color |
-|------|------|---------|-------|
-| Crypto | ₿ | Crypto-related business | Orange-M |
-| Commodity | ⛏️ | Mining/resources sector | Yellow-D |
-| Energy | 🛢️ | Oil/gas sector | Brown-M |
-| Sector Cap | 🚫 | Max 2 positions per restricted sector reached | Purple-D |
-
-**Restricted Sectors:** Pharma, Medical, Crypto, Mining, Oil/Gas, Commodities
-
-**Rule:** Maximum 2 positions per restricted sector regardless of score.
 
 ---
 
