@@ -440,7 +440,6 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - **Self-Healing:** Clears once the drop day falls outside the 3-day window. If decline continues, the 5-day cumulative condition sustains the Caution tier.
 - **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic — effectively makes the stock untradeable by score alone.
 
-- 
 ---
 ## Final Score Calculation
 - **Raw Score** = Sum of assigned points from all questions
@@ -448,12 +447,12 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 **Current Config Reference (V13):**
 - **Max Raw Score:** 70 points
 - **Min Raw Score:** -38 points
-- **Span:** 105 points
+- **Span:** 108 points
 
 **Normalization Formula (auto-calculated from config):**
 `((Raw Score - Min) / (Max - Min)) × 100`
 
-*Current equivalent:* `((Raw Score + 38) / 105) × 100`
+*Current equivalent:* `((Raw Score + 38) / 108) × 100`
 
 
 ---
