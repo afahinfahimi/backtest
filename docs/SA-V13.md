@@ -448,12 +448,24 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Logic: High short interest amplifies volatility in both directions.
   | Short % Float | Penalty |
   |---------------|---------|
-  | > 30% | -3 |
-  | > 20% | -2 |
-  | > 15% | -1 |
-  | ≤ 15% | 0 |
+  | > 30% | -2 |
+  | > 20% | -1 |
+  | ≤ 20% | 0 |
 - Data Source: FMP institutional/short interest endpoint
 - Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
+
+---
+
+### Q30: Low Float Risk
+- Category: Risk Penalty
+- Max: 0 / Min: -1
+- Logic: Low float stocks have amplified price swings on normal volume.
+  | Float | Penalty |
+  |-------|---------|
+  | < 20M shares | -1 |
+  | ≥ 20M shares | 0 |
+- Data Source: FMP company profile (float shares)
+- Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
 
 ---
 
