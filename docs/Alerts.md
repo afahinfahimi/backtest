@@ -19,8 +19,8 @@ These override all scores. Action is mandatory.
 
 | Flag | Icon | Trigger | Action |
 |------|------|---------|--------|
-| SEC/Fraud | 🚨 | Active investigation, fraud allegation, restatement | Do not buy / Exit review |
-| Critical Volatility | 🔴 | Thesis-breaking news + 5D ≤ -15% | Exit review required |
+***| SEC/Fraud | 🚨 | Active investigation, fraud allegation, restatement | Do not buy / Exit review |
+
 
 ---
 
