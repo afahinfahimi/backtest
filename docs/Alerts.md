@@ -30,7 +30,6 @@ Surface risk factors that scores may not fully capture.
 
 | Flag | Icon | Trigger | Color |
 |------|------|---------|-------|
-| Mean Reversion | 🪃 | SA Q7 (%B) = Breakout AND MC < 60 | Red-M |
 | Short Squeeze Risk | 🩳 | Short % of float > 20% + increasing | Red-M |
 | Low Float | 🎯 | Float < 20M shares | Orange-M |
 | Earnings Soon | ⚠️ | Earnings within 14 days | Yellow-M |
