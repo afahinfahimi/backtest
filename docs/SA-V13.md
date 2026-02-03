@@ -441,19 +441,31 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic — effectively makes the stock untradeable by score alone.
 
 ---
+
+### Q29: Short Interest Risk
+- Category: Risk Penalty
+- Max: 0 / Min: -3
+- Logic: High short interest amplifies volatility in both directions.
+  | Short % Float | Penalty |
+  |---------------|---------|
+  | > 30% | -3 |
+  | > 20% | -2 |
+  | > 15% | -1 |
+  | ≤ 15% | 0 |
+- Data Source: FMP institutional/short interest endpoint
+- Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
+
+---
+
 ## Final Score Calculation
 - **Raw Score** = Sum of assigned points from all questions
-
 **Current Config Reference (V13):**
 - **Max Raw Score:** 70 points
-- **Min Raw Score:** -38 points
-- **Span:** 108 points
-
+- **Min Raw Score:** -41 points
+- **Span:** 111 points
 **Normalization Formula (auto-calculated from config):**
 `((Raw Score - Min) / (Max - Min)) × 100`
-
-*Current equivalent:* `((Raw Score + 38) / 108) × 100`
-
+*Current equivalent:* `((Raw Score + 41) / 111) × 100`
 
 ---
 
