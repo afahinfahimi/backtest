@@ -1,44 +1,24 @@
-# MASTER SCORE MODULE (MS V12)
 
-**Lovable Trade V12 - "Command Center" Edition**
+# Master Score Test - Lovable Trade V13
 **Updated: February 2, 2026**
 
-## MS Modifiers
-| Condition | Modifier | Applies To |
-|-----------|----------|------------|
-| SA Q23 = Breakout AND MC < 60 | -3 | All formulas |
-
 ---
 
-## Portfolio Concentration Limits
-| Sector Group | Max Positions |
-|-------------|---------------|
-| Pharma/Medical | 2 |
-| Crypto | 2 |
-| Mining/Commodities | 2 |
-| Oil/Gas/Energy | 2 |
+There are multiple ways that MS can be calculated and triggers can be applied. 
+Through optimizatin and direct comparison we find the best one for best situation.
+Display different MS formulas in the result sections for comparison and trading use.
+Below are the ways the MS can be used.
 
----
 
-## MS V12 Overview
 
-The Master Score (MS) is the final decision layer. SA and MC are indicators — only the MS issues trading signals.
 
-- **SA (Stock Analysis):** Evaluates individual stock quality (0-100). Answers: "Is this a good stock?"
-- **MC (Market Condition):** Evaluates market environment (0-100). Answers: "Is the market safe?"
-- **MS (Master Score):** Combines both into Go/No-Go signals. Answers: "Do I buy, and which one first?"
 
-**Core Principle:** SA and MC never trigger trades on their own. The MS Zone Table governs all entry/exit decisions. The MS Formula is used for ranking only.
-
----
-
-## 1. MS FORMULA (Ranking Only)
+## 2. MS Contrarian
 
 ```
 MS = SA + 0.75 × (100 - MC)
 ```
 
-- **Range:** 0 to 175 (practical: ~25 to ~140)
 - **Purpose:** Rank BUY-eligible stocks by priority. Higher MS = buy first.
 - **NOT used for:** Entry/exit decisions (Zone Table governs those)
 
@@ -46,12 +26,12 @@ MS = SA + 0.75 × (100 - MC)
 
 | SA | MC | MS | Interpretation |
 |----|----|----|----------------|
-| 80 | 30 | 132.5 | Great stock + fear = top priority |
-| 80 | 50 | 117.5 | Great stock + neutral = high priority |
-| 80 | 74 | 99.5 | Great stock + hot market = no new buys (Zone Table) |
-| 65 | 30 | 117.5 | Good stock + fear = high priority |
-| 65 | 50 | 102.5 | Good stock + neutral = moderate priority |
-| 50 | 30 | 102.5 | Average stock + fear = moderate priority |
+| 80 | 30 | 133 | Great stock + fear = top priority |
+| 80 | 50 | 118 | Great stock + neutral = high priority |
+| 80 | 75 | 100 | Great stock + hot market = no new buys (Zone Table) |
+| 65 | 30 | 118 | Good stock + fear = high priority |
+| 65 | 50 | 103 | Good stock + neutral = moderate priority |
+| 50 | 30 | 103 | Average stock + fear = moderate priority |
 
 ---
 
@@ -110,63 +90,10 @@ Evaluate in priority order. Stop at first match.
 
 **Note:** Tiers are risk caps, not quality rankings. Score determines quality; tier determines maximum position size based on risk profile.
 
-### VIX Adjustment (Applied to Tier Limits)
-
-| VIX Level | Adjustment | Example (T1) |
-|-----------|-----------|--------------|
-| < 18 | 100% of tier max | $100,000 |
-| 18-25 | 75% of tier max | $75,000 |
-| 25-35 | 50% of tier max | $50,000 |
-| ≥ 35 | No new buys (Veto) — except VIX Override (§2 Priority 1) | $0
-
-**Final Position = Tier Max × VIX Adjustment**
 
 ---
 
-## 5. VETO INTEGRATION
-
-Vetoes from SA or MC override all signals. If any veto triggers, the signal becomes AVOID regardless of scores.
-
-### SA Vetoes (from SA V12)
-
-| Veto | Trigger | Override |
-|------|---------|----------|
-| V1: Biotech Spike | Healthcare + 10D > 15% | Max Score 55 |
-| V2: Momentum Trap | P/E > 50 + 10D < -5% | AVOID |
-| V3: Cash Burn | Unprofitable + Negative OCF + MCap < $10B | AVOID |
-| V4: Deterioration | Revenue + OpInc + OCF all declining QoQ | AVOID |
-| V5: Momentum Divergence | 52W > 40% + 3M < -5% | AVOID |
-
-### MC Vetoes (from MC V12)
-
-| Veto | Trigger | Override |
-|------|---------|----------|
-| V1: Extreme Fear | VIX > 35 | Max MC Score 30 |
-| V2: Market Crash | QQQ 52W < -30% | Max MC Score 20 |
-| V3: Full Capitulation | QQQ below both MAs + VIX > 30 | PANIC ZONE |
-
----
-
-## 6. MS DISPLAY
-
-### Analyzer Table
-- **MS column:** Shows calculated MS value
-- **Used for:** Sorting/ranking stocks within BUY-eligible zone
-
-### Signal Labels
-
-| Signal | Icon | When |
-|--------|------|------|
-| BUY | 🟢 | Zone Table qualifies entry |
-| SELECTIVE BUY | 🟡 | MC 50-59, high SA only |
-| NO NEW BUYS | ⛔ | MC 60+ |
-| PANIC | 🛑 | MC < 20 |
-| AVOID | ❌ | Veto triggered |
-| VIX OVERRIDE | 🚨 | VIX ≥ 28 — buy QQQ |
-
----
-
-## 7. MS DECISION FLOW
+## 5. MS DECISION FLOW
 
 ```
 START
@@ -187,6 +114,13 @@ START
   │
   └─ Check Exit Rules for held positions
 ```
+
+---
+
+## MS Modifiers
+| Condition | Modifier | Applies To |
+|-----------|----------|------------|
+| SA Q23 = Breakout AND MC < 60 | -3 | All formulas |
 
 ---
 
