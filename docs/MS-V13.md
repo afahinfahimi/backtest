@@ -1,16 +1,53 @@
-
-# Master Score Test - Lovable Trade V13
-**Updated: February 2, 2026**
+# Master Score (MS) — Lovable Trade V13
+**Updated: February 3, 2026**
 
 ---
 
-There are multiple ways that MS can be calculated and triggers can be applied. 
-Through optimizatin and direct comparison we find the best one for best situation.
-Display different MS formulas in the result sections for comparison and trading use.
-Below are the ways the MS can be used.
+## Overview
 
-## 1. MS Standard
+By the time MS is evaluated, SA (stock score) and MC (market score) are already calculated. MS combines them into trading decisions through three layers, evaluated in priority order:
 
+1. **Overrides** — MC or VIX conditions that bypass everything else
+2. **Zone Table** — SA + MC rules that don't require calculating MS
+3. **MS Formulas** — Calculated score with signals and modifiers
+
+---
+
+## 1. OVERRIDES
+
+Evaluate first. If triggered, skip everything below.
+
+| Condition | Signal | Action |
+|-----------|--------|--------|
+| VIX ≥ 28 | 🚨 VIX OVERRIDE | Buy QQQ immediately. Ignore SA scores. Fixed position: 50% of T1 max. |
+| MC < 20 | 🛑 PANIC | Stand down. All cash. SA unreliable. |
+
+---
+
+## 2. ZONE TABLE (SA + MC Direct Rules)
+
+No MS calculation needed. Evaluate in priority order. Stop at first match.
+
+| Priority | Condition | Signal | Action |
+|----------|-----------|--------|--------|
+| 1 | MC 20-29 + SA ≥ 55 | 🟢 BUY | Fear. Aggressive buy opportunity. |
+| 2 | MC 30-39 + SA ≥ 55 | 🟢 BUY | Oversold. Buy qualifying stocks. |
+| 3 | MC 40-49 + SA ≥ 55 | 🟢 BUY | Cautious. Buy qualifying stocks. |
+| 4 | MC 50-59 + SA ≥ 65 | 🟡 SELECTIVE BUY | Neutral. Only strong stocks. |
+| 5 | MC 60-74 | ⛔ NO NEW BUYS | Overheated. Tighten stops. |
+| 6 | MC ≥ 75 | ⛔ NO NEW BUYS | Euphoria. Take profits. |
+
+**When multiple stocks qualify:** Use MS Standard to rank. Buy highest MS first.
+
+**Note:** MC alone is sufficient for QQQ decisions. If MC signals BUY and you're buying QQQ (not individual stocks), SA is not required.
+
+---
+
+## 3. MS FORMULAS
+
+Calculate MS after overrides and zone table are checked. Two formulas run simultaneously for comparison and optimization.
+
+### MS Standard
 ```
 MS = (MC + 3 × SA) / 4
 ```
@@ -28,50 +65,41 @@ MS = (MC + 3 × SA) / 4
 | 40-49 | LEAN SELL |
 | < 40 | SELL |
 
----
-
-## 2. MS Contrarian
-
+### MS Contrarian (Display Only)
 ```
 MS = SA + 0.75 × (100 - MC)
 ```
 
-- **Purpose:** Rank BUY-eligible stocks by priority. Higher MS = buy first.
-- **NOT used for:** Entry/exit decisions (Zone Table governs those)
+- **Purpose:** Alternative ranking view. Rewards buying quality stocks during market fear.
+- **NOT used for signals.** Displayed for comparison only.
 
-**Logic:** The formula rewards buying quality stocks during market fear. Low MC adds up to +75 bonus points. High MC adds near-zero bonus.
-
-| SA | MC | MS | Interpretation |
-|----|----|----|----------------|
-| 80 | 30 | 133 | Great stock + fear = top priority |
-| 80 | 50 | 118 | Great stock + neutral = high priority |
-| 80 | 75 | 100 | Great stock + hot market = no new buys (Zone Table) |
-| 65 | 30 | 118 | Good stock + fear = high priority |
-| 65 | 50 | 103 | Good stock + neutral = moderate priority |
-| 50 | 30 | 103 | Average stock + fear = moderate priority |
+| SA | MC | Standard | Contrarian | Interpretation |
+|----|----|----|------|----------------|
+| 80 | 30 | 68 | 133 | Great stock + fear |
+| 80 | 50 | 73 | 118 | Great stock + neutral |
+| 80 | 75 | 79 | 99 | Great stock + hot market |
+| 65 | 30 | 56 | 118 | Good stock + fear |
+| 50 | 30 | 45 | 103 | Average stock + fear |
 
 ---
 
-## 3. ENTRY RULES (Zone Table)
+## 4. MS MODIFIERS
 
-Evaluate in priority order. Stop at first match.
+Applied to the MS Standard score after calculation, before signals are read.
 
-| Priority | Condition | Signal | Action |
-|----------|-----------|--------|--------|
-| 1 | VIX ≥ 28 | 🚨 VIX OVERRIDE | Buy QQQ immediately*. Ignore SA scores. Fixed position: 50% of T1 max. Exempt from §4 VIX Adjustment table. |
-| 2 | MC < 20 | 🛑 PANIC | Stand down. All cash. SA unreliable. |
-| 3 | MC 20-29 + SA ≥ 55 | 🟢 BUY | Fear. Aggressive buy opportunity. |
-| 4 | MC 30-39 + SA ≥ 55 | 🟢 BUY | Oversold. Buy qualifying stocks. |
-| 5 | MC 40-49 + SA ≥ 55 | 🟢 BUY | Cautious. Buy qualifying stocks. |
-| 6 | MC 50-59 + SA ≥ 65 | 🟡 SELECTIVE BUY | Neutral. Only strong stocks. |
-| 7 | MC 60-74 | ⛔ NO NEW BUYS | Overheated. Tighten stops. |
-| 8 | MC ≥ 75 | ⛔ NO NEW BUYS | Euphoria. Take profits. |
+| Condition | Modifier |
+|-----------|----------|
+| MC < 30 | +5 |
+| MC 30-49 | +3 |
+| MC 50-59 | +1 |
+| MC ≥ 60 | 0 |
+| SA Q23 = Breakout AND MC < 60 | -3 |
 
-**When multiple stocks qualify:** Use MS Formula to rank. Buy highest MS first.
+**Example:** SA = 65, MC = 35 → Raw MS = (35 + 195) / 4 = 58 → +3 modifier → **MS = 61 (LEAN BUY)**
 
 ---
 
-## 4. EXIT RULES
+## 5. EXIT RULES
 
 Evaluate in priority order. Stop at first match.
 
@@ -86,7 +114,7 @@ Evaluate in priority order. Stop at first match.
 
 ---
 
-## 5. POSITION SIZING
+## 6. POSITION SIZING
 
 ### Tier Limits (Max Position per Stock)
 
@@ -99,40 +127,18 @@ Evaluate in priority order. Stop at first match.
 
 **T3 Qualification Path A (Unprofitable Growth):**
 - Unprofitable with at least 2 of 3 growth questions scoring ≥1 pt (Q1, Q2, Q3)
-
 **T3 Qualification Path B (Small Profitable):**
 - Profitable with Market Cap $100M–$2B
 
 **Tier Precedence:** If a stock qualifies for multiple tiers, assign the highest tier.
-
 **Note:** Tiers are risk caps, not quality rankings. Score determines quality; tier determines maximum position size based on risk profile.
-
-
----
-
-## MS DECISION FLOW
-
-```
-START
-  │
-  ├─ Check VIX ≥ 28? ──YES──► Buy QQQ at 50% T1 max. Done.
-  │
-  ├─ Check MC < 20? ──YES──► Stand down. All cash. Done.
-  │
-  ├─ Check SA/MC Vetoes? ──YES──► AVOID. Done.
-  │
-  ├─ Check Zone Table (Entry Rules)
-  │    │
-  │    ├─ BUY eligible? ──YES──► Calculate MS = SA + 0.75×(100-MC)
-  │    │                          Rank by MS. Buy highest first.
-  │    │                          Apply Tier + VIX position sizing.
-  │    │
-  │    └─ NO NEW BUYS? ──YES──► Hold existing. Monitor exits.
-  │
-  └─ Check Exit Rules for held positions
-```
+### Portfolio Concentration Limits
+Max 2 positions per restricted sector: Pharma/Medical, Crypto, Mining/Commodities, Oil/Gas/Energy
 
 ---
 
+**End of Master Score V13**
 
-**End of Master Score V12**
+
+
+
