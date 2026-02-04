@@ -493,11 +493,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - **Raw Score** = Sum of assigned points from all questions
 **Current Config Reference:**
 - **Max Raw Score:** 71 points
-- **Min Raw Score:** -42 points
-- **Span:** 113 points
+- **Min Raw Score:** -41 points
+- **Span:** 112 points
 **Normalization Formula (auto-calculated from config):**
 `((Raw Score - Min) / (Max - Min)) × 100`
-*Current equivalent:* `((Raw Score + 42) / 113) × 100`
+*Current equivalent:* `((Raw Score + 41) / 112) × 100`
 
 
 ---
