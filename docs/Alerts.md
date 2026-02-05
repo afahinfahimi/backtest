@@ -16,6 +16,7 @@ Source from API when available. Yahoo and Google Finance and web search.
 
 ## Alerts Colors
 
+
 ### Red Alerts (Negative / Risk)
 | Alert | Trigger |
 |-----|---------|
@@ -47,11 +48,8 @@ Source from API when available. Yahoo and Google Finance and web search.
 ---
 
 ## Alert Display Rules
-- Alerts shown as small text pill buttons in the **Alerts column** (last column before checkboxes)
-- Clicking any Alert opens a toggle panel showing all active Alerts with one-line explanations
-- Alert colors by category: Risk (Red-L), Opportunity (Green-L), Fundamental (Blue-L), Event (Orange-L)
-- Max ~3 Alerts visible in column, "+N" overflow for additional
-- Display priority: Kill Switch → Event → Risk → Fundamental → Opportunity
+The alert columns show the same icon when alert exist. They just show different color. 
+Clicking on an alert, opens a toggle box with the content below.
 
 ---
 
