@@ -173,6 +173,13 @@ MC: MC Level Signal
 BETA: ---
 
 Col 8:
+Zone Signal
+Design: Button with same width for all answers
+
+MC: MC Zone Signal
+BETA: ---
+
+Col 9:
 Price (todays)
 2nd Line: After-Hour % change in small text if any
 Toggle: Details of price change % for 1d, 5d, 1m, 3m, 1yr a vertical separator then after-hour - change 1 day ago, change 2 days ago, change 3 days ago, change 4 days ago
@@ -181,25 +188,25 @@ MC: QQQ Price
 Toggle: Details of price change % for 1d, 5d, 1m, 3m, 1yr a vertical separator then after-hour - change 1 day ago, change 2 days ago, change 3 days ago, change 4 days ago
 BETA: ---
 
-Col 9: 
+Col 10: 
 1-Day price change % (live during market hours or after hours if available)
 
 MC: QQQ 1-Day price change %
 BETA: Average % of stocks in the table
 
-Col 10:
+Col 11:
 5-Day price change %
 
 MC: QQQ 5-Day price change %
 BETA: Average % of stocks in the table
 
-Col 11:
+Col 12:
 1M price change %
 
 MC: QQQ 1M price change %
 BETA: Average % of stocks in the table
 
-Col 12:
+Col 13:
 3M price change %
 
 MC: MC Score
