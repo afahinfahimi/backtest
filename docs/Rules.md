@@ -9,6 +9,30 @@
 
 This file defines all visual mappings, color tokens, thresholds, and display standards. It is the bridge between scoring (SA/MC/MS) and the UI.
 
+---
+
+**Accent Colors:**
+
+yellow-1: #f2f1da (light yellow)
+yellow-2: #debe5c (golden)
+red-1: #edebea (light red/pink)
+red-2: #d5656c (coral red)
+blue-1: #eaf9f5 (light cyan)
+blue-2: #a6e0da (teal - also primary)
+green-1: #e6f5cf (light green)
+green-2: #a8fcb9 (bright green)
+orange-2: #f69f1c (orange)
+Neutrals:
+
+light-1: #f2f2f2 (background)
+light-2: #eae7e8 (card)
+light-3: #eef1f0 (secondary)
+dark-1: #8b9299 (muted text)
+dark-2: #717680 (medium gray)
+dark-3: #3d3e42 (foreground text)
+Special:
+
+icon-on-accent: black (for icons on colored backgrounds)
 
 ---
 
