@@ -11,6 +11,18 @@ This file defines all visual mappings, color tokens, thresholds, and display sta
 
 ---
 
+Chart Scaling Logic:
+
+Price is the base. The Y-axis domain is defined by the min/max of the price series (stock price or QQQ).
+All other series (Score, VIX, MC) are scaled to fit within the price range using: scaledValue = minPrice + (value / 100) * priceRange
+VIX is inverted before scaling: (100 - VIX) so high VIX appears low on the chart (bearish = down).
+Right Y-axis shows raw 0–100 scale for reference.
+Amplification multiplies each series' deviation from the price midpoint: amplifiedValue = midPrice + (scaledValue - midPrice) * amplifyLevel where amplifyLevel is 1x–4x per series.
+
+This scaling ensures all indicators visually overlay on the price, making crossovers and divergences between score trends and price movements immediately visible.
+
+---
+
 **Accent Colors:**
 
 yellow-1: #f2f1da (light yellow)
