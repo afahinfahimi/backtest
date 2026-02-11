@@ -228,4 +228,34 @@ Defined in FLAGS V12. Reference summary:
 
 ---
 
+Colors used
+
+Name	Hex
+Teal	#6eb1ff
+Blue	#5ce7ff
+Green	#8eff72
+Yellow	#fff359
+Orange	#ff914d
+Red	#ff5757
+Pink	#ff66e2
+Purple	#b174e7
+Gray	#aaaaaa
+Vibrant Set:
+
+Name	Hex
+Blue	#6eb1ff
+Teal	#00aecc
+Green	#00c932
+Yellow	#bcae00
+Orange	#f95f00
+Red	#f50000
+Pink	#ec00bf
+Purple	#8700ff
+Gray	#1c1c1c
+Here are the two color sets you provided:
+
+Soft Set:
+
+
+
 **End of Rules V12**
