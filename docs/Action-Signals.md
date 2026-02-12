@@ -1,4 +1,4 @@
-# Lovable Trade — Master Action Table V15
+# Lovable Trade — Master Action Table V14
 
 **Complete Trading Rules — Updated 2/11/2026**
 
