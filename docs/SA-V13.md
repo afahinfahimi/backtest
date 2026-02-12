@@ -312,7 +312,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Trend & Strength 
 
-**Q20: Financial Strength**
+**Q19: Financial Strength**
 - Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
 - Max Points: 3
 - Min Point: 0
@@ -328,7 +328,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Risk Detection
 
-**Q21: Momentum Divergence Penalty**
+**Q20: Momentum Divergence Penalty**
 - Fields: 52-Week Price Change %, 3-Month Price Change %, 1-Month Price Change %, 10-Day Price Change %
 - Max Points: 0
 - Min Point: -3
@@ -336,7 +336,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Points: -3
 
 
-**Q22: Sector Preference**
+**Q21: Sector Preference**
 - Field: Sector (GICS)
 - Max Points: 2
 - Min Point: -4
@@ -356,7 +356,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Range Position
 
-**Q23: %B Position (Bollinger Bands â€” Momentum)**
+**Q22: %B Position (Bollinger Bands â€” Momentum)**
 - Field: Bollinger Bands %B (Period 20, StdDev 2)
 - Max Points: 4
 - Min Point: 0
@@ -373,7 +373,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Momentum Quality 
 
-**Q24: Momentum Quality**
+**Q23: Momentum Quality**
 - Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
 - Max Points: 2
 - Min Point: -1
@@ -390,7 +390,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Risk Detection - Part 2 
 
-**Q25: High P/E Momentum Trap**
+**Q24: High P/E Momentum Trap**
 - Fields: P/E Ratio (TTM), 10-Day Price Change %
 - Max Points: 0
 - Min Point: -4
@@ -399,14 +399,14 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q26: Biotech Binary Event Burn** â€” Max: 0 / Min: -3
+**Q25: Biotech Binary Event Burn** â€” Max: 0 / Min: -3
 - Fields: Sector, 10-Day Price Change %
 - Applies to: Healthcare (Biotech, Medical Devices, Drug Manufacturers)
 - Trigger: 10D > 15% â†’ Deduct -3 points
 
 ---
 
-### Q27: Sustained Downtrend
+### Q26: Sustained Downtrend
 - Fields: 1-Day Price Change %, 5-Day Price Change %, 1-Month Price Change %
 - **Max:** 0 / **Min:** -3
 - **Logic:** Check 1D, 5D, and 1M price changes. If ALL THREE are negative, deduct -3 points.
@@ -417,7 +417,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-### Q28: Sudden Drop / Slide
+### Q27: Sudden Drop / Slide
 - Fields: Historical Daily Close Prices (last 5 trading days)
 - **Category:** Risk Penalty
 - **Max:** 0 / **Min:** -6
@@ -436,7 +436,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-### Q29: Short Interest Risk
+### Q28: Short Interest Risk
 - Fields: Short % of Float
 - Category: Risk Penalty
 - Max: 0 / Min: -1
@@ -451,7 +451,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-### Q30: Low Float Risk
+### Q29: Low Float Risk
 - Fields: Float Shares
 - Category: Risk Penalty
 - Max: 0 / Min: -1
@@ -465,7 +465,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-### Q31: Sector Performance vs Peers
+### Q30: Sector Performance vs Peers
 - Fields: 1-Month Price Change %, Sector Average 1-Month Return %
 - Category: Momentum
 - Max: +1 / Min: -1
