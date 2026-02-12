@@ -1,6 +1,6 @@
 # STOCK ANALYSIS SCORING SYSTEM (SA TEST)
 
-**Lovable Trade V13 - Updated 2/1/2026**
+**Lovable Trade V14 - Updated 2/11/2026**
 
 ---
 
@@ -30,14 +30,14 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
+| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
-| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
+| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
+| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
 
 **Q2: Operating Income Growth**
 - Fields: Annual Operating Income Growth %, Quarterly Operating Income Growth % (YoY)
@@ -46,14 +46,14 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
+| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
-| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
+| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
+| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
 
 **Q3: Cash Flow Growth**
 - Fields: Annual Operating Cash Flow Growth %, Quarterly Operating Cash Flow Growth % (YoY)
@@ -62,14 +62,15 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
+| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
-| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
+| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
+| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
+
 
 ### Cyclical Sector Cap
 
@@ -86,18 +87,18 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Q4: Net Profit Margin**
 - Field: Net Profit Margin
-- `Net Profit Margin` = Net Income ÷ Revenue (TTM).
+- `Net Profit Margin` = Net Income Ã· Revenue (TTM).
 - Max Points: 5
 - Min Point: 0
 
 | Condition | Points | Interpretation |
 |-----------|--------|----------------|
-| ≥30% | 5 | Exceptional |
+| â‰¥30% | 5 | Exceptional |
 | >20% | 4 | Strong |
 | >15% | 3 | Good |
 | >10% | 2 | Moderate |
 | >5% | 1 | Low |
-| ≤5% | 0 | None |
+| â‰¤5% | 0 | None |
 
 ---
 
@@ -110,11 +111,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Change | Points |
 |--------|--------|
-| ≥20% | 4 |
+| â‰¥20% | 4 |
 | >10% | 3 |
 | >5% | 2 |
 | >0% | 1 |
-| ≤0% | 0 |
+| â‰¤0% | 0 |
 
 **Q6: 10-Day Price Change**
 - Field: 10-Day Price Change %
@@ -123,10 +124,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Change | Points |
 |--------|--------|
-| ≥15% | 3 |
+| â‰¥15% | 3 |
 | >10% | 2 |
 | >5% | 1 |
-| ≤5% | 0 |
+| â‰¤5% | 0 |
 
 ---
 
@@ -142,7 +143,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | >1M | 3 |
 | >500K | 2 |
 | >200K | 1 |
-| ≤200K | 0 |
+| â‰¤200K | 0 |
 
 ---
 
@@ -164,15 +165,15 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ### Technical 
 
 **Q9: Price vs Moving Averages**
-- Field: Current Price, 50-Day SMA, 200-Day SMA
+- Field: Current Price, 20-Day SMA, 50-Day SMA
 - Max Points: 4
 - Min Point: 0
 
 | Position | Points |
 |----------|--------|
-| Above both 50D & 200D | 4 |
+| Above both 20D & 50D | 4 |
 | Above 50D only | 3 |
-| Above 200D only | 2 |
+| Above 20D only | 2 |
 | Below both | 0 |
 
 ---
@@ -191,11 +192,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | <0.5 | 3 |
 | <1.0 | 2 |
 | <2.0 | 1 |
-| ≥2.0 | 0 |
+| â‰¥2.0 | 0 |
 
 ---
 
-### Weighted Momentum ⭐ BEST PREDICTOR
+### Weighted Momentum â­ BEST PREDICTOR
 
 **Q11: Momentum Magnitude**
 - Field: 52-Week Price Change %, 3-Month Price Change %
@@ -208,7 +209,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | >150% | 3 | 73% |
 | >100% | 2 | 63% |
 | >50% | 1 | 55% |
-| ≤50% | 0 | 47% |
+| â‰¤50% | 0 | 47% |
 
 ---
 
@@ -222,11 +223,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Growth | Points |
 |--------|--------|
-| ≥100% | 4 |
+| â‰¥100% | 4 |
 | >50% | 3 |
 | >25% | 2 |
 | >0% | 1 |
-| ≤0% | 0 |
+| â‰¤0% | 0 |
 
 ---
 
@@ -241,7 +242,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 |-----|--------|
 | >20% | 2 |
 | >10% | 1 |
-| ≤10% | 0 |
+| â‰¤10% | 0 |
 
 **Q14: Return on Assets (ROA)**
 - Field: Return on Assets (TTM)
@@ -250,10 +251,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | ROA | Points |
 |-----|--------|
-| ≥15% | 3 |
+| â‰¥15% | 3 |
 | >10% | 2 |
 | >5% | 1 |
-| ≤5% | 0 |
+| â‰¤5% | 0 |
 
 ---
 
@@ -270,14 +271,15 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | No | 0 |
 
 **Q16: Country**
-- Field: Country
-- Max Points: 1
-- Min Point: 0
+- Field: Country (from FMP `/api/v3/profile/{symbol}`)
+- Max Points: 2
+- Min Point: -2
 
-| Country | Points |
-|---------|--------|
-| USA | +1 |
-| Other | 0 |
+| Tier | Countries | Points |
+|------|-----------|--------|
+| USA | US-listed domestic companies | +2 |
+| Developed | Canada, UK, Netherlands, Germany, France, Japan, Australia, Taiwan, South Korea, Switzerland, Ireland, Israel | +1 |
+| China / Emerging Markets | China, Brazil, South Africa, and other EM countries | -2 |
 
 ---
 
@@ -290,9 +292,9 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| Profitable (Net Profit Margin ≥ 0%) | 0 |
-| Unprofitable BUT Operating Cash Flow (Quarterly) ≥ 0 | 0 |
-| Unprofitable + Negative CF BUT Market Cap ≥ $10B | 0 |
+| Profitable (Net Profit Margin â‰¥ 0%) | 0 |
+| Unprofitable BUT Operating Cash Flow (Quarterly) â‰¥ 0 | 0 |
+| Unprofitable + Negative CF BUT Market Cap â‰¥ $10B | 0 |
 | Profit% < 0% AND Operating Cash Flow (Quarterly) < 0 AND Market Cap < $10B | -3 |
 
 **Note:** FMP API provides the full raw number (e.g., 10,000,000,000 for $10B). *Note: Do not treat as thousands.*
@@ -310,17 +312,6 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Trend & Strength 
 
-**Q19: Trend Consistency**
-- Fields: 3-Month Price Change %, 52-Week Price Change %
-- Max Points: 3
-- Min Point: 0
-
-| Condition | Points |
-|-----------|--------|
-| Both 3-Month Price Change % AND 52-Week Price Change % positive | 3 |
-| One positive, one negative/zero | 1 |
-| Both negative or zero | 0 |
-
 **Q20: Financial Strength**
 - Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
 - Max Points: 3
@@ -328,9 +319,9 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
-| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
-| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
+| Net Profit Margin â‰¥20% AND Return on Equity â‰¥20% AND Debt/Equity Ratio <0.5 | 3 |
+| Net Profit Margin â‰¥10% AND Return on Equity â‰¥10% AND Debt/Equity Ratio <1.5 | 2 |
+| Net Profit Margin â‰¥0% AND Return on Equity â‰¥5% AND Debt/Equity Ratio <3.0 | 1 |
 | Fails thresholds or missing data | 0 |
 
 ---
@@ -338,11 +329,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ### Risk Detection
 
 **Q21: Momentum Divergence Penalty**
-- Fields: 52-Week Price Change %, 3-Month Price Change %
+- Fields: 52-Week Price Change %, 3-Month Price Change %, 1-Month Price Change %, 10-Day Price Change %
 - Max Points: 0
-- Min Point: -10
-- Trigger: 52-Week Price Change % >40% AND 3-Month Price Change % <-5%
-- Points: -10
+- Min Point: -3
+- Trigger: 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0%
+- Points: -3
 
 
 **Q22: Sector Preference**
@@ -365,7 +356,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Range Position
 
-**Q23: %B Position (Bollinger Bands)**
+**Q23: %B Position (Bollinger Bands â€” Momentum)**
 - Field: Bollinger Bands %B (Period 20, StdDev 2)
 - Max Points: 4
 - Min Point: 0
@@ -373,10 +364,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Position | Points |
 |----------|--------|
 | Breakout (>100%) | 4 |
-| Buy zone (≤20%) | 3 |
-| Mid-range (20-80%) | 2 |
-| Upper zone (80-95%) | 1 |
-| Near top (>95%) | 0 |
+| Near top (>95%) | 3 |
+| Upper zone (80-95%) | 2 |
+| Mid-range (20-80%) | 1 |
+| Buy zone (â‰¤20%) | 0 |
 
 ---
 
@@ -392,7 +383,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 |---------|-----------|--------|
 | Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
 | Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg  | +2 |   
-| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
+| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg Ã— 4) > 52-Week %Chg | +1 |
 | Other | Default | 0 |
 
 ---
@@ -408,10 +399,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q26: Biotech Binary Event Burn** — Max: 0 / Min: -3
+**Q26: Biotech Binary Event Burn** â€” Max: 0 / Min: -3
 - Fields: Sector, 10-Day Price Change %
 - Applies to: Healthcare (Biotech, Medical Devices, Drug Manufacturers)
-- Trigger: 10D > 15% → Deduct -3 points
+- Trigger: 10D > 15% â†’ Deduct -3 points
 
 ---
 
@@ -434,14 +425,14 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
   | Tier | Condition | Penalty |
   |------|-----------|---------|
-  | Critical | Any single day ≥ 15% drop within last 3 days | -6 |
-  | Severe | Any single day ≥ 10% drop within last 3 days | -2 |
-  | Caution | Any single day ≥ 7% drop within last 3 days, OR cumulative 5-day return ≤ -10% | -1 |
+  | Critical | Any single day â‰¥ 15% drop within last 3 days | -6 |
+  | Severe | Any single day â‰¥ 10% drop within last 3 days | -2 |
+  | Caution | Any single day â‰¥ 7% drop within last 3 days, OR cumulative 5-day return â‰¤ -10% | -1 |
   | None | No conditions met | 0 |
 
 - **Data Source:** Historical daily prices (last 5 trading days, close prices)
 - **Self-Healing:** Clears once the drop day falls outside the 3-day window. If decline continues, the 5-day cumulative condition sustains the Caution tier.
-- **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic — effectively makes the stock untradeable by score alone.
+- **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic â€” effectively makes the stock untradeable by score alone.
 
 ---
 
@@ -453,7 +444,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
   | Short % Float | Penalty |
   |---------------|---------|
   | > 20% | -1 |
-  | ≤ 20% | 0 |
+  | â‰¤ 20% | 0 |
 
 - Data Source: FMP institutional/short interest endpoint
 - Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
@@ -468,7 +459,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
   | Float | Penalty |
   |-------|---------|
   | < 20M shares | -1 |
-  | ≥ 20M shares | 0 |
+  | â‰¥ 20M shares | 0 |
 - Data Source: FMP company profile (float shares)
 - Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
 
@@ -482,7 +473,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
   | Condition | Points |
   |-----------|--------|
   | Outperforms sector by > 10% | +1 |
-  | Within ±10% of sector | 0 |
+  | Within Â±10% of sector | 0 |
   | Underperforms sector by > 10% | -1 |
 - Data Source: FMP sector performance + stock quote
 - Rationale: Relative strength vs peers indicates stock-specific quality beyond market/sector movement.
@@ -492,12 +483,12 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ## Final Score Calculation
 - **Raw Score** = Sum of assigned points from all questions
 **Current Config Reference:**
-- **Max Raw Score:** 71 points
-- **Min Raw Score:** -41 points
-- **Span:** 112 points
+- **Max Raw Score:** 69 points
+- **Min Raw Score:** -36 points
+- **Span:** 105 points
 **Normalization Formula (auto-calculated from config):**
-`((Raw Score - Min) / (Max - Min)) × 100`
-*Current equivalent:* `((Raw Score + 41) / 112) × 100`
+`((Raw Score - Min) / (Max - Min)) Ã— 100`
+*Current equivalent:* `((Raw Score + 36) / 105) * 100`
 
 
 ---
@@ -505,4 +496,3 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 **End of Stock Analysis Test Instructions**
 
 ---
-
