@@ -1,6 +1,6 @@
 # STOCK ANALYSIS SCORING SYSTEM (SA TEST)
 
-**Lovable Trade V14 - Updated 2/11/2026**
+**Lovable Trade V15 - Updated 2/11/2026**
 
 ---
 
@@ -30,14 +30,14 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
+| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
-| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
+| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
+| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
 
 **Q2: Operating Income Growth**
 - Fields: Annual Operating Income Growth %, Quarterly Operating Income Growth % (YoY)
@@ -46,14 +46,14 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
+| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
-| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
+| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
+| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
 
 **Q3: Cash Flow Growth**
 - Fields: Annual Operating Cash Flow Growth %, Quarterly Operating Cash Flow Growth % (YoY)
@@ -62,15 +62,14 @@
 
 | Points | Condition | Interpretation |
 |--------|-----------|----------------|
-| 6 | Annual > 50% AND Quarterly > Annual | Accelerating Exceptional |
-| 5 | Annual > 50% AND Quarterly > 0 but â‰¤ Annual | Steady Exceptional |
+| 6 | Annual ≥50% AND Quarterly > Annual | Accelerating Exceptional |
+| 5 | Annual ≥50% AND Quarterly > 0 but ≤ Annual | Steady Exceptional |
 | 5 | Annual 20-49% AND Quarterly > Annual | Accelerating Strong |
-| 4 | Annual 20-49% AND Quarterly > 0 but â‰¤ Annual | Steady Strong |
+| 4 | Annual 20-49% AND Quarterly > 0 but ≤ Annual | Steady Strong |
 | 2 | Annual 1-19% AND Quarterly > 0 | Growing |
-| 1 | Annual > 0 AND Quarterly â‰¤ 0 | Stalling |
-| 1 | Annual ≤ 0 AND Quarterly > 0 | Recovering |
-| 0 | Annual ≤ 0 AND Quarterly â‰¤ 0 | Declining |
-
+| 1 | Annual ≥0 AND Quarterly ≤ 0 | Stalling |
+| 1 | Annual < 0 AND Quarterly > 0 | Recovering |
+| 0 | Annual < 0 AND Quarterly ≤ 0 | Declining |
 
 ### Cyclical Sector Cap
 
@@ -79,7 +78,7 @@
 **Rule:** For stocks in these sectors, the maximum score for **Q1, Q2, and Q3** is capped at **4 points** each (instead of 6).
 
 **Exception (Breakout Rule):**
-If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, and the stock may earn the full 6 points for growth.
+If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, and the stock may earn the full 6 points for growth.
 
 ---
 
@@ -87,18 +86,18 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Q4: Net Profit Margin**
 - Field: Net Profit Margin
-- `Net Profit Margin` = Net Income Ã· Revenue (TTM).
+- `Net Profit Margin` = Net Income ÷ Revenue (TTM).
 - Max Points: 5
 - Min Point: 0
 
 | Condition | Points | Interpretation |
 |-----------|--------|----------------|
-| â‰¥30% | 5 | Exceptional |
-| >20% | 4 | Strong |
-| >15% | 3 | Good |
-| >10% | 2 | Moderate |
-| >5% | 1 | Low |
-| â‰¤5% | 0 | None |
+| ≥30% | 5 | Exceptional |
+| ≥20% | 4 | Strong |
+| ≥15% | 3 | Good |
+| ≥10% | 2 | Moderate |
+| ≥5% | 1 | Low |
+| <5% | 0 | None |
 
 ---
 
@@ -111,11 +110,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Change | Points |
 |--------|--------|
-| â‰¥20% | 4 |
-| >10% | 3 |
-| >5% | 2 |
+| ≥20% | 4 |
+| ≥10% | 3 |
+| ≥5% | 2 |
 | >0% | 1 |
-| â‰¤0% | 0 |
+| ≤0% | 0 |
 
 **Q6: 10-Day Price Change**
 - Field: 10-Day Price Change %
@@ -124,10 +123,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Change | Points |
 |--------|--------|
-| â‰¥15% | 3 |
-| >10% | 2 |
-| >5% | 1 |
-| â‰¤5% | 0 |
+| ≥15% | 3 |
+| ≥10% | 2 |
+| ≥5% | 1 |
+| <5% | 0 |
 
 ---
 
@@ -140,10 +139,10 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Volume | Points |
 |--------|--------|
-| >1M | 3 |
-| >500K | 2 |
-| >200K | 1 |
-| â‰¤200K | 0 |
+| ≥1M | 3 |
+| ≥500K | 2 |
+| ≥200K | 1 |
+| <200K | 0 |
 
 ---
 
@@ -158,7 +157,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Condition | Points |
 |-----------|--------|
 | Institutional Ownership % > 0% | +1 |
-| Number of Analyst Ratings >0 | +1 |
+| Number of Analyst Ratings > 0 | +1 |
 
 ---
 
@@ -192,11 +191,11 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | <0.5 | 3 |
 | <1.0 | 2 |
 | <2.0 | 1 |
-| â‰¥2.0 | 0 |
+| ≥2.0 | 0 |
 
 ---
 
-### Weighted Momentum â­ BEST PREDICTOR
+### Weighted Momentum ⭐ BEST PREDICTOR
 
 **Q11: Momentum Magnitude**
 - Field: 52-Week Price Change %, 3-Month Price Change %
@@ -209,7 +208,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | >150% | 3 | 73% |
 | >100% | 2 | 63% |
 | >50% | 1 | 55% |
-| â‰¤50% | 0 | 47% |
+| ≤50% | 0 | 47% |
 
 ---
 
@@ -217,17 +216,16 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Q12: EPS Growth Prior Year**
 - Field: EPS Growth % (Prior Fiscal Year)
-- EPS Growth % (Prior Fiscal Year)
 - Max Points: 4
 - Min Point: 0
 
 | Growth | Points |
 |--------|--------|
-| â‰¥100% | 4 |
-| >50% | 3 |
-| >25% | 2 |
+| ≥100% | 4 |
+| ≥50% | 3 |
+| ≥25% | 2 |
 | >0% | 1 |
-| â‰¤0% | 0 |
+| ≤0% | 0 |
 
 ---
 
@@ -240,9 +238,9 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | ROE | Points |
 |-----|--------|
-| >20% | 2 |
-| >10% | 1 |
-| â‰¤10% | 0 |
+| ≥20% | 2 |
+| ≥10% | 1 |
+| <10% | 0 |
 
 **Q14: Return on Assets (ROA)**
 - Field: Return on Assets (TTM)
@@ -251,92 +249,83 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | ROA | Points |
 |-----|--------|
-| â‰¥15% | 3 |
-| >10% | 2 |
-| >5% | 1 |
-| â‰¤5% | 0 |
+| ≥15% | 3 |
+| ≥10% | 2 |
+| ≥5% | 1 |
+| <5% | 0 |
 
 ---
 
-### Options & Country 
+### Country 
 
-**Q15: Options Available**
-- Field: Is Optionable (Boolean)
-- Max Points: 1
-- Min Point: 0
-
-| Options | Points |
-|---------|--------|
-| Yes | 1 |
-| No | 0 |
-
-**Q16: Country**
+**Q15: Country** ✏️ UPDATED V15
 - Field: Country (from FMP `/api/v3/profile/{symbol}`)
-- Max Points: 2
+- Max Points: 1
 - Min Point: -2
 
 | Tier | Countries | Points |
 |------|-----------|--------|
-| USA | US-listed domestic companies | +2 |
+| USA | US-listed domestic companies | 0 |
 | Developed | Canada, UK, Netherlands, Germany, France, Japan, Australia, Taiwan, South Korea, Switzerland, Ireland, Israel | +1 |
 | China / Emerging Markets | China, Brazil, South Africa, and other EM countries | -2 |
+
+> **V15 Change:** USA reduced from +2 to 0. USA bonus was counterproductive (r=-0.190 vs returns). Removing it improved SA correlation from r=0.152 to r=0.162 (+7%).
 
 ---
 
 ### Risk Penalties
 
-**Q17: Cash Burn Risk**
+**Q16: Cash Burn Risk**
 - Fields: Net Profit Margin, Operating Cash Flow (Quarterly), Market Cap
 - Max Points: 0
 - Min Point: -3
 
 | Condition | Points |
 |-----------|--------|
-| Profitable (Net Profit Margin â‰¥ 0%) | 0 |
-| Unprofitable BUT Operating Cash Flow (Quarterly) â‰¥ 0 | 0 |
-| Unprofitable + Negative CF BUT Market Cap â‰¥ $10B | 0 |
+| Profitable (Net Profit Margin ≥ 0%) | 0 |
+| Unprofitable BUT Operating Cash Flow (Quarterly) ≥ 0 | 0 |
+| Unprofitable + Negative CF BUT Market Cap ≥ $10B | 0 |
 | Profit% < 0% AND Operating Cash Flow (Quarterly) < 0 AND Market Cap < $10B | -3 |
 
 **Note:** FMP API provides the full raw number (e.g., 10,000,000,000 for $10B). *Note: Do not treat as thousands.*
 
-**Q18: Deterioration Risk**
+**Q17: Deterioration Risk**
 - Fields: Quarterly Revenue, Quarterly Operating Income, Quarterly Operating Cash Flow (vs Same Qtr Year Ago)
 - Max Points: 0
 - Min Point: -3
 - Trigger: Quarterly Revenue < Sales(q-4) AND Quarterly Operating Income < OpIncome(q-4) AND Quarterly Operating Cash Flow < CashFlow(q-4)
 - Points: -3
 
-**Combined Penalty Cap:** If both questions trigger, apply -4 total (not cumulative)
+**Combined Penalty Cap:** If both Q16 and Q17 trigger, apply -4 total (not cumulative)
 
 ---
 
 ### Trend & Strength 
 
-**Q19: Financial Strength**
+**Q18: Financial Strength**
 - Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
 - Max Points: 3
 - Min Point: 0
 
 | Condition | Points |
 |-----------|--------|
-| Net Profit Margin â‰¥20% AND Return on Equity â‰¥20% AND Debt/Equity Ratio <0.5 | 3 |
-| Net Profit Margin â‰¥10% AND Return on Equity â‰¥10% AND Debt/Equity Ratio <1.5 | 2 |
-| Net Profit Margin â‰¥0% AND Return on Equity â‰¥5% AND Debt/Equity Ratio <3.0 | 1 |
+| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
+| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
+| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
 | Fails thresholds or missing data | 0 |
 
 ---
 
 ### Risk Detection
 
-**Q20: Momentum Divergence Penalty**
+**Q19: Momentum Divergence Penalty**
 - Fields: 52-Week Price Change %, 3-Month Price Change %, 1-Month Price Change %, 10-Day Price Change %
 - Max Points: 0
 - Min Point: -3
 - Trigger: 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0%
 - Points: -3
 
-
-**Q21: Sector Preference**
+**Q20: Sector Preference**
 - Field: Sector (GICS)
 - Max Points: 2
 - Min Point: -4
@@ -356,7 +345,7 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Range Position
 
-**Q22: %B Position (Bollinger Bands â€” Momentum)**
+**Q21: %B Position (Bollinger Bands — Momentum)**
 - Field: Bollinger Bands %B (Period 20, StdDev 2)
 - Max Points: 4
 - Min Point: 0
@@ -367,13 +356,13 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Near top (>95%) | 3 |
 | Upper zone (80-95%) | 2 |
 | Mid-range (20-80%) | 1 |
-| Buy zone (â‰¤20%) | 0 |
+| Buy zone (≤20%) | 0 |
 
 ---
 
 ### Momentum Quality 
 
-**Q23: Momentum Quality**
+**Q22: Momentum Quality**
 - Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
 - Max Points: 2
 - Min Point: -1
@@ -382,15 +371,15 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Pattern | Condition | Points |
 |---------|-----------|--------|
 | Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
-| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg  | +2 |   
-| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg Ã— 4) > 52-Week %Chg | +1 |
+| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg | +2 |
+| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
 | Other | Default | 0 |
 
 ---
 
 ### Risk Detection - Part 2 
 
-**Q24: High P/E Momentum Trap**
+**Q23: High P/E Momentum Trap**
 - Fields: P/E Ratio (TTM), 10-Day Price Change %
 - Max Points: 0
 - Min Point: -4
@@ -399,25 +388,24 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q25: Biotech Binary Event Burn** â€” Max: 0 / Min: -3
+**Q24: Biotech Binary Event Burn** — Max: 0 / Min: -3
 - Fields: Sector, 10-Day Price Change %
 - Applies to: Healthcare (Biotech, Medical Devices, Drug Manufacturers)
-- Trigger: 10D > 15% â†’ Deduct -3 points
+- Trigger: 10D > 15% → Deduct -3 points
 
 ---
 
-### Q26: Sustained Downtrend
+### Q25: Sustained Downtrend
 - Fields: 1-Day Price Change %, 5-Day Price Change %, 1-Month Price Change %
 - **Max:** 0 / **Min:** -3
 - **Logic:** Check 1D, 5D, and 1M price changes. If ALL THREE are negative, deduct -3 points.
 - **Conditions:**
   - 1D < 0% AND 5D < 0% AND 1M < 0%: **-3**
   - Otherwise: **0**
- 
 
 ---
 
-### Q27: Sudden Drop / Slide
+### Q26: Sudden Drop / Slide
 - Fields: Historical Daily Close Prices (last 5 trading days)
 - **Category:** Risk Penalty
 - **Max:** 0 / **Min:** -6
@@ -425,71 +413,136 @@ If **Q23 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
   | Tier | Condition | Penalty |
   |------|-----------|---------|
-  | Critical | Any single day â‰¥ 15% drop within last 3 days | -6 |
-  | Severe | Any single day â‰¥ 10% drop within last 3 days | -2 |
-  | Caution | Any single day â‰¥ 7% drop within last 3 days, OR cumulative 5-day return â‰¤ -10% | -1 |
+  | Critical | Any single day ≥ 15% drop within last 3 days | -6 |
+  | Severe | Any single day ≥ 10% drop within last 3 days | -2 |
+  | Caution | Any single day ≥ 7% drop within last 3 days, OR cumulative 5-day return ≤ -10% | -1 |
   | None | No conditions met | 0 |
 
 - **Data Source:** Historical daily prices (last 5 trading days, close prices)
 - **Self-Healing:** Clears once the drop day falls outside the 3-day window. If decline continues, the 5-day cumulative condition sustains the Caution tier.
-- **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic â€” effectively makes the stock untradeable by score alone.
+- **Rationale:** Tiered response to abnormal drops. 7%+ warrants caution. 10%+ signals something significant. 15%+ is catastrophic — effectively makes the stock untradeable by score alone.
 
 ---
 
-### Q28: Short Interest Risk
+### Q27: Short Interest Risk
 - Fields: Short % of Float
 - Category: Risk Penalty
 - Max: 0 / Min: -1
 - Logic: High short interest amplifies volatility in both directions.
+
   | Short % Float | Penalty |
   |---------------|---------|
   | > 20% | -1 |
-  | â‰¤ 20% | 0 |
+  | ≤ 20% | 0 |
 
 - Data Source: FMP institutional/short interest endpoint
 - Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
 
 ---
 
-### Q29: Low Float Risk
+### Q28: Low Float Risk
 - Fields: Float Shares
 - Category: Risk Penalty
 - Max: 0 / Min: -1
 - Logic: Low float stocks have amplified price swings on normal volume.
+
   | Float | Penalty |
   |-------|---------|
   | < 20M shares | -1 |
-  | â‰¥ 20M shares | 0 |
+  | ≥ 20M shares | 0 |
+
 - Data Source: FMP company profile (float shares)
 - Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
 
 ---
 
-### Q30: Sector Performance vs Peers
+### Q29: Sector Performance vs Peers
 - Fields: 1-Month Price Change %, Sector Average 1-Month Return %
 - Category: Momentum
 - Max: +1 / Min: -1
 - Logic: Compare stock's 1M return vs its sector average 1M return.
+
   | Condition | Points |
   |-----------|--------|
   | Outperforms sector by > 10% | +1 |
-  | Within Â±10% of sector | 0 |
+  | Within ±10% of sector | 0 |
   | Underperforms sector by > 10% | -1 |
+
 - Data Source: FMP sector performance + stock quote
 - Rationale: Relative strength vs peers indicates stock-specific quality beyond market/sector movement.
 
 ---
 
+### Q30: 5-Day Relative Strength (Alpha) 🆕 NEW V15
+- Fields: Stock 5-Day Price Change %, QQQ 5-Day Price Change %
+- Formula: Alpha = Stock 5D % minus QQQ 5D %
+- Category: Momentum
+- Max: +3 / Min: -3
+- **Evaluate in order listed (stop at first match):**
+
+  | Condition | Points |
+  |-----------|--------|
+  | Stock UP & Market DOWN (true alpha) | +3 |
+  | Alpha ≥ +5% (beating market by 5%+) | +2 |
+  | Alpha ≥ 0% (beating market) | +1 |
+  | Alpha -5% to 0% (slightly lagging) | 0 |
+  | Alpha < -5% (badly lagging market) | -2 |
+  | Stock DOWN & Market UP (stock-specific problem) | -3 |
+
+- Data Source: FMP quote (stock 5D change) + QQQ quote (market 5D change)
+- Rationale: Stock move relative to market isolates stock-specific strength (alpha). Stocks up while market is down had 82.1% win rate. Stocks down while market is up had 47.8% win rate. Combined with Q15 change, improved SA correlation from r=0.152 to r=0.173 (+14%).
+
+> **V15 Change:** New question. Alpha (stock vs market) is a strong predictor not captured by existing momentum questions (Q5, Q6, Q11 measure raw moves, not relative moves).
+
+---
+
+### Q31: Trend Deterioration (Lower Lows & Lower Highs) 🆕 NEW V15 ⏳ UNTESTED
+- Fields: Daily OHLC (last 30 trading days)
+- Category: Risk Penalty
+- Max: 0 / Min: -3 (TBD)
+
+**Calculation:**
+1. Find swing highs: days where the high > highs of 2 days before and 2 days after
+2. Find swing lows: days where the low < lows of 2 days before and 2 days after
+3. Compare last 2-3 swing highs: are they decreasing?
+4. Compare last 2-3 swing lows: are they decreasing?
+5. Both decreasing → penalty
+
+  | Condition | Points |
+  |-----------|--------|
+  | Lower highs AND lower lows (2+ swing points each) | -3 (TBD) |
+  | Otherwise | 0 |
+
+- Data Source: FMP `/api/v3/historical-price-full/{symbol}` (daily OHLC)
+- Rationale: Stocks making lower lows and lower highs are in a structural downtrend regardless of other indicators. Detects topping patterns that momentum questions miss.
+
+> **V15 Change:** New question. Not yet validated against backtest data. Points TBD pending testing.
+
+---
+
 ## Final Score Calculation
 - **Raw Score** = Sum of assigned points from all questions
-**Current Config Reference:**
-- **Max Raw Score:** 69 points
-- **Min Raw Score:** -36 points
-- **Span:** 105 points
-**Normalization Formula (auto-calculated from config):**
-`((Raw Score - Min) / (Max - Min)) Ã— 100`
-*Current equivalent:* `((Raw Score + 36) / 105) * 100`
 
+**Current Config Reference:**
+- **Max Raw Score:** 70 points
+- **Min Raw Score:** -42 points
+- **Span:** 112 points
+
+**Normalization Formula (auto-calculated from config):**
+`((Raw Score - Min) / (Max - Min)) × 100`
+*Current equivalent:* `((Raw Score + 42) / 112) * 100`
+
+---
+
+## V15 Changelog Summary
+
+| Change | Question | What Changed | Evidence |
+|--------|----------|-------------|----------|
+| Removed | Old Q15 | Options Available removed | Low predictive value |
+| Updated | Q15 Country | USA: +2 → 0 | r: 0.152 → 0.162 (+7%) |
+| New | Q30 | 5-Day Relative Strength (Alpha) | r: 0.162 → 0.173 (+7%) |
+| New | Q31 | Trend Deterioration | ⏳ Untested |
+| — | Combined | Q15 + Q30 | r: 0.152 → 0.173 (+14%) |
 
 ---
 
