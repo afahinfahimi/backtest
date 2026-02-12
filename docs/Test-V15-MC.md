@@ -277,7 +277,8 @@ The app must calculate these values using the API data:
 | Spread | Points | Interpretation |
 |--------|--------|----------------|
 | RSP lags SPY by > 0.5% | +1 | Narrow Rally — Reversal Risk |
-| Within ±0.5% | 0 | Neutral |
+| Within ±0.5%  | 0  | Neutral |
+| RSP beats SPY by 0.5% to 2% | 0  | Mild Breadth — Neutral |
 | RSP beats SPY by > 2% | -1 | Broad Participation — Extended |
 
 ---
