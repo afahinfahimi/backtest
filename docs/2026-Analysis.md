@@ -561,51 +561,50 @@ borders and shapes that represent Analysis scores.
 Alerts are **non-scoring** visual indicators that provide context beyond analysis scores. 
 They do not modify scores. They appear in different tables, cards and icons based on instructions.
 Source from FMP API when available. Yahoo and Google Finance and web search otherwise.
+Search the sources above to find any of the situations below, if you do, add the Alert message
+from the tables below. Accompany the message with the related color based on instructions.
+
+### Alert Display Rules
+The alert columns show the same icon when alert exist. They just show different color. 
+Clicking on an alert, opens a toggle box with the content of Alert below.
 
 ---
 
-## Alerts Colors
+### Alerts Colors
 
 
-### Red Alerts (Negative / Risk)
+#### Red Alerts (Negative / Risk)
 **Color: t-red**
 
 | Alert | Trigger |
-|-----|---------|
-| SEC | Active SEC investigation, fraud, restatement (Kill Switch) |
-| Court | Lawsuit, hearing, investigation, ruling |
-| Guide ↓ | Forward guidance lowered |
-| EPS ↓ | Consensus EPS estimates cut > 5% (90d) |
-| Downgrade | Net analyst downgrades last 30 days |
-| Insider ↓ | Net insider selling 6 months |
+|-------|---------|
+| SEC Investigation | Active SEC investigation, fraud, restatement |
+| Legal Issues | Lawsuit, hearing, investigation, ruling news about the company or top executives |
+| Forward Guidence Shows Decline | Forward guidance lowered by the company |
+| EPS Expectation Lowered | Consensus EPS estimates cut within the last 90 days |
+| Downgraded by Analysts | Analyst downgraded the stock within the last 30 days |
+| Insider Selling | Top insider's selling within the last 6 months |
 
-### Yellow Alerts (Caution / Neutral)
+
+#### Yellow Alerts (Caution / Neutral)
 **Color: t-yellow**
 
 | Alert | Trigger |
-|-----|---------|
-| Earning | Earnings within 14 days |
-| IPO | Listed < 12 months |
-| Turtle | 52W ±10% AND 1M ±10% |
-| Lotto | SA < 35 AND MCap < $500M |
+|-------|---------|
+| Earning Date Close | Earnings date is within the next 14 days |
+| IPO (New Company) | Companies IPO was Listed within the last 12 months |
 
-### Green Alerts (Positive / Opportunity)
+
+#### Green Alerts (Positive / Opportunity)
 **Color: t-green**
 
 | Alert | Trigger |
-|-----|---------|
-| Bounce | SA < 35 AND 1M < -15% |
-| Jump | SA < 35 AND 1M > +15% |
-| Guide ↑ | Forward guidance raised |
-| EPS ↑ | Consensus EPS estimates raised > 5% (90d) |
-| Upgrade | Net analyst upgrades last 30 days |
-| Insider ↑ | Net insider buying 6 months |
+|-------|---------|
+| Positive Guidance | Forward guidance is raised |
+| EPS increased | Consensus EPS estimates raised within the last 90 days |
+| Upgrade by Analysts | Analysts upgraded the stock within the last month |
+| Insider Buying | Top Insiders bought stocks within the last 90 days |
 
----
-
-## Alert Display Rules
-The alert columns show the same icon when alert exist. They just show different color. 
-Clicking on an alert, opens a toggle box with the content below.
 
 ---
 
