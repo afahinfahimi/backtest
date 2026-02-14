@@ -317,4 +317,50 @@ All component colors MUST reference CSS variables (`--green-2`, `--blue-1`, etc.
 
 ---
 
+# Global Colors 
+
+The following are the colors that should be used across the app.
+No other colors should be used in any part of the app. 
+There are colors in the app that are default as part of the theme color palette.
+And there are other individual colors. All of them should use these colors as defaults.
+In tests, and other modules when colors are used, they refer to the name below.
+
+## Theme Colors (default colors)
+* t-teal = #6eb1ff
+* t-blue = #5ce7ff
+* t-green = #8eff72
+* t-yellow = #fff359
+* t-orange = #ff914d
+* t-red = #ff5757
+* t-pink = #ff66e2
+* t-purple = #b174e7
+* t-gray = #aaaaaa
+
+
+## Accent Colors
+* a-blue = #0059de
+* a-teal = #009aaa
+* a-green = #009a42
+* a-yellow = #d5b300
+* a-orange = #dc5400
+* a-red = #de0000
+* a-pink = #c70072
+* a-purple = #8700ff
+* a-gray = #222222
+
+## Neutral Colors
+* App BG = #262a2e
+* Card BG = #2e3236
+* Border = #3c3e42
+* Text Main = #f2f2f2
+* Text Muted = #8b9299
+
+## Color Variables
+Default
+Vibrant
+Pastel
+Muted
+
+
+
 **End of Rules & Visual Layer**
