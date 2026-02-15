@@ -343,4 +343,3 @@ The app must calculate these values using the API data:
 **End of Market Condition Test**
 
 
-
