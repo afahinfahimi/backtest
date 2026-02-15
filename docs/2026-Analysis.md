@@ -1,10 +1,10 @@
-# Module1 - Analysis
+# Module1 - Analysis 
 
 **Lovable Trade V16 - Updated 2/13/2026**
 
 ---
 
-## Stock Score Overview
+## Stock Analysis (SA) Score Overview
 
 - Score each stock provided by the user (via CSV or direct entry).
 - Answer each question below and find the points that apply.
