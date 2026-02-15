@@ -55,7 +55,7 @@ Signals are determined separately for the **Market** (one result, displayed in t
 | SA | Stock Signal | Manage Holdings | Color |
 |----|--------------|-----------------|-------|
 | 35 to 55 | Find Better | Sell | t-yellow |
-| 35 > | Avoid | Sell | t-red |
+| < 35 | Avoid | Sell | t-red |
 ---
 
 ### CONDITION 1: VIX Override 
@@ -102,7 +102,7 @@ STOCK SIGNALS
 ---
 
 ### CONDITION 3: Regular Market
-- **Trigger:** VIX Level (FMP `^VIX` Price) < 25 AND MC Score (Module 2 Normalized) 15–80
+- **Trigger:** VIX Level (FMP `^VIX` Price) < 25 AND MC Score (Module 2 Normalized) 15 to 80
 - **Fields:** VIX Level, MC Score (Module 2 Normalized), SA Score (Module 1 Normalized)
 
 MARKET SIGNALS
