@@ -2,7 +2,7 @@
 
 **Lovable Trade V16 — Updated 2/13/2026**
 
-## MC Score Overview
+## Market Condition (MC) Score Overview
 - Run before stock recommendations.
 - Data source: Connected FMP API.
 
