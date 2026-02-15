@@ -30,16 +30,16 @@ The second group of overrides is based on Market Scores below. They trigger afte
 
 ---
 
-## PHASE 3: Buy conditions
+## PHASE 3: Regular Market
 
 If no override triggered, look for the combination of Market and Analysis Scores below
 
-| Condition | Signal Title | Signal Details | Manage Holdings | Color | 
-|-----------|--------------|----------------|--------------------|-------|
-| 10 to 30 | AS ≥ 75 | Buy stocks with 75+ scores | t-green | 
-| 30 to 55 | AS ≥ 65 | Buy stocks with at least a AS of 65 | t-green |
-| 55 to 70 | AS ≥ 65 | Selective Buys. Avoid overextended stocks. Stop Loss on holsings. | t-teal | 
-| 70 to 80 | AS ≥ 75 | Careful Buy of over 75 AS. Be very mindful of Over-Heated market. Stay away of 'expensive' stocks. Tight stops on holdings. | t-blue |
+| VIX Condition | MS Condition | AS Condition | Signal Title | Signal Details | Manage Holdings | Cash % | Color | 
+|---------------|--------------|--------------|--------------|----------------|-----------------|--------|-------|
+| < 25 | 10 to 30 | ≥ 75 | Buy Opportunity | Healthy market to add quality positions | Hold quality and add | 25% | t-green | 
+| < 25 | 30 to 55 | ≥ 65 | Buy good stocks | Mormal market good time to add decent stocks | Keep quality add new positions | 25% | t-green |
+| < 25 | 55 to 70 | ≥ 65 | Selective Buys | Avoid overextended stocks | Put stop loss | 50% | t-teal | 
+| < 25 | 70 to 80 | ≥ 75 | Careful Buy | Overheated market. Stay away of 'expensive' stocks. | Tight stop loss | 50% | t-blue |
 
 ---
 
