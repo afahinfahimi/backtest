@@ -533,81 +533,12 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 `((Raw Score - Min) / (Max - Min)) × 100`
 *Current equivalent:* `((Raw Score + 42) / 112) * 100`
 
----
-
-## Analysis Scores Color Code / Guide
-
-Use the table to apply colors to text, icons, background, 
-borders and shapes that represent Analysis scores.
-
-| Score | Color | 
-|-------|-------|
-| 80 to 99 | t-green | 
-| 70 to 79 | t-teal | 
-| 60 to 69 | t-yellow | 
-| 50 to 59 | t-orange |  
-| 40 to 49 | t-red |  
-| < 40 | a-red |  
 
 ---
 
 **End of Stock Analysis Test Instructions**
 
----
 
-## Alerts 
-
-Alerts are **non-scoring** visual indicators that provide context beyond analysis scores. 
-They do not modify scores. They appear in different tables, cards and icons based on instructions.
-Source from FMP API when available. Yahoo and Google Finance and web search otherwise.
-Search the sources above to find any of the situations below, if you do, add the Alert message
-from the tables below. Accompany the message with the related color based on instructions.
-
-### Alert Display Rules
-The alert columns show the same icon when alert exist. They just show different color. 
-Clicking on an alert, opens a toggle box with the content of Alert below.
-
----
-
-### Alerts Colors
-
-
-#### Red Alerts (Negative / Risk)
-**Color: t-red**
-
-| Alert | Trigger |
-|-------|---------|
-| SEC Investigation | Active SEC investigation, fraud, restatement |
-| Legal Issues | Lawsuit, hearing, investigation, ruling news about the company or top executives |
-| Forward Guidance Shows Decline | Forward guidance lowered by the company |
-| EPS Expectation Lowered | Consensus EPS estimates cut within the last 90 days |
-| Downgraded by Analysts | Analyst downgraded the stock within the last 30 days |
-| Insider Selling | Top insider's selling within the last 6 months |
-
-
-#### Yellow Alerts (Caution / Neutral)
-**Color: t-yellow**
-
-| Alert | Trigger |
-|-------|---------|
-| Earnings Date Close | Earnings date is within the next 14 days |
-| IPO (New Company) | Company's IPO was Listed within the last 12 months |
-
-
-#### Green Alerts (Positive / Opportunity)
-**Color: t-green**
-
-| Alert | Trigger |
-|-------|---------|
-| Positive Guidance | Forward guidance is raised |
-| EPS increased | Consensus EPS estimates raised within the last 90 days |
-| Upgrade by Analysts | Analysts upgraded the stock within the last month |
-| Insider Buying | Top Insiders bought stocks within the last 90 days |
-
-
----
-
-**End of Alerts Instructions**
 
 
 
