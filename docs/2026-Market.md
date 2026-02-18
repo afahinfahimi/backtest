@@ -1,4 +1,4 @@
-# Module2 - Market
+# Module-3 - Market
 
 **Lovable Trade V17 — Updated 2/16/2026**
 
