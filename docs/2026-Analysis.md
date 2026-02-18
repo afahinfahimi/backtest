@@ -1,4 +1,4 @@
-# Module1 - Analysis 
+# Module-2 - Analysis 
 
 **Lovable Trade V17 - Updated 2/16/2026**
 
