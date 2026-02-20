@@ -1,6 +1,125 @@
 # Optimization and Signal Ideas
 
 
+
+# Lovable Trade V17 — Optimization Ideas
+**Backtest Reference: Oct 20, 2025 (QQQ -2.49%, MC 32) | Jan 6, 2026 (QQQ -4.23%, MC 30)**
+**Common stock universe: 102 stocks across both dates**
+
+---
+
+## Idea 1 — Increase Unprofitable Penalty
+**Status:** Proposed
+**Target:** Q4 (Net Profit Margin)
+**Change:** Add -3 penalty when NPM < 0% (currently scores 0, no penalty)
+**Impact (70+ stocks):**
+- Oct 20: ✅ Removes RKLB (71→69, -35.2%) | ✅ Removes INTC (70→67, -7.8%) | ⚠️ NTRA stays at 70 (winner +15.8%)
+- Jan 6: ✅ Removes TXG, NTRA, RKLB | ⚠️ MRNA drops (winner +14.6%)
+- Net: -3 to -5 FPs per date, -1 winner risk
+
+---
+
+## Idea 2 — Filter Crypto Completely
+**Status:** Proposed
+**Target:** Q20 (Sector Preference)
+**Change:** Crypto stocks (IREN, MARA, CLSK, RIOT, BITF, WULF, HUT, CIFR, COIN, MSTR, CORZ, BTBT, HIVE, BTDR) excluded from buy signals regardless of SA score
+**Impact:**
+- Oct 20: ✅ Removes IREN (71, -22.6%)
+- Jan 6: ✅ Removes IREN (71, -13.3%)
+- Net: Clean removal, no collateral damage
+
+---
+
+## Idea 3 — Cap Basic Materials to 1 Selection
+**Status:** Proposed
+**Target:** Signal/portfolio rule
+**Change:** Max 1 Basic Materials stock in buy list. If multiple qualify, take highest SA score only.
+**Impact:**
+- Jan 6 80+: HL, B, NEM, KGC, NGD, CDE, SCCO, AEM all scored 80+ — mixed winners/losers
+- Reduces sector concentration risk without scoring change
+- ⚠️ Does not fix underlying scoring — only limits exposure
+
+---
+
+## Idea 4 — P/E Penalty for Extreme Valuations
+**Status:** Proposed
+**Target:** Q23 (High P/E Momentum Trap)
+**Change:** Apply -4 penalty when P/E > 100 (positive P/E only)
+**Impact (70+ stocks):**
+- Oct 20: PLTR(195)→-4, SHOP(120)→-4 | WGS(1258) winner drops ⚠️
+- Jan 6: NBIS(231), PLTR(195), KTOS(800) drop below 70 ✅
+- ⚠️ -4 insufficient to remove PLTR/SHOP from 80+/70+ on Oct 20
+
+---
+
+## Idea 5 — Growth Questions Cap (Q1+Q2+Q3+Q12 ≤ 13pts)
+**Status:** Proposed
+**Target:** Q1 (Sales Growth), Q2 (Op Income Growth), Q3 (Cash Flow Growth), Q12 (EPS Growth)
+**Change:** Combined points from Q1+Q2+Q3+Q12 cannot exceed 13. Excess removed from raw score before normalization.
+**Rationale:** FPs score higher on growth questions than winners — growth inflation masks weak price action.
+**Impact (common 102 stocks):**
+- Jan 6 80+: 61.5% → 66.7% (+5.1%) | FPs 5→4
+- Jan 6 70-79: 44.1% → 46.7% (+2.5%) | FPs 19→16
+- Oct 20 80+: 60.0% → 60.0% (0%) | FPs 4→2 ✅ no damage
+- Oct 20 70-79: 53.6% → 55.2% (+1.6%) | FPs 13→13
+
+---
+
+## Idea 6 — Healthcare Q20 Penalty: +1 → 0
+**Status:** Proposed
+**Target:** Q20 (Sector Preference)
+**Change:** Drop Healthcare from +1 to 0 (neutral). Covers Pharma and Biotech which have no sub-sector distinction in data.
+**Rationale:** Biotech/Pharma binary event risk not captured by current scoring. All Healthcare appears identical in sector field — no sub-sector available.
+**Impact (65+ stocks):**
+- Jan 6: Only shifts scores by 1pt. No group changes for 80+. JNJ drops 70→69 (winner ⚠️). Removes NVO(69→68, FP).
+- Oct 20: No group changes. All major HC winners (INCY, LLY, VRTX) stay in their groups. Clean.
+- Net: Minimal impact — 1pt reduction across all HC stocks. Low risk, low reward.
+
+---
+
+## Idea 7 — MC Threshold: No New Buys for 70-79 When MC < 30
+**Status:** Proposed
+**Target:** Module 4 Signals — Condition 3 (Regular Market)
+**Change:** When MC 15-29, restrict buy signals to SA ≥ 80 only. 70-79 group gets "No New Buys" instead of "Selective Buy".
+**Rationale:** Jan 8 (MC=28) had 10/21 FPs in 70-79 group. These are ordinary underperformers indistinguishable by SA alone. MC filter eliminates them without SA changes.
+**Current rule:** MC 15-29 → "Growing Market" → buy 70+ stocks
+**Proposed rule:** MC 15-29 → buy 80+ only | 70-79 = No New Buys
+**To test:** Run across all dates with MC 15-29 and measure FP reduction vs winner loss
+
+---
+
+---
+
+## Idea 8 — Block Buy Signal if 5-Day Drop ≥ 5%
+**Status:** Proposed
+**Target:** Module 4 Signals — Buy signal suppression rule
+**Change:** Do not issue a Buy signal for any stock where `Past 5D %` ≤ -5%, regardless of SA score.
+**Applies to:** All score groups (80+, 70-79, 60-69)
+**Does NOT change:** SA score, rank, or display — stock still appears in results, signal becomes "Hold / Watch"
+
+**Rationale:** A 5%+ drop in the last 5 days signals active selling pressure. Even high-scoring stocks entering a slide have poor 1M forward returns. Waiting for stabilization reduces false positives without changing the scoring model.
+
+**Backtest Results (20 dates, all score groups):**
+
+| Score Group | Base WR | Filtered WR | Stocks Blocked | FPs Saved | Winners Lost | Net |
+|-------------|---------|-------------|----------------|-----------|--------------|-----|
+| 80+ | 54.2% | 55.6% | 4 | 4 | 0 | **+4** ✅ |
+| 70-79 | 51.7% | 51.6% | 15 | 7 | 8 | -1 ⚠️ |
+| 60-69 | 50.0% | 52.0% | 18 | 13 | 5 | **+8** ✅ |
+
+**Key findings:**
+- 80+: Perfect filter — all 4 blocked stocks were FPs. Zero collateral damage.
+- 60-69: Best relative impact — +2% WR, net +8 FPs saved.
+- 70-79: Slight negative at this threshold — blocks more winners than FPs. Consider raising threshold to -7% for this group only.
+- Fires rarely (4–18 blocks per group across 20 dates / ~900 total stocks) — low-frequency, high-precision.
+
+**Implementation note:** F2 (block if 1D + 5D + 1M all negative) was also tested — zero net benefit across all groups. Not recommended.
+
+---
+---
+---
+
+
 ## Score movements signals
 # Score Movement Signal Table — V17
 *Based on Nov 2025 snapshot, 62 stocks, 3-day confirmation rule*
