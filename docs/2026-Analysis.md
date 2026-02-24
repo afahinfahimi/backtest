@@ -403,10 +403,6 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Fields: Sector, 10-Day Price Change %
 - Applies to: Medical, Pharma 
 
-+++
-- Trigger: 10D > 15% → Deduct -3 points
-+++
-
 | Condition | Points |
 |-----------|--------|
 | Sector is Medical or Pharma AND 10-Day Price Change % > 15% | -3 |
