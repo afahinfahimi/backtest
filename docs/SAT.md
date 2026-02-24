@@ -343,7 +343,7 @@ If **Q13 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -4 |
+| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -3 |
 | P/E > 100 (positive only) | -4 |
 
 **First Match**
@@ -495,10 +495,15 @@ Do not Stack Points
 *These questions are placeholders scoring 0 until backtested and points assigned.*
 
 #### Q31: Price-to-Sales Ratio
-- Fields: Price-to-Sales Ratio (TTM), Sector
+- Field: Price-to-Sales Ratio (TTM)
 - FMP Endpoint: `/api/v3/ratios/{symbol}` → `priceToSalesRatio`
-- Max Points: 0 (pending)
-- Min Points: 0 (pending)
+- Max Points: 0
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| P/S Ratio > 50 | -1 |
+| P/S Ratio ≤ 50 | 0 |
 - Note: Requires sector-adjusted thresholds. Do not score until points defined.
 
 ---
