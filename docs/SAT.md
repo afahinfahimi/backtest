@@ -1435,9 +1435,13 @@ The app must calculate these values using the API data:
 
 ## Score Calculations 
 
-### Marketing Score = Add points from Questions M-01 to M-11
+### MC Score = Add points from Questions M-01 to M-11
+**For Internal Use Only** Do not display without specific instructions. Do not use in any calculations
 
 ### Final Score Calculation
+**Master Score** This is the main score for the stock including Stock, Market Condition and VIX all included for a final Signal to act on.
+
+#### Formula
 **Raw Score** = Sum of all question points (Q1–Q38 + M-01 through M-11)
 
 **Normalization Formula:**
