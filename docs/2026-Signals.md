@@ -292,6 +292,7 @@ Tiers define the max position size per stock.
 
 ---
 
+<!--
 **Color Token Backup**
 These are the colors that are used in the design. They are here just as a backup. No need to incorporate into the code.
 oken	Used For
@@ -309,5 +310,6 @@ a-red	SA Grade "Avoid" (< 40)
 a-green	MC Grade "Too Strong" (≥ 70)
 
 ---
+-->
 
 **End of Signals Instructions**
