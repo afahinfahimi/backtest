@@ -468,7 +468,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Float | Penalty |
 |-------|---------|
-| < 20M shares | -1 |
+| < 20M shares | 0 |
 | ≥ 20M shares | 0 |
 
 - Data Source: FMP company profile (float shares)
@@ -518,8 +518,8 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 **Q31: Trend Deterioration (Lower Lows & Lower Highs)**
 - Fields: Daily OHLC (last 30 trading days)
 - Category: Risk Penalty
-- Max Points: 0 
-- Min Points: -3
+- Max Points: +3 
+- Min Points: 0
 
 **Calculation:**
 1. Find swing highs: days where the high > highs of 2 days before and 2 days after
@@ -530,7 +530,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| Lower highs AND lower lows (2+ swing points each) | -3 |
+| Lower highs AND lower lows (2+ swing points each) | 3 |
 | Otherwise | 0 |
 
 - Data Source: FMP `/api/v3/historical-price-full/{symbol}` (daily OHLC)
