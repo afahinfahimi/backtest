@@ -1,6 +1,6 @@
 # Module-2 - Analysis 
 
-**Lovable Trade V187 - Updated 2/23/2026**
+**Lovable Trade V17 - Updated 2/23/2026**
 
 ## Stock Analysis (SA) Score Overview
 
