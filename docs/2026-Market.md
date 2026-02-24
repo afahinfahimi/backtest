@@ -1,7 +1,7 @@
 
 # Module-3 - Market
 
-**Lovable Trade V16 — Updated 2/13/2026**
+**Lovable Trade V17 — Updated 2/22/2026**
 
 ## Market Condition (MC) Score Overview
 - Run before stock recommendations.
