@@ -491,8 +491,8 @@ Do not Stack Points
 
 ---
 
-### Pending Backtest Questions
-*These questions are placeholders scoring 0 until backtested and points assigned.*
+### Feb set
+
 
 #### Q31: Price-to-Sales Ratio
 - Field: Price-to-Sales Ratio (TTM)
