@@ -1,6 +1,6 @@
 # Module-2 - Analysis 
 
-**Lovable Trade V17 - Updated 2/16/2026**
+**Lovable Trade V187 - Updated 2/23/2026**
 
 ## Stock Analysis (SA) Score Overview
 
@@ -379,8 +379,13 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Fields: P/E Ratio (TTM), 10-Day Price Change %
 - Max Points: 0
 - Min Points: -4
-- Trigger: P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5%
-- Points: -4
+
+| Condition | Points |
+|-----------|--------|
+| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -4 |
+| P/E > 100 (positive only) | -4 |
+
+**First Match** Do not Stack Points
 
 ---
 
@@ -459,7 +464,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ---
 
 **Q29: Sector Performance vs Peers**
-- Fields: 1-Month Price Change %, Sector Average 1-Month Return %
+- Fields: 1-Month Price Change %, SPY 1-Month Return % (spyChange1m)
 - Category: Momentum
 - Max Points: +1 
 - Min Points: -1
@@ -467,12 +472,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
   | Condition | Points |
   |-----------|--------|
-  | Outperforms sector by > 10% | +1 |
-  | Within ±10% of sector | 0 |
-  | Underperforms sector by > 10% | -1 |
+  | Outperforms SPY 1-Month Return % by > 10% | +1 |
+  | Within ±10% of SPY 1-Month Return % | 0 |
+  | Underperforms SPY 1-Month Return % by > 10% | -1 |
 
-- Data Source: FMP sector performance + stock quote
-- Rationale: Relative strength vs peers indicates stock-specific quality beyond market/sector movement.
+- Data Source: FMP sector performance (spyChange1m) + stock quote
 
 ---
 
@@ -529,10 +533,15 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - **Min Raw Score:** -42 points
 - **Span:** 112 points
 
-**Normalization Formula (auto-calculated from config):**
-`((Raw Score - Min) / (Max - Min)) × 100`
-*Current equivalent:* `((Raw Score + 42) / 112) * 100`
+**Normalization Formula :**
+((Raw Score + 42) / 112) * 100
 
+---
+
+**Change from V17**
+- SA Score Color Codes is moved to Signals module
+- Alerts Section details are moved to Signal module
+- The dynamic formula of normalization:  `((Raw Score - Min) / (Max - Min)) × 100` is changed by a static version above.
 
 ---
 
