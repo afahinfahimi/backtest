@@ -496,7 +496,6 @@ Do not Stack Points
 
 #### Q31: Price-to-Sales Ratio
 - Field: Price-to-Sales Ratio (TTM)
-- FMP Endpoint: `/api/v3/ratios/{symbol}` → `priceToSalesRatio`
 - Max Points: 0
 - Min Points: -1
 
@@ -509,20 +508,28 @@ Do not Stack Points
 ---
 
 #### Q32: Earnings Surprise
-- Fields: Actual EPS vs Estimated EPS (most recent quarter)
-- FMP Endpoint: `/api/v3/earnings-surprises/{symbol}`
-- Max Points: 0 (pending)
-- Min Points: 0 (pending)
-- Note: Measures beat/miss vs consensus, not absolute growth. Not redundant with Q12.
+- Fields: Actual EPS vs Estimated EPS (Most Recent Quarter)
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Actual EPS > Estimated EPS (Beat) | +1 |
+| Actual EPS = Estimated EPS (In Line) | 0 |
+| Actual EPS < Estimated EPS (Miss) | -1 |
+| No data available | 0 |
 
 ---
 
 #### Q33: Gross Margin Trend
-- Fields: Gross Profit / Revenue — current quarter vs prior quarter
-- FMP Endpoint: `/api/v3/income-statement/{symbol}` quarterly
-- Max Points: +1 (proposed)
+- Fields: Gross Profit / Revenue — Current Quarter vs Prior Quarter
+- Max Points: +1
 - Min Points: 0
-- Scoring: +1 if gross margin is improving quarter over quarter. 0 otherwise.
+
+| Condition | Points |
+|-----------|--------|
+| Gross Margin improving QoQ | +1 |
+| Otherwise | 0 |
 
 ---
 
