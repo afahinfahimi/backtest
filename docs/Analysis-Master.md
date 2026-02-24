@@ -2,7 +2,7 @@
 
 **Lovable Trade V18 - Updated 2/24/2026**
 
-## Stock Analysis (SA) Score Overview
+## SAT Score Overview
 
 - Score each stock provided by the user (via CSV or direct entry).
 - Answer each question below and find the points that apply.
@@ -17,7 +17,7 @@
 
 ---
 
-## Stock Analysis Score Questions 
+## SAT Questions 
 
 ### Growth Metrics 
 
@@ -70,13 +70,27 @@
 | 0 | Annual <0 AND Quarterly ≤ 0 | Declining |
 
 ### Cyclical Sector Cap
-
 **Applies to Sectors:** Basic Materials, Energy, Mining
-
 **Rule:** For stocks in these sectors, the maximum score for **Q1, Q2, and Q3** is capped at **4 points** each (instead of 6).
 
 **Exception (Breakout Rule):**
 If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, and the stock may earn the full 6 points for growth.
+
+### EPS Growth
+
+**Q12: EPS Growth Prior Year**
+- Field: EPS Growth % (Prior Fiscal Year)
+- Max Points: 4
+- Min Points: 0
+
+| Growth | Points |
+|--------|--------|
+| ≥100% | 4 |
+| ≥50% | 3 |
+| ≥25% | 2 |
+| >0% | 1 |
+| ≤0% | 0 |
+
 
 ---
 
@@ -84,7 +98,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Q4: Net Profit Margin**
 - Field: Net Profit Margin
-- `Net Profit Margin` = Net Income ÷ Revenue (TTM).
+- Formula: `Net Profit Margin` = Net Income ÷ Revenue (TTM).
 - Max Points: 5
 - Min Points: 0
 
@@ -125,6 +139,39 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | ≥10% | 2 |
 | ≥5% | 1 |
 | <5% | 0 |
+
+---
+
+### Weighted Momentum
+
+**Q11: Momentum Magnitude**
+- Field: 52-Week Price Change %, 3-Month Price Change %
+- Formula: 52W %Chg + 3M %Chg
+- Max Points: 3
+- Min Points: 0
+
+| Sum | Points | Backtest Win Rate |
+|-----|--------|-------------------|
+| >150% | 3 | 73% |
+| >100% | 2 | 63% |
+| >50% | 1 | 55% |
+| ≤50% | 0 | 47% |
+
+### Momentum Quality 
+
+**Q22: Momentum Quality**
+- Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
+- Max Points: 2
+- Min Points: -1
+- **Evaluate in order listed (stop at first match):**
+
+| Pattern | Condition | Points |
+|---------|-----------|--------|
+| Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
+| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg | +2 |
+| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
+| Other | Default | 0 |
+
 
 ---
 
@@ -173,6 +220,23 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Above 20D only | 2 |
 | Below both | 0 |
 
+
+### Range Position
+
+**Q21: %B Position (Bollinger Bands — Momentum)**
+- Field: Bollinger Bands %B (Period 20, StdDev 2)
+- Max Points: 4
+- Min Points: 0
+
+| Position | Points |
+|----------|--------|
+| Breakout (>100%) | 4 |
+| Near top (>95%) | 3 |
+| Upper zone (80-95%) | 2 |
+| Mid-range (20-80%) | 1 |
+| Buy zone (≤20%) | 0 |
+
+
 ---
 
 ### Financial Health 
@@ -190,40 +254,6 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | <1.0 | 2 |
 | <2.0 | 1 |
 | ≥2.0 | 0 |
-
----
-
-### Weighted Momentum
-
-**Q11: Momentum Magnitude**
-- Field: 52-Week Price Change %, 3-Month Price Change %
-- Formula: 52W %Chg + 3M %Chg
-- Max Points: 3
-- Min Points: 0
-
-| Sum | Points | Backtest Win Rate |
-|-----|--------|-------------------|
-| >150% | 3 | 73% |
-| >100% | 2 | 63% |
-| >50% | 1 | 55% |
-| ≤50% | 0 | 47% |
-
----
-
-### EPS Growth
-
-**Q12: EPS Growth Prior Year**
-- Field: EPS Growth % (Prior Fiscal Year)
-- Max Points: 4
-- Min Points: 0
-
-| Growth | Points |
-|--------|--------|
-| ≥100% | 4 |
-| ≥50% | 3 |
-| ≥25% | 2 |
-| >0% | 1 |
-| ≤0% | 0 |
 
 ---
 
@@ -251,6 +281,20 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | ≥10% | 2 |
 | ≥5% | 1 |
 | <5% | 0 |
+
+### Trend & Strength 
+
+**Q18: Financial Strength**
+- Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
+- Max Points: 3
+- Min Points: 0
+
+| Condition | Points |
+|-----------|--------|
+| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
+| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
+| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
+| Fails thresholds or missing data | 0 |
 
 ---
 
@@ -285,7 +329,6 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Note:** FMP API provides the full raw number (e.g., 10,000,000,000 for $10B). *Note: Do not treat as thousands.*
 
----
 
 **Q17: Deterioration Risk**
 - Fields: Quarterly Revenue, Quarterly Operating Income, Quarterly Operating Cash Flow (vs Same Qtr Year Ago)
@@ -299,24 +342,6 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Combined Penalty Cap:** If both Q16 and Q17 trigger, apply -4 total (not cumulative)
 
----
-
-### Trend & Strength 
-
-**Q18: Financial Strength**
-- Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
-- Max Points: 3
-- Min Points: 0
-
-| Condition | Points |
-|-----------|--------|
-| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
-| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
-| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
-| Fails thresholds or missing data | 0 |
-
----
-
 ### Risk Detection
 
 **Q19: Momentum Divergence Penalty**
@@ -328,6 +353,41 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 |-----------|--------|
 | 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0% | -3 |
 | Otherwise | 0 |
+
+---
+
+### Risk Detection - Part 2 
+
+**Q23: High P/E Momentum Trap**
+- Fields: P/E Ratio (TTM), 10-Day Price Change %
+- Max Points: 0
+- Min Points: -4
+
+| Condition | Points |
+|-----------|--------|
+| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -4 |
+| P/E > 100 (positive only) | -4 |
+
+ Do not Stack Points
+
+**First Match**
+
+**Q27: Short Interest Risk**
+- Fields: Short % of Float
+- Category: Risk Penalty
+- Max Points: 0 
+- Min Points: -1
+- Logic: High short interest amplifies volatility in both directions.
+
+| Short % Float | Penalty |
+|---------------|---------|
+| > 20% | -1 |
+| ≤ 20% | 0 |
+
+- Data Source: FMP institutional/short interest endpoint
+- Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
+
+---
 
 **Q20: Sector Preference**
 - Field: Sector (GICS)
@@ -345,55 +405,13 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - **Gold/Mining includes:** NEM, GFI, KGC, AU, HMY, CDE, HL, NGD, CGAU, AEM, GOLD, AG
 - **Crypto includes:** IREN, MARA, CLSK, RIOT, BITF, WULF, HUT, CIFR, COIN, MSTR, CORZ, BTBT, HIVE, BTDR
 
----
-
-### Range Position
-
-**Q21: %B Position (Bollinger Bands — Momentum)**
-- Field: Bollinger Bands %B (Period 20, StdDev 2)
-- Max Points: 4
-- Min Points: 0
-
-| Position | Points |
-|----------|--------|
-| Breakout (>100%) | 4 |
-| Near top (>95%) | 3 |
-| Upper zone (80-95%) | 2 |
-| Mid-range (20-80%) | 1 |
-| Buy zone (≤20%) | 0 |
 
 ---
 
-### Momentum Quality 
-
-**Q22: Momentum Quality**
-- Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
-- Max Points: 2
-- Min Points: -1
-- **Evaluate in order listed (stop at first match):**
-
-| Pattern | Condition | Points |
-|---------|-----------|--------|
-| Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
-| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg | +2 |
-| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
-| Other | Default | 0 |
 
 ---
 
-### Risk Detection - Part 2 
 
-**Q23: High P/E Momentum Trap**
-- Fields: P/E Ratio (TTM), 10-Day Price Change %
-- Max Points: 0
-- Min Points: -4
-
-| Condition | Points |
-|-----------|--------|
-| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -4 |
-| P/E > 100 (positive only) | -4 |
-
-**First Match** Do not Stack Points
 
 ---
 
@@ -442,41 +460,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q27: Short Interest Risk**
-- Fields: Short % of Float
-- Category: Risk Penalty
-- Max Points: 0 
-- Min Points: -1
-- Logic: High short interest amplifies volatility in both directions.
 
-| Short % Float | Penalty |
-|---------------|---------|
-| > 20% | -1 |
-| ≤ 20% | 0 |
-
-- Data Source: FMP institutional/short interest endpoint
-- Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
 
 ---
 
-**Q28: Low Float Risk**
-- Fields: Float Shares
-- Category: Risk Penalty
-- Max Points: 0 
-- Min Points: -1
-- Logic: Low float stocks have amplified price swings on normal volume.
-
-| Float | Penalty |
-|-------|---------|
-| < 20M shares | 0 |
-| ≥ 20M shares | 0 |
-
-- Data Source: FMP company profile (float shares)
-- Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
-
----
-
-**Q29: Sector Performance vs Peers**
+**Q28: Sector Performance vs SPY**
 - Fields: 1-Month Price Change %, SPY 1-Month Return % (spyChange1m)
 - Category: Momentum
 - Max Points: +1 
@@ -493,7 +481,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q30: 5-Day Relative Strength (Alpha)**
+**Q29: 5-Day Relative Strength (Alpha)**
 - Fields: Stock 5-Day Price Change %, QQQ 5-Day Price Change %
 - Formula: Alpha = Stock 5D % minus QQQ 5D %
 - Category: Momentum
@@ -515,10 +503,10 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q31: Trend Deterioration (Lower Lows & Lower Highs)**
+**Q30: Trend Structure (Lower Lows & Lower Highs)**
 - Fields: Daily OHLC (last 30 trading days)
-- Category: Risk Penalty
-- Max Points: +3 
+- Category: Momentum Bonus
+- Max Points: +3
 - Min Points: 0
 
 **Calculation:**
@@ -530,7 +518,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| Lower highs AND lower lows (2+ swing points each) | 3 |
+| Lower highs AND lower lows (2+ swing points each) | +3 |
 | Otherwise | 0 |
 
 - Data Source: FMP `/api/v3/historical-price-full/{symbol}` (daily OHLC)
@@ -538,17 +526,93 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
+### Pending Backtest Questions
+*These questions are placeholders scoring 0 until backtested and points assigned.*
+
+**Q31: Price-to-Sales Ratio**
+- Fields: Price-to-Sales Ratio (TTM), Sector
+- FMP Endpoint: `/api/v3/ratios/{symbol}` → `priceToSalesRatio`
+- Max Points: 0 (pending)
+- Min Points: 0 (pending)
+- Note: Requires sector-adjusted thresholds. Do not score until points defined.
+
+---
+
+**Q32: Earnings Surprise**
+- Fields: Actual EPS vs Estimated EPS (most recent quarter)
+- FMP Endpoint: `/api/v3/earnings-surprises/{symbol}`
+- Max Points: 0 (pending)
+- Min Points: 0 (pending)
+- Note: Measures beat/miss vs consensus, not absolute growth. Not redundant with Q12.
+
+---
+
+**Q33: Gross Margin Trend**
+- Fields: Gross Profit / Revenue — current quarter vs prior quarter
+- FMP Endpoint: `/api/v3/income-statement/{symbol}` quarterly
+- Max Points: +1 (proposed)
+- Min Points: 0
+- Scoring: +1 if gross margin is improving quarter over quarter. 0 otherwise.
+
+---
+
+**Q34: Insider Buying**
+- Fields: Net insider transactions (open market buys vs sells, last 90 days)
+- FMP Endpoint: `/api/v3/insider-trading/{symbol}`
+- Max Points: 0 (pending)
+- Min Points: 0 (pending)
+- Note: Filter scheduled/compensation purchases. Look for open market buys only.
+
+---
+
+**Q35: Volume Surge on Up Day**
+- Fields: Today's Volume, 20-Day Average Volume, 1-Day Price Change %
+- FMP Endpoint: `/api/v3/quote/{symbol}` → `volume`, `avgVolume`
+- Max Points: +2 (proposed)
+- Min Points: 0
+- Scoring: +2 if volume > 2x 20D average AND price up. 0 otherwise.
+
+---
+
+**Q36: Revenue Acceleration**
+- Fields: Quarterly Revenue Growth % — last 3-4 quarters
+- FMP Endpoint: `/api/v3/income-statement/{symbol}` quarterly
+- Max Points: +1 (proposed)
+- Min Points: 0
+- Scoring: +1 if quarterly revenue growth rate is accelerating (each quarter higher than previous). 0 otherwise.
+
+---
+
+**Q37: 52-Week High Proximity**
+- Fields: Current Price, 52-Week High
+- FMP Endpoint: `/api/v3/quote/{symbol}` → `price`, `yearHigh`
+- Max Points: +1 (proposed)
+- Min Points: 0
+- Scoring: +1 if stock is within 5% of 52-week high. 0 otherwise.
+
+---
+
+**Q38: Institutional Accumulation**
+- Fields: Institutional Ownership % — current quarter vs prior quarter
+- FMP Endpoint: `/api/v3/institutional-holder/{symbol}`
+- Max Points: +1 (proposed)
+- Min Points: 0
+- Scoring: +1 if institutional ownership % is increasing quarter over quarter. 0 otherwise.
+- Note: Not redundant with Q8 which only checks presence, not trend.
+
+---
+
 ### Market Environment
 
 ### Market Integration (Applied to each stock equally based on market conditions)
 
-**Note:** These questions use QQQ and market ETF data — not individual stock data. All stocks analyzed on the same day receive the same points from Q32–Q42. Half-point scoring (0.5x weight) is used to prevent market conditions from overwhelming stock-specific signals.
+**Note:** These questions use QQQ and market ETF data — not individual stock data. All stocks analyzed on the same day receive the same points from M-01 through M-11. Half-point scoring (0.5x weight) is used to prevent market conditions from overwhelming stock-specific signals.
 
 **Required Data:** QQQ Price, 20D/50D/100D/200D SMAs, 52-Week High/Low, 52-Week %Chg, VIX Level, SPY 1M %Chg, EFA 1M %Chg, XLE 1M %Chg, GLD 1M %Chg, IWM 1M %Chg, XLY 1M %Chg, XLP 1M %Chg
 
 ---
 
-**Q32: VIX Level**
+**M-01: VIX Level**
 - Field: VIX Current Price (^VIX)
 - Max Points: 3
 - Min Points: -3
@@ -564,7 +628,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q33: QQQ Price vs Moving Averages**
+**M-02: QQQ Price vs Moving Averages**
 - Fields: QQQ Price, QQQ 50D SMA, QQQ 200D SMA
 - Max Points: 1.5
 - Min Points: -1
@@ -579,7 +643,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q34: Trend Confirmation (50MA–200MA Spread)**
+**M-03: Trend Confirmation (50MA–200MA Spread)**
 - Fields: QQQ 50D SMA, QQQ 200D SMA
 - Formula: `(50D SMA - 200D SMA) / 200D SMA × 100`
 - Max Points: 2
@@ -596,7 +660,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q35: QQQ 52-Week Strength**
+**M-04: QQQ 52-Week Strength**
 - Field: QQQ 52-Week Price Change %
 - Max Points: 2
 - Min Points: -1.5
@@ -612,7 +676,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q36: QQQ Range Position**
+**M-05: QQQ Range Position**
 - Fields: QQQ Price, QQQ 52-Week High, QQQ 52-Week Low
 - Formula: `(Price - 52W Low) / (52W High - 52W Low)`
 - Max Points: 1.5
@@ -628,7 +692,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q37: International Markets (EFA vs SPY)**
+**M-06: International Markets (EFA vs SPY)**
 - Fields: EFA 1-Month %Chg, SPY 1-Month %Chg
 - Formula: `EFA 1M %Chg - SPY 1M %Chg`
 - Max Points: 1.5
@@ -644,7 +708,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q38: Commodities Trend (XLE + GLD)**
+**M-07: Commodities Trend (XLE + GLD)**
 - Fields: XLE 1-Month %Chg, GLD 1-Month %Chg
 - Definitions: "Up" = > +3%. "Down" = < -3%. "Stable" = -3% to +3%.
 - Max Points: 0.5
@@ -662,7 +726,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q39: Small-Cap Breadth (IWM vs QQQ)**
+**M-08: Small-Cap Breadth (IWM vs QQQ)**
 - Fields: IWM 1-Month %Chg, QQQ 1-Month %Chg
 - Formula: `IWM 1M %Chg - QQQ 1M %Chg`
 - Max Points: 1.5
@@ -676,7 +740,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q40: Sector Rotation (XLY vs XLP)**
+**M-09: Sector Rotation (XLY vs XLP)**
 - Fields: XLY 1-Month %Chg, XLP 1-Month %Chg
 - Formula: `XLY 1M %Chg - XLP 1M %Chg`
 - Max Points: 0.5
@@ -690,7 +754,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q41: Short-Term Trend (20D–50D MA Spread)**
+**M-10: Short-Term Trend (20D–50D MA Spread)**
 - Fields: QQQ 20D SMA, QQQ 50D SMA
 - Formula: `(20D SMA - 50D SMA) / 50D SMA × 100`
 - Max Points: 1.5
@@ -708,7 +772,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q42: Medium-Term Trend (20D–100D MA Spread)**
+**M-11: Medium-Term Trend (20D–100D MA Spread)**
 - Fields: QQQ 20D SMA, QQQ 100D SMA
 - Formula: `(20D SMA - 100D SMA) / 100D SMA × 100`
 - Max Points: 1.5
@@ -727,25 +791,13 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ---
 
 ## Final Score Calculation
-- **Raw Score** = Sum of assigned points from all questions
+- **Raw Score** = Sum of all question points (Q1–Q38 + M-01 through M-11)
 
 **Current Config Reference:**
-- **Max Raw Score:** 78 points
-- **Min Raw Score:** -45 points
-- **Span:** 123 points
-
-**Normalization Formula:**
-`((Raw Score + 45) / 123) * 100`
-
----
-
-## Final Score Calculation (V18)
-- **Raw Score** = Sum of all question points (Q1–Q42)
-
-**Current Config Reference:**
-- **Q1–Q31 (Stock):** Max +70 / Min -42
-- **Q32 (VIX):** Max +3 / Min -3
-- **Q33–Q42 (Market, 0.5x weight):** Max +9 / Min -7.5
+- **Q1–Q30 (Stock):** Max +70 / Min -42
+- **Q31–Q38 (Pending Backtest):** Max 0 / Min 0
+- **M-01 (VIX):** Max +3 / Min -3
+- **M-02–M-11 (Market, 0.5x weight):** Max +9 / Min -7.5
 - **Total Max Raw Score:** 82 points
 - **Total Min Raw Score:** -52.5 points
 - **Span:** 134.5 points
@@ -755,26 +807,18 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Change from V17**
-- SA Score Color Codes is moved to Signals module
-- Alerts Section details are moved to Signal module
-- The dynamic formula of normalization: `((Raw Score - Min) / (Max - Min)) × 100` is changed by a static version above.
-
-**Change from V18 (2/24/2026)**
-- Added Q32: Market Condition (MC Zone) — Max +5, Min 0
-- Added Q33: VIX Environment — Max +3, Min -3
-- Normalization updated: Max Raw 78, Min Raw -45, Span 123
-
 **Changes from V17 to V18:**
-- Removed old Q32 (MC Score curve lookup, 0–5 pts)
-- Added Q32: VIX Level (integer, -3 to +3)
-- Added Q33–Q42: 10 Market Integration questions (half-point scoring, 0.5x weight)
+- SA Score Color Codes moved to Signals module
+- Alerts Section details moved to Signals module
+- Dynamic normalization formula replaced with static version
+- Q28 (Low Float Risk) removed — zero predictive value, confirmed by backtest
+- Q30 (Trend Structure) flipped from -3 penalty to +3 bonus — backtested: 75% WR vs 65.3% for clean stocks at 80+, 3.9:1 winner-to-FP ratio
+- Q31–Q38 added as placeholder questions scoring 0 — pending backtest data before points assigned
+- M-01 (VIX Level) added — integer scoring, -3 to +3
+- M-02–M-11 added: 10 Market Integration questions (half-point scoring, 0.5x weight)
 - Non-linear scoring derived from backtest of 81,222 stock observations against 1-month forward returns
-- Updated normalization formula from `((Raw + 42) / 112) × 100` to `((Raw + 52.5) / 134.5) × 100`
-
+- Normalization formula updated: `((Raw + 52.5) / 134.5) × 100`
 
 ---
 
 **End of Stock Analysis Test Instructions**
-
-
