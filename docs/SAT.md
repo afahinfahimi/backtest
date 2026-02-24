@@ -1138,8 +1138,7 @@ Do not Stack Points
 
 ---
 
-### Pending Backtest Questions
-*These questions are placeholders scoring 0 until backtested and points assigned.*
+### Feb 2026 Questions
 
 #### Q31: Price-to-Sales Ratio
 - Fields: Price-to-Sales Ratio (TTM), Sector
