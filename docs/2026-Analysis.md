@@ -285,12 +285,17 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Note:** FMP API provides the full raw number (e.g., 10,000,000,000 for $10B). *Note: Do not treat as thousands.*
 
+---
+
 **Q17: Deterioration Risk**
 - Fields: Quarterly Revenue, Quarterly Operating Income, Quarterly Operating Cash Flow (vs Same Qtr Year Ago)
 - Max Points: 0
 - Min Points: -3
-- Trigger: Quarterly Revenue < Sales(q-4) AND Quarterly Operating Income < OpIncome(q-4) AND Quarterly Operating Cash Flow < CashFlow(q-4)
-- Points: -3
+
+| Condition | Points |
+|-----------|--------|
+| Quarterly Revenue < Sales(q-4) AND Quarterly Operating Income < OpIncome(q-4) AND Quarterly Operating Cash Flow < CashFlow(q-4) | -3 |
+| Otherwise | 0 |
 
 **Combined Penalty Cap:** If both Q16 and Q17 trigger, apply -4 total (not cumulative)
 
@@ -318,8 +323,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Fields: 52-Week Price Change %, 3-Month Price Change %, 1-Month Price Change %, 10-Day Price Change %
 - Max Points: 0
 - Min Points: -3
-- Trigger: 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0%
-- Points: -3
+
+| Condition | Points |
+|-----------|--------|
+| 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0% | -3 |
+| Otherwise | 0 |
 
 **Q20: Sector Preference**
 - Field: Sector (GICS)
@@ -394,7 +402,15 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -3
 - Fields: Sector, 10-Day Price Change %
 - Applies to: Medical, Pharma 
+
++++
 - Trigger: 10D > 15% → Deduct -3 points
++++
+
+| Condition | Points |
+|-----------|--------|
+| Sector is Medical or Pharma AND 10-Day Price Change % > 15% | -3 |
+| Otherwise | 0 |
 
 ---
 
@@ -402,10 +418,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Fields: 1-Day Price Change %, 5-Day Price Change %, 1-Month Price Change %
 - Max Points: 0 
 - Min Points: -3
-- **Logic:** Check 1D, 5D, and 1M price changes. If ALL THREE are negative, deduct -3 points.
-- **Conditions:**
-  - 1D < 0% AND 5D < 0% AND 1M < 0%: **-3**
-  - Otherwise: **0**
+
+| Condition | Points |
+|-----------|--------|
+| 1D < 0% AND 5D < 0% AND 1M < 0% | -3 |
+| Otherwise | 0 |
 
 ---
 
@@ -416,12 +433,12 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -6
 - **Logic:** Check for abnormal price drops. Evaluate each of the last 3 trading days individually (close-to-close). Also check cumulative 5-day return. Triggered by the HIGHEST matching tier only (no stacking):
 
-  | Tier | Condition | Penalty |
-  |------|-----------|---------|
-  | Critical | Any single day ≥ 15% drop within last 3 days | -6 |
-  | Severe | Any single day ≥ 10% drop within last 3 days | -2 |
-  | Caution | Any single day ≥ 7% drop within last 3 days, OR cumulative 5-day return ≤ -10% | -1 |
-  | None | No conditions met | 0 |
+| Tier | Condition | Penalty |
+|------|-----------|---------|
+| Critical | Any single day ≥ 15% drop within last 3 days | -6 |
+| Severe | Any single day ≥ 10% drop within last 3 days | -2 |
+| Caution | Any single day ≥ 7% drop within last 3 days, OR cumulative 5-day return ≤ -10% | -1 |
+| None | No conditions met | 0 |
 
 - **Data Source:** Historical daily prices (last 5 trading days, close prices)
 - **Self-Healing:** Clears once the drop day falls outside the 3-day window. If decline continues, the 5-day cumulative condition sustains the Caution tier.
@@ -436,10 +453,10 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -1
 - Logic: High short interest amplifies volatility in both directions.
 
-  | Short % Float | Penalty |
-  |---------------|---------|
-  | > 20% | -1 |
-  | ≤ 20% | 0 |
+| Short % Float | Penalty |
+|---------------|---------|
+| > 20% | -1 |
+| ≤ 20% | 0 |
 
 - Data Source: FMP institutional/short interest endpoint
 - Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
@@ -453,10 +470,10 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -1
 - Logic: Low float stocks have amplified price swings on normal volume.
 
-  | Float | Penalty |
-  |-------|---------|
-  | < 20M shares | -1 |
-  | ≥ 20M shares | 0 |
+| Float | Penalty |
+|-------|---------|
+| < 20M shares | -1 |
+| ≥ 20M shares | 0 |
 
 - Data Source: FMP company profile (float shares)
 - Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
@@ -470,11 +487,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -1
 - Logic: Compare stock's 1M return vs its sector average 1M return.
 
-  | Condition | Points |
-  |-----------|--------|
-  | Outperforms SPY 1-Month Return % by > 10% | +1 |
-  | Within ±10% of SPY 1-Month Return % | 0 |
-  | Underperforms SPY 1-Month Return % by > 10% | -1 |
+| Condition | Points |
+|-----------|--------|
+| Outperforms SPY 1-Month Return % by > 10% | +1 |
+| Within ±10% of SPY 1-Month Return % | 0 |
+| Underperforms SPY 1-Month Return % by > 10% | -1 |
 
 - Data Source: FMP sector performance (spyChange1m) + stock quote
 
@@ -488,14 +505,14 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 - Min Points: -3
 - **Evaluate in order listed (stop at first match):**
 
-  | Condition | Points |
-  |-----------|--------|
-  | Stock UP & Market DOWN (true alpha) | +3 |
-  | Alpha ≥ +5% (beating market by 5%+) | +2 |
-  | Alpha ≥ 0% (beating market) | +1 |
-  | Alpha -5% to 0% (slightly lagging) | 0 |
-  | Alpha < -5% (badly lagging market) | -2 |
-  | Stock DOWN & Market UP (stock-specific problem) | -3 |
+| Condition | Points |
+|-----------|--------|
+| Stock UP & Market DOWN (true alpha) | +3 |
+| Alpha ≥ +5% (beating market by 5%+) | +2 |
+| Alpha ≥ 0% (beating market) | +1 |
+| Alpha -5% to 0% (slightly lagging) | 0 |
+| Alpha < -5% (badly lagging market) | -2 |
+| Stock DOWN & Market UP (stock-specific problem) | -3 |
 
 - Data Source: FMP quote (stock 5D change) + QQQ quote (market 5D change)
 - Rationale: Stock move relative to market isolates stock-specific strength (alpha). Stocks up while market is down had 82.1% win rate. Stocks down while market is up had 47.8% win rate. Combined with Q15 change, improved SA correlation from r=0.152 to r=0.173 (+14%).
@@ -515,10 +532,10 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 4. Compare last 2-3 swing lows: are they decreasing?
 5. Both decreasing → penalty
 
-  | Condition | Points |
-  |-----------|--------|
-  | Lower highs AND lower lows (2+ swing points each) | -3 |
-  | Otherwise | 0 |
+| Condition | Points |
+|-----------|--------|
+| Lower highs AND lower lows (2+ swing points each) | -3 |
+| Otherwise | 0 |
 
 - Data Source: FMP `/api/v3/historical-price-full/{symbol}` (daily OHLC)
 - Rationale: Stocks making lower lows and lower highs are in a structural downtrend regardless of other indicators. Detects topping patterns that momentum questions miss.
@@ -546,10 +563,6 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 ---
 
 **End of Stock Analysis Test Instructions**
-
-
-
-
 
 
 
