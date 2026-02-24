@@ -1,6 +1,7 @@
+
 # Module-3 - Market
 
-**Lovable Trade V17 — Updated 2/16/2026**
+**Lovable Trade V16 — Updated 2/13/2026**
 
 ## Market Condition (MC) Score Overview
 - Run before stock recommendations.
@@ -329,6 +330,9 @@ The app must calculate these values using the API data:
 
 ---
 
-**End of Market Condition Test**
+**About color coding**: The color coding rules have been moved to the Signals Module. 
 
+---
+
+**End of Market Condition Test**
 
