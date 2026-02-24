@@ -534,48 +534,71 @@ Do not Stack Points
 ---
 
 #### Q34: Insider Buying
-- Fields: Net insider transactions (open market buys vs sells, last 90 days)
-- FMP Endpoint: `/api/v3/insider-trading/{symbol}`
-- Max Points: 0 (pending)
-- Min Points: 0 (pending)
-- Note: Filter scheduled/compensation purchases. Look for open market buys only.
+- Fields: Net Insider Transactions (Open Market Buys vs Sells, Last 90 Days)
+- Max Points: +1
+- Min Points: -1
+- Note: Filter scheduled/compensation purchases. Open market buys/sells only.
+
+| Condition | Points |
+|-----------|--------|
+| Net Insider Buying (Buys > Sells) | +1 |
+| Neutral / No Data | 0 |
+| Net Insider Selling (Sells > Buys) | -1 |
 
 ---
 
-#### Q35: Volume Surge on Up Day
-- Fields: Today's Volume, 20-Day Average Volume, 1-Day Price Change %
-- FMP Endpoint: `/api/v3/quote/{symbol}` → `volume`, `avgVolume`
-- Max Points: +2 (proposed)
-- Min Points: 0
-- Scoring: +2 if volume > 2x 20D average AND price up. 0 otherwise.
+#### Q35: Volume Surge on Up/Down Day
+- Fields: Today's Volume, 20-Day Average Volume, 1-Day Price Change %, Current Price, 52-Week High, 52-Week Low
+- Max Points: +2
+- Min Points: -2
+- Evaluate in order listed (stop at first match):
+
+| Condition | Points |
+|-----------|--------|
+| Volume ≥ 2x Average AND Price Up AND Within 5% of 52-Week High | +2 |
+| Volume ≥ 2x Average AND Price Up | +1 |
+| Volume ≥ 2x Average AND Price Down AND Within 5% of 52-Week Low | -2 |
+| Volume ≥ 2x Average AND Price Down | -1 |
+| Otherwise | 0 |
 
 ---
 
 #### Q36: Revenue Acceleration
-- Fields: Quarterly Revenue Growth % — last 3-4 quarters
-- FMP Endpoint: `/api/v3/income-statement/{symbol}` quarterly
-- Max Points: +1 (proposed)
-- Min Points: 0
-- Scoring: +1 if quarterly revenue growth rate is accelerating (each quarter higher than previous). 0 otherwise.
+- Fields: Quarterly Revenue Growth % — Last 3-4 Quarters
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Revenue Growth Rate Accelerating (Each Quarter Higher Than Previous) | +1 |
+| Flat / Insufficient Data | 0 |
+| Revenue Growth Rate Decelerating (Each Quarter Lower Than Previous) | -1 |
 
 ---
 
-#### Q37: 52-Week High Proximity
-- Fields: Current Price, 52-Week High
-- FMP Endpoint: `/api/v3/quote/{symbol}` → `price`, `yearHigh`
-- Max Points: +1 (proposed)
-- Min Points: 0
-- Scoring: +1 if stock is within 5% of 52-week high. 0 otherwise.
+#### Q37: 52-Week High/Low Proximity
+- Fields: Current Price, 52-Week High, 52-Week Low
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Within 5% of 52-Week High | +1 |
+| Within 5% of 52-Week Low | -1 |
+| Otherwise | 0 |
 
 ---
 
 #### Q38: Institutional Accumulation
-- Fields: Institutional Ownership % — current quarter vs prior quarter
-- FMP Endpoint: `/api/v3/institutional-holder/{symbol}`
-- Max Points: +1 (proposed)
-- Min Points: 0
-- Scoring: +1 if institutional ownership % is increasing quarter over quarter. 0 otherwise.
-- Note: Not redundant with Q8 which only checks presence, not trend.
+- Fields: Institutional Ownership % — Current Quarter vs Prior Quarter
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Institutional Ownership % Increased by ≥ 1% QoQ | +1 |
+| Institutional Ownership % Decreased by ≥ 1% QoQ | -1 |
+| Change < 1% either direction / No Data | 0 |
 
 ---
 
