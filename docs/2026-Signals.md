@@ -33,7 +33,7 @@ They help contextualize the Master Signals but do not drive any actions on their
 | 60 to 69 | Potential | t-yellow |
 | 50 to 59 | In Transition | t-orange |
 | 40 to 49 | Weak | t-red |
-| < 40 | Avoid | *(no color mapping)* |
+| < 40 | Avoid | t-red-2 |
 
 ## MC Score Grades
 
@@ -289,6 +289,24 @@ Tiers define the max position size per stock.
 | T2 | ≥ 50 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $2B | $50,000 | t-blue |
 | T3 | ≥ 50 | Market Cap > $100M + (Growth: Annual Revenue Growth > 0% OR Small Profitable: Net Profit Margin > 0% AND Market Cap ≤ $2B) | $20,000 | t-yellow |
 | SELL | Does not qualify for any tier | $0 — Do not buy | t-red |
+
+---
+
+**Color Token Backup**
+These are the colors that are used in the design. They are here just as a backup. No need to incorporate into the code.
+oken	Used For
+t-green	Buy, Aggressive Buy (stock), Selective Buy (stock), Confident Buy (market), Healthy Market
+a-green	Aggressive Buy (market), Buy (VIX stock)
+t-teal	Growing Market
+t-blue	Selective Buy (market), T2 tier
+t-yellow	Find Better, Monitor, Careful Buy, Overheated, No New Buys (MC>80), Unprofitable override, Sector Cap, T3 tier
+t-orange	Weak Market, No New Buys (MC<15), Monitor (MC 70-80)
+t-red	Avoid, Sell, No Buy (Crypto), SELL tier
+Plus from your SA/MC Grade tables:
+
+Token	Used For
+a-red	SA Grade "Avoid" (< 40)
+a-green	MC Grade "Too Strong" (≥ 70)
 
 ---
 
