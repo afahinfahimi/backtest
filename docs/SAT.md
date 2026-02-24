@@ -827,13 +827,14 @@ The app must calculate these values using the API data:
 
 **Current Config Reference:**
 - **Q1–Q30 (Stock):** Max +70 / Min -42
-- **Q31–Q38 (Pending Backtest):** Max 0 / Min 0
-- **Total Max Raw Score:** 82 points
-- **Total Min Raw Score:** -52.5 points
-- **Span:** 134.5 points
+- **Q31–Q38 (Stock):** Max +8 / Min -8
+- **M-01–M-11 (Market):** Max +12 / Min -10.5
+- **Total Max Raw Score:** 90 points
+- **Total Min Raw Score:** -60.5 points
+- **Span:** 150.5 points
 
 **Normalization Formula:**
-`((Raw Score + 52.5) / 134.5) × 100`
+`((Raw Score + 60.5) / 150.5) × 100`
 
 ---
 
