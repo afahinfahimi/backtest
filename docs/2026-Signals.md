@@ -33,7 +33,7 @@ They help contextualize the Master Signals but do not drive any actions on their
 | 60 to 69 | Potential | t-yellow |
 | 50 to 59 | In Transition | t-orange |
 | 40 to 49 | Weak | t-red |
-| < 40 | Avoid | a-red |
+| < 40 | Avoid | *(no color mapping)* |
 
 ## MC Score Grades
 
@@ -67,17 +67,16 @@ Clicking on an alert opens a toggle box with the content of the Alert below.
 | SEC Investigation | Active SEC investigation, fraud, restatement |
 | Legal Issues | Lawsuit, hearing, investigation, ruling news about the company or top executives |
 | Forward Guidance Shows Decline | Forward guidance lowered by the company |
-| EPS Expectation Lowered | Consensus EPS estimates cut within the last 90 days |
 | Downgraded by Analysts | Analyst downgraded the stock within the last 30 days |
-| Insider Selling | Top insider's selling within the last 6 months |
 
 ## Yellow Alerts (Caution / Neutral)
 **Color: t-yellow**
 
 | Alert | Trigger |
 |-------|---------|
-| Earning Date Close | Earnings date is within the next 14 days |
-| IPO (New Company) | Company's IPO was listed within the last 12 months |
+| Earning Date Close | Earnings date is within the next 7 days |
+| IPO (New Company) | Company's IPO was listed within the last 7 days |
+| Healthcare / Binary Event Risk | Sector is Healthcare, Medical, Pharma, Pharmaceutical, Biotechnology, Medical Devices, Drug Manufacturers, Health Care, Diagnostics & Research, Medical Instruments & Supplies, Pharmaceutical Retailers, or Health Information Services. Rationale: exposed to FDA decisions, clinical trials, patent cliffs. |
 
 ## Green Alerts (Positive / Opportunity)
 **Color: t-green**
@@ -85,9 +84,7 @@ Clicking on an alert opens a toggle box with the content of the Alert below.
 | Alert | Trigger |
 |-------|---------|
 | Positive Guidance | Forward guidance is raised |
-| EPS Increased | Consensus EPS estimates raised within the last 90 days |
 | Upgrade by Analysts | Analysts upgraded the stock within the last month |
-| Insider Buying | Top insiders bought stocks within the last 90 days |
 
 ---
 
@@ -105,7 +102,6 @@ Earnings Season Peak [MEDIUM] (Mid-Jan) — Elevated single-stock volatility
 #### How to display
 Show a large alert icon with a vertical separator in front of the 'Signal' and when clicked on it display it as a box added to the MC details panel.
 **Format:** Event Name [HIGH/MEDIUM/LOW] (Date) — One-line description
-
 
 ---
 
@@ -168,7 +164,9 @@ Signals are determined separately for the **Market** (one result, displayed in t
 |---------------|--------------|--------------|--------|-----------------|-------|
 | VIX ≥ 25 | Any | ≥ 75 | Aggressive Buy | Hold if Own | t-green |
 | VIX ≥ 25 | Any | 65 to 74 | Buy | Hold if Own | a-green |
-| VIX ≥ 25 | Any | 55 to 64 | Monitor for improvement | Consider Selling. Tight Stop loss | t-yellow |
+| VIX ≥ 25 | Any | 59 to 64 | Monitor for improvement | Consider Selling. Tight Stop loss | t-yellow |
+
+*Note: SA range 59–64 reflects effective floor after Universal Rule catches SA < 59 first.*
 
 ---
 
@@ -188,9 +186,11 @@ Signals are determined separately for the **Market** (one result, displayed in t
 | VIX Condition | MC Condition | SA Condition | Signal | Manage Holdings | Color |
 |---------------|--------------|--------------|--------|-----------------|-------|
 | < 25 | < 15 | ≥ 69 | No New Buys | Add tight 5% trailing stop | t-orange |
-| < 25 | < 15 | 55 to 68 | Sell | Sell | t-red |
+| < 25 | < 15 | 59 to 68 | Sell | Sell | t-red |
 | < 25 | > 80 | ≥ 70 | No New Buys | Set 10% trailing stop loss | t-yellow |
-| < 25 | > 80 | 55 to 69 | No New Buys | Set 5% trailing stop loss | t-orange |
+| < 25 | > 80 | 59 to 69 | No New Buys | Set 5% trailing stop loss | t-orange |
+
+*Note: SA ranges reflect effective floor after Universal Rule catches SA < 59 first.*
 
 ---
 
@@ -212,11 +212,56 @@ Signals are determined separately for the **Market** (one result, displayed in t
 | VIX Condition | MC Condition | SA Condition | Signal | Manage Holdings | Color |
 |---------------|--------------|--------------|--------|-----------------|-------|
 | < 25 | 15 to 69 | ≥ 80 | Buy | Hold | t-green |
-| < 25 | 15 to 69 | 70 to 79 | Selective Buy | Hold with 10% trailing stop | t-green |
+| < 25 | 15 to 69 | 70 to 79 | Selective Buy | Hold with 10% trailing stop | t-teal |
 | < 25 | 15 to 69 | 60 to 69 | Monitor | Hold with 10% trailing stop | t-yellow |
 | < 25 | 70 to 80 | ≥ 80 | Buy | Hold with 10% trailing stop | t-green |
 | < 25 | 70 to 80 | 70 to 79 | Careful Buy | Hold with 10% trailing stop | t-yellow |
 | < 25 | 70 to 80 | 60 to 69 | Monitor | Hold with 5% trailing stop | t-orange |
+
+---
+
+## Part 3B — Signal Overrides
+
+The following overrides apply globally after condition-based signals are assigned. Evaluated in order per stock row.
+
+---
+
+### Override 1: Crypto Complete Filter
+- **Applies to:** IREN, MARA, CLSK, RIOT, BITF, WULF, HUT, CIFR, COIN, MSTR, CORZ, BTBT, HIVE, BTDR
+- **Trigger:** Any Buy-type signal
+
+| Condition | Signal Override | Color |
+|-----------|-----------------|-------|
+| Symbol is in crypto list AND signal is Buy-type | No Buy (Crypto) | t-red |
+| Otherwise | No change | — |
+
+- Does not affect non-buy signals.
+
+---
+
+### Override 2: Basic Materials Sector Cap (Max 2)
+- **Applies to Sectors:** Basic Materials, Mining
+- **Trigger:** 3 or more stocks in these sectors qualify for buy signals in the same scan
+
+| Condition | Signal Override | Color |
+|-----------|-----------------|-------|
+| Top 2 by SA score (tiebreak: higher Net Profit Margin) | No change | — |
+| 3rd stock and beyond | No New Buys (Sector Cap) | t-yellow |
+
+- Does not affect non-buy signals or SA scores.
+
+---
+
+### Override 3: Unprofitable Stock Override
+- **Trigger:** Net Profit Margin < 0%
+- **Applies to signals:** Buy, Selective Buy, Aggressive Buy, Careful Buy
+
+| Condition | Signal Override | Color |
+|-----------|-----------------|-------|
+| Net Profit Margin < 0% AND signal is Buy-type | Append "(Unprofitable)" to signal label | t-yellow |
+| Otherwise | No change | — |
+
+- Does not affect non-buy signals or SA scores.
 
 ---
 
