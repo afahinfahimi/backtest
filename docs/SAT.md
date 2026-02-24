@@ -710,7 +710,7 @@ The app must calculate these values using the API data:
 
 #### M-05: QQQ Range Position
 - Fields: QQQ Price, QQQ 52-Week High, QQQ 52-Week Low
-- Formula: `(Price - 52W Low) / (52W High - 52W Low)`
+- Formula: `(Price - 52-Week Low) / (52-Week High - 52-Week Low)`
 - Max Points: 1.5
 - Min Points: -1.5
 
