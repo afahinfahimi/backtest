@@ -1450,7 +1450,11 @@ The app must calculate these values using the API data:
 
 **End of Stock Analysis Test Instructions**
 
-
+<!-- 
+Q32: earnings-surprises endpoint → actual vs estimated EPS
+Q34: insider-trading endpoint (v4 API) → net buy/sell share calculation
+Q38: Now wired to use institutionalOwnership already fetched (prior period still unavailable from single-point data, so Q38 will show "Stable" when ownership exists)
+-->
 
 
 
