@@ -1262,13 +1262,11 @@ Do not Stack Points
 ---
 
 ### Final Score Calculation
-**Master Score** This is the main score for the stock including Stock, Market Condition and VIX all included for a final Signal to act on.
 
-#### Formula
-**Raw Score** = Sum of all question points (Q1–Q38 + M-01 through M-11)
+**Raw Score** = Sum of all question points
 
 **Normalization Formula:**
-`((Raw Score + 50) / 136.5) × 100`
+`((Raw Score + 54) / 145.5) × 100`
 
 ---
 
