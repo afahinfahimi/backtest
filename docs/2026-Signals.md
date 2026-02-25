@@ -10,7 +10,7 @@ Modules 1 (Analysis) and 2 (Market) focus solely on calculating scores. This mod
 
 | Field | Source | Description |
 |-------|--------|-------------|
-| **SA Score** | Module 1 (Analysis) — Normalized Score | `((Raw Score + 42) / 112) * 100`. Range: 0–100 |
+| **SA Score** | Module 1 (Analysis) — Normalized Score | `((Raw Score + 50) / 125) * 100`. Range: 0–100 |
 | **MC Score** | Module 2 (Market) — Normalized Score | `((Raw Score + 40) / 92) * 100`. Range: 0–100 |
 | **VIX Level** | FMP API — `^VIX` Current Price (Level) | CBOE Volatility Index spot value |
 | **Net Profit Margin** | Module 1 Q4 / FMP API — `Net Income ÷ Revenue (TTM)` | Used for Tier profitability check |
@@ -39,10 +39,11 @@ They help contextualize the Master Signals but do not drive any actions on their
 
 | MC Score | Grade | Color |
 |----------|-------|-------|
-| ≥ 70 | Too Strong | a-green |
-| 55 to 70 | Strong | t-green |
-| 30 to 54 | Normal | t-blue |
-| 10 to 29 | Weak | t-yellow |
+| ≥ 76 | Overheated | t-red |
+| 61 to 75 | Heated | t-yellow |
+| 40 to 60 | Normal | t-green |
+| 30 to 39 | Sub-Normal | t-yellow |
+| 10 to 29 | Weak | t-orange |
 | < 10 | Very Weak | t-red |
 
 ---
@@ -56,8 +57,9 @@ Search the sources above to find any of the situations below; if found, add the 
 from the tables below. Accompany the message with the related color.
 
 ## Alert Display Rules
-The alert columns show the same icon when alerts exist. They just show different color.
-Clicking on an alert opens a toggle box with the content of the Alert below.
+The alert bell icon appears to the left of symbols. Show the same icon when alerts exist. 
+The color of icon is selected based on the categories below.
+Clicking on an alert icon opens an extension panel with the content of the Alert below.
 
 ## Red Alerts (Negative / Risk)
 **Color: t-red**
@@ -91,26 +93,28 @@ Clicking on an alert opens a toggle box with the content of the Alert below.
 ### Market Level Alerts
 
 In the MC bar results, show an alert for important upcoming events or news headlines that may/have/can affect the market.
-Use the same data sources you use for stock alerts above. The timing for event is when the event is within the next two weeks.
-Search both the API and web search of any reliable financial news source.
+Use the same data sources you use for stock alerts above. Including API, Google and Yahoo finance, other reliable financial and company publications.
+Alert for events are only triffered when the event is happening within the next three days. .
 
 These are some examples:
-Consumer Price Index (CPI) [HIGH] (Sat, Jan 10) — Core inflation trending toward 2%
-FOMC Meeting [HIGH] (Wed, Jan 28) — Rate decision expected
+Consumer Price Index (CPI) [HIGH] (Sat, Jan 10) — Inflation over 2% can hurt the market significantly.
+FOMC Meeting [HIGH] (Wed, Jan 28) — Rate decision expected. Over correction can move the market significantly.
 Earnings Season Peak [MEDIUM] (Mid-Jan) — Elevated single-stock volatility
 
 #### How to display
-Show a large alert icon with a vertical separator in front of the 'Signal' and when clicked on it display it as a box added to the MC details panel.
+Show a large alert icon with a vertical separator in front of the 'Signal' and when clicked on display it in an extension panel.
 **Format:** Event Name [HIGH/MEDIUM/LOW] (Date) — One-line description
 
 ---
 
-# Part 3 — Master Signals (Action Signals)
+# Part 3 — Action Signals for Stocks
 
-Master Signals are the **final action signals**. Actions are based on these signals.
+Stock Signals are the **final action signals**. Actions are based on these signals.
 They are determined by the relationship between SA, MC, and VIX using conditional logic.
 
-Signals are determined separately for the **Market** (one result, displayed in the top bar) and for each **Stock** (per row in the results table).
+Signals for stocks and market condition are determined separately.
+Market Signal is displayed in the top MC bar.
+Stock Action Signal is displayed in the main analysis table in eash stock's row. 
 
 ---
 
