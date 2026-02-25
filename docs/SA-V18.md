@@ -649,10 +649,15 @@ Do not Stack Points
 
 ### Final Score Calculation
 
-**Raw Score** = Sum of all question points
+**Raw Score** = Sum of all question points (Q1–Q41)
+
+**Current Config Reference:**
+- **Max Raw Score:** 86 points
+- **Min Raw Score:** -50 points (Q19+Q20 combined cap of -4 applied)
+- **Span:** 136 points
 
 **Normalization Formula:**
-`((Raw Score + 54) / 145.5) × 100`
+`((Raw Score + 50) / 136) × 100`
 
 ---
 
