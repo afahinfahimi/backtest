@@ -46,6 +46,15 @@ They help contextualize the Master Signals but do not drive any actions on their
 | 10 to 29 | Weak | t-orange |
 | < 10 | Very Weak | t-red |
 
+## VIX Score Grades
+| VIX Score | Color |
+|-----------|-------|
+| > 30 | t-green |
+| 25-29 | t-teal |
+| 20-24 | t-blue |
+| 15-20 | t-blue |
+| < 15 | t-orange |
+
 ---
 
 # Part 2 — Alerts (Display Only) - For Stocks
