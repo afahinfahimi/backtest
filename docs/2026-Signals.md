@@ -263,6 +263,207 @@ After calculating the SA Score (Module 1) and MC Score (Module 2), apply a penal
 
 **End of Signals Instructions**
 
+## Star Rating (1–5 ★)
+
+A simple scoring system that awards 1 point for each criterion met:
+
+| Criterion | Condition |
+|-----------|-----------|
+| P/E Ratio | Between 0 and 25 |
+| Net Margin | > 15% |
+| ROE | > 15% |
+| D/E Ratio | Between 0 and 1 |
+| Revenue Growth | > 10% |
+
+**Total stars = count of criteria met (0–5).**
+
+---
+
+### Key Metrics Source
+
+- **Market Cap, P/E, D/E** → from `keyMetrics` or `ratios` (TTM variants prioritized)
+- **Net Margin, ROE** → from `ratios` (`netProfitMarginTTM`, `returnOnEquityTTM`)
+- **Revenue/EPS/FCF Growth** → manually computed YoY from `incomeAnnual` and `cashFlowAnnual` arrays (current year vs previous year)
+
+The rating is purely informational and independent of the SA scoring engine.
+
+---
+---
+
+## Healthcare / Binary Event Risk Alert
+
+### Change
+Added a **yellow alert** that triggers when a stock's sector is Healthcare, Medical, or Pharma.
+
+### Alert Details
+| Alert | Trigger | Severity |
+|-------|---------|----------|
+| Healthcare / Binary Event Risk | Sector is Healthcare, Medical, Pharma, Biotech, Drug Manufacturers, etc. | Yellow |
+
+### Impact
+Warns that healthcare stocks carry binary event risk from FDA decisions, clinical trial results, drug approvals/rejections, and patent cliffs.
+
+### Score Change
+**None.** Q20 remains unchanged (+1 for Medical). This is an alert-only addition.
+
+---
+---
+## Signal Changes — Feb 2026
+**Based on: 117-stock matrix dataset, 48,560 rows, Sep 2022–Feb 2026**
+
+---
+
+### Change 1: REMOVE — 5D Drop Block (Idea 8)
+
+**Previous rule:** Block buy signal when Past 5D ≤ -5%.
+
+**Action:** Removed entirely.
+
+**Reason:** Full dataset (6,000 SA 80+ observations) shows stocks with 5D drop ≥ 5% have **78.2% WR and +16.2% avg 1M return** — nearly double the 80+ baseline (67.9% WR, +8.1%). These are dip buys on strong stocks, not falling knives.
+
+---
+
+### Change 2: ADD — Entry Qualifier "Confirmed" Badge (3 Days at 80+)
+
+**New rule:** For SA ≥ 80 stocks, add a "Confirmed" badge when the stock has been at SA ≥ 80 for 3 consecutive days.
+
+| Group | WR | Avg 1M% | N |
+|-------|-----|---------|---|
+| Fresh cross (< 3 days at 80+) | 59.8% | +5.21% | 1,796 |
+| Confirmed (3+ days at 80+) | 71.4% | +9.33% | 4,212 |
+
+**Display:** Green checkmark or "Confirmed" label next to the Buy signal.
+
+---
+
+### Change 3: ADD — Dip Buy Signal (High Priority Entry)
+
+**Trigger (all must be true):**
+1. SA Score ≥ 80 today
+2. SA Score was ≥ 80 for at least 3 consecutive days (Confirmed)
+3. Current Price is ≥ 5% below price 5 trading days ago
+
+| Dip Buy Performance | WR | Avg 1M% | N |
+|---------------------|-----|---------|---|
+| Stable 3d + 5d drop ≥ 5% | 81.1% | +16.00% | 185 |
+| Stable 3d + 5d drop ≥ 3% | 78.9% | +14.50% | 350 |
+| Stable 3d (no dip) | 71.4% | +9.33% | 4,212 |
+| All 80+ baseline | 67.9% | +8.10% | 6,008 |
+
+**Signal:** "Dip Buy" — highest priority buy signal. Color: a-green.
+
+---
+
+### Change 4: EXIT RULE — Hold for Duration
+
+**Rule:** For SA ≥ 80 stocks held for a 1-month swing trade, just hold. No score-based or price-based exit improves returns.
+
+**Tested and rejected exits:** 10% fixed stop, 10% trailing stop, SA < 70 + in red, SA drop 5/10 pts. None beat hold.
+
+---
+
+### Signal Priority Hierarchy (SA ≥ 80, Regular Market)
+
+| Priority | Signal | Condition | Color |
+|----------|--------|-----------|-------|
+| 1 | Dip Buy | Confirmed (3d at 80+) AND 5d price drop ≥ 5% | a-green |
+| 2 | Buy (Confirmed) | SA ≥ 80 for 3+ consecutive days | t-green + badge |
+| 3 | Buy | SA ≥ 80, fresh cross (< 3 days) | t-green |
+
+*Validated: Feb 2026 | Dataset: 117 stocks, 48,560 rows, 6,008 SA 80+ observations*
+
+---
+---
+## Score Movement Exit Signals — Feb 2026
+**Based on: 117-stock matrix dataset, 40,353 observations with 1M forward returns**
+**Baseline: 56.8% WR, +5.40% avg 1M return**
+
+---
+
+### Overview
+
+These are **general exit signals** that apply to any held stock, regardless of when it was purchased. They are based on SA score crossing below key thresholds and staying there for 3 consecutive days (confirmation rule).
+
+The 3-day confirmation is critical. Stocks that cross below a threshold but recover within 3 days perform well (62-69% WR). Only confirmed breakdowns are actionable exits.
+
+---
+
+### Confirmation Rule
+
+- **Day 0:** SA score crosses below threshold (trigger)
+- **Day 1:** Next trading day, still below threshold
+- **Day 2:** Still below threshold → **Confirmed. ACT.**
+
+If the score recovers above the threshold on Day 1 or Day 2, the signal is cancelled. Do not act.
+
+---
+
+### Exit Signals
+
+| Signal | Condition | WR | Avg 1M% | N | Action |
+|--------|-----------|-----|---------|---|--------|
+| **Sell** | Cross below 60, holds 3d | 41.8% | -1.05% | 486 | Sell immediately |
+| **Sell** | Cross below 65, holds 3d | 48.4% | +2.06% | 622 | Sell — below coin flip |
+| **Caution** | Cross below 70, holds 3d | 52.1% | +2.53% | 683 | Tighten stop / reduce position |
+| **Caution** | Cross below 75, holds 3d | 52.0% | +2.39% | 619 | Tighten stop |
+| **Watch** | Cross below 80, holds 3d | 54.6% | +2.39% | 432 | Monitor — not yet actionable |
+
+#### Additional Exit Signal
+
+| Signal | Condition | WR | Avg 1M% | N | Action |
+|--------|-----------|-----|---------|---|--------|
+| **Sell** | SA drops ≥ 5 pts over 3 days AND stays down next 3 days | 45.7% | +0.16% | 2,549 | Sell — momentum broken |
+
+---
+
+### Do NOT Sell (False Alarms)
+
+| Condition | WR | Avg 1M% | N | Action |
+|-----------|-----|---------|---|--------|
+| Cross below 65, recovers within 3d | 62.9% | +9.91% | 911 | **Hold — dip buy opportunity** |
+| Cross below 70, recovers within 3d | 65.0% | +7.63% | 877 | **Hold** |
+| Cross below 80, recovers within 3d | 69.2% | +8.98% | 360 | **Hold — strong stock** |
+| SA drops ≥ 5 pts but recovers next 3d | 64.5% | +10.04% | 3,657 | **Hold — buy the dip** |
+
+---
+
+### Implementation
+
+#### Required Data
+- Score history table: daily SA scores per stock (minimum 6 days of history)
+- Track consecutive days below each threshold per stock
+
+#### Display
+When a confirmed exit signal fires, show in the stock row:
+- **Sell signal:** Red indicator with "Score Exit" label
+- **Caution signal:** Yellow indicator with "Score Weakening" label
+- **Tooltip/detail:** Shows which threshold was broken and how many days confirmed
+
+#### Signal Hierarchy
+Exit signals override buy signals. If a stock has both a buy signal (from SA level) and a confirmed exit signal (from score movement), the exit signal takes priority.
+
+#### Key Thresholds
+
+| Line | Meaning |
+|------|---------|
+| 80 | Elite zone — dropping below is a warning but not actionable alone |
+| 75 | Caution zone — tighten stops if confirmed below |
+| 70 | Danger zone — confirmed drop means reduce position |
+| 65 | Exit zone — confirmed drop = sell |
+| 60 | Hard exit — confirmed drop = sell immediately, negative expected return |
+
+---
+
+*Validated: Feb 2026 | Dataset: 117 stocks, 40,353 observations*
+
+
+
+
+
+
+
+
+
 
 
 
