@@ -1,4 +1,4 @@
-
+hi
 # Stock Analysis Test (SAT)
 
 **Lovable Trade V19 - Updated 2/24/2026**
@@ -657,7 +657,7 @@ Do not Stack Points
 - **Span:** 136 points
 
 **Normalization Formula:**
-`((Raw Score + 50) / 136) × 100`
+`((Raw Score + 50) / 120) × 100`
 
 ---
 
