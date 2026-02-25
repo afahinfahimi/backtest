@@ -135,103 +135,31 @@ Stock Action Signal is displayed in the main analysis table in eash stock's row.
 | 5 | Heated Market - Buy Carefuly | MC 60-80 |
 | 6 | Slow Market - Monitor | MC 20-39 |
 
-
 ---
-
 
 ### Stock Signal 
 1. Based on the Normalized Score of Module-1 or SA Test Score.
 2. Each stock gets its own signal
 3. If VIX and MC Override don't superceed the action find the signal for the stock below
 
-
 | SA Score | Signal | Current Holdings Actions | Color |
 |--------------|--------|--------------------------|-------|
 | > 80 | Buy in Good Market | Hold and Add if Tier Allows | t-green |
 | 75-79 | Buy if Stable | Hold and Add if Tier Allows | t-teal |
-| 70-74 | Consider Buying | Add 10% Trailing Stop Loss | t-blue |
+| 70-74 | Consider Buying | Consider Selling - Add 10% Trailing Stop Loss | t-blue |
 | 60-70 | Monitor | Sell if Holding | t-yellow |
 | 35-59 | Find a Better Stock | Sell if Holding | t-orange |
 | < 35 | Avoid the Stock | Sell if holding | t-red |
 
-
----
-
-## Exceptions 
+**Exceptions**
 1: VIX Override: - **Trigger:** VIX Level (FMP `^VIX` Price) ≥ 25
 
-
-
-
-### Stock Signals
-
-| VIX Condition | MC Condition | SA Condition | Signal | Manage Holdings | Color |
-|---------------|--------------|--------------|--------|-----------------|-------|
-| VIX ≥ 25 | Any | ≥ 75 | Aggressive Buy | Hold if Own | t-green |
-| VIX ≥ 25 | Any | 65 to 74 | Buy | Hold if Own | a-green |
-| VIX ≥ 25 | Any | 59 to 64 | Monitor for improvement | Consider Selling. Tight Stop loss | t-yellow |
-
-*Note: SA range 59–64 reflects effective floor after Universal Rule catches SA < 59 first.*
-
 ---
 
-## CONDITION 2: Market Score Override
-- **Trigger:** VIX Level (FMP `^VIX` Price) < 25 AND MC Score (Module 2 Normalized) < 15 OR > 80
-- **Fields:** VIX Level, MC Score (Module 2 Normalized), SA Score (Module 1 Normalized)
+## Filters and Exceptions
+These filters do not apply to non buy signals. only changes signals that include 'buy' in the signal.
 
-### Market Signals
-
-| VIX Condition | MC Condition | Signal | Signal Details | Cash at Hand | Color |
-|---------------|--------------|--------|----------------|--------------|-------|
-| < 25 | < 15 | Weak Market | No new positions | 90% | t-orange |
-| < 25 | > 80 | Overheated | No new positions | 50% | t-yellow |
-
-### Stock Signals
-
-| VIX Condition | MC Condition | SA Condition | Signal | Manage Holdings | Color |
-|---------------|--------------|--------------|--------|-----------------|-------|
-| < 25 | < 15 | ≥ 69 | No New Buys | Add tight 5% trailing stop | t-orange |
-| < 25 | < 15 | 59 to 68 | Sell | Sell | t-red |
-| < 25 | > 80 | ≥ 70 | No New Buys | Set 10% trailing stop loss | t-yellow |
-| < 25 | > 80 | 59 to 69 | No New Buys | Set 5% trailing stop loss | t-orange |
-
-*Note: SA ranges reflect effective floor after Universal Rule catches SA < 59 first.*
-
----
-
-## CONDITION 3: Regular Market
-- **Trigger:** VIX Level (FMP `^VIX` Price) < 25 AND MC Score (Module 2 Normalized) 15 to 80
-- **Fields:** VIX Level, MC Score (Module 2 Normalized), SA Score (Module 1 Normalized)
-
-### Market Signals
-
-| VIX Condition | MC Condition | Signal | Signal Details | Cash at Hand | Color |
-|---------------|--------------|--------|----------------|--------------|-------|
-| < 25 | 15 to 29 | Growing Market | Add quality stocks | 30% | t-teal |
-| < 25 | 30 to 54 | Healthy Market | Good time to buy | 20% | t-green |
-| < 25 | 55 to 69 | Selective Buy | Avoid overextended stocks | 30% | t-blue |
-| < 25 | 70 to 80 | Careful Buy | Overheated market. Ride momentum carefully | 20% | t-yellow |
-
-### Stock Signals
-
-| VIX Condition | MC Condition | SA Condition | Signal | Manage Holdings | Color |
-|---------------|--------------|--------------|--------|-----------------|-------|
-| < 25 | 15 to 69 | ≥ 80 | Buy | Hold | t-green |
-| < 25 | 15 to 69 | 70 to 79 | Selective Buy | Hold with 10% trailing stop | t-teal |
-| < 25 | 15 to 69 | 60 to 69 | Monitor | Hold with 10% trailing stop | t-yellow |
-| < 25 | 70 to 80 | ≥ 80 | Buy | Hold with 10% trailing stop | t-green |
-| < 25 | 70 to 80 | 70 to 79 | Careful Buy | Hold with 10% trailing stop | t-yellow |
-| < 25 | 70 to 80 | 60 to 69 | Monitor | Hold with 5% trailing stop | t-orange |
-
----
-
-## Part 3B — Signal Overrides
-
-The following overrides apply globally after condition-based signals are assigned. Evaluated in order per stock row.
-
----
-
-### Override 1: Crypto Complete Filter
+### 1. Crypto Filter
 - **Applies to:** IREN, MARA, CLSK, RIOT, BITF, WULF, HUT, CIFR, COIN, MSTR, CORZ, BTBT, HIVE, BTDR
 - **Trigger:** Any Buy-type signal
 
@@ -240,24 +168,16 @@ The following overrides apply globally after condition-based signals are assigne
 | Symbol is in crypto list AND signal is Buy-type | No Buy (Crypto) | t-red |
 | Otherwise | No change | — |
 
-- Does not affect non-buy signals.
-
----
-
-### Override 2: Basic Materials Sector Cap (Max 2)
+### 2. Basic Materials Sector Cap (Max 2)
 - **Applies to Sectors:** Basic Materials, Mining
 - **Trigger:** 3 or more stocks in these sectors qualify for buy signals in the same scan
 
 | Condition | Signal Override | Color |
 |-----------|-----------------|-------|
 | Top 2 by SA score (tiebreak: higher Net Profit Margin) | No change | — |
-| 3rd stock and beyond | No New Buys (Sector Cap) | t-yellow |
+| 3rd stock and beyond | No Buy (Sector Cap) | t-yellow |
 
-- Does not affect non-buy signals or SA scores.
-
----
-
-### Override 3: Unprofitable Stock Override
+### 3. Unprofitable Stock Override
 - **Trigger:** Net Profit Margin < 0%
 - **Applies to signals:** Buy, Selective Buy, Aggressive Buy, Careful Buy
 
@@ -266,17 +186,14 @@ The following overrides apply globally after condition-based signals are assigne
 | Net Profit Margin < 0% AND signal is Buy-type | Append "(Unprofitable)" to signal label | t-yellow |
 | Otherwise | No change | — |
 
-- Does not affect non-buy signals or SA scores.
-
 ---
 
-# Part 4 — Tiers (Position Sizing)
+## Part 4 — Tiers (Position Sizing)
 
-Tiers define the max position size per stock.
-**Tier Precedence:** If a stock qualifies for multiple tiers, assign the highest tier.
-**Note:** Tiers are risk caps, not quality rankings. Score determines quality; tier determines maximum position size based on risk profile.
+- Tiers define the max position size per stock.
+- **Note:** Tiers are risk caps, not quality rankings. Score determines quality; tier determines maximum position size based on risk profile.
 
-## Tier Field Definitions
+### Tier Field Definitions
 
 | Field | Source | Definition |
 |-------|--------|------------|
@@ -290,31 +207,11 @@ Tiers define the max position size per stock.
 
 | Tier | SA Condition | Company Condition | Max Position Size | Color |
 |------|-------------|-------------------|-------------------|-------|
-| T1 | ≥ 55 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $50B | $100,000 | t-green |
-| T2 | ≥ 50 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $2B | $50,000 | t-blue |
-| T3 | ≥ 50 | Market Cap > $100M + (Growth: Annual Revenue Growth > 0% OR Small Profitable: Net Profit Margin > 0% AND Market Cap ≤ $2B) | $20,000 | t-yellow |
+| T1 | ≥ 65 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $50B | $100,000 | t-green |
+| T2 | ≥ 65 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $2B | $50,000 | t-blue-2 |
+| T3 | ≥ 65 | Market Cap > $100M + (Growth: Annual Revenue Growth > 0% OR Small Profitable: Net Profit Margin > 0% AND Market Cap ≤ $2B) | $20,000 | t-yellow |
 | SELL | Does not qualify for any tier | $0 — Do not buy | t-red |
 
 ---
-
-<!--
-**Color Token Backup**
-These are the colors that are used in the design. They are here just as a backup. No need to incorporate into the code.
-oken	Used For
-t-green	Buy, Aggressive Buy (stock), Selective Buy (stock), Confident Buy (market), Healthy Market
-a-green	Aggressive Buy (market), Buy (VIX stock)
-t-teal	Growing Market
-t-blue	Selective Buy (market), T2 tier
-t-yellow	Find Better, Monitor, Careful Buy, Overheated, No New Buys (MC>80), Unprofitable override, Sector Cap, T3 tier
-t-orange	Weak Market, No New Buys (MC<15), Monitor (MC 70-80)
-t-red	Avoid, Sell, No Buy (Crypto), SELL tier
-Plus from your SA/MC Grade tables:
-
-Token	Used For
-a-red	SA Grade "Avoid" (< 40)
-a-green	MC Grade "Too Strong" (≥ 70)
-
----
--->
 
 **End of Signals Instructions**
