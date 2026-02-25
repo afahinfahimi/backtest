@@ -223,4 +223,60 @@ These filters do not apply to non buy signals. only changes signals that include
 
 ---
 
+## MC Zone Penalty — SA Score Adjustment
+
+**Applies to: Module 1 (Stock Analysis) final score**
+
+---
+
+## Overview
+
+After calculating the SA Score (Module 1) and MC Score (Module 2), apply a penalty to the SA Score based on how far the MC Score is from the neutral zone.
+
+---
+
+## MC Score Grades
+
+| MC Score | Penalty Points | Color |
+|----------|----------------|-------|
+| ≥ 76 | -10 | t-red |
+| 61 to 75 | -5 | t-yellow |
+| 40 to 60 | 0 | t-green |
+| 30 to 39 | -5 | t-yellow |
+| 10 to 29 | -10 | t-orange |
+| > 15 | -15 | t-red
+
+---
+
+## Calculation Rules
+
+1. **Calculate SA Score first** (Module 1, normalized).
+2. **Calculate MC Score** (Module 2, normalized).
+3. **Apply penalty** to produce the Adjusted SA Score.
+4. **Use Adjusted SA Score** for all downstream logic and to Signals (Module 4), Tiers, and display.
+5. The original (unadjusted) SA Score is preserved and displayed in score extension panel along with the penalty points.
+6. Add a white border around the SA sccore when penaalty is applied.
+
+
+---
+
+
 **End of Signals Instructions**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
