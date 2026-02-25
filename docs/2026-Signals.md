@@ -118,49 +118,50 @@ Stock Action Signal is displayed in the main analysis table in eash stock's row.
 
 ---
 
-## Signal Evaluation Logic
+## Signal Determination
 
-### Step 1: Determine Active Condition
-- **Fields:** VIX Level (`^VIX` Price from FMP), MC Score (Module 2 Normalized)
-- Evaluate in order — stop at first match:
+### Market Signal
+- Determine Active Condition. Select Market Signal.
+- **Fields:** VIX Level (`^VIX` Price from FMP), MC Score (From Module 2 Normalized)
+- Place the Market Signal to the right of VIX number
 
-| Priority | Condition | Trigger |
+| Priority | Signal | Trigger |
 |----------|-----------|---------|
-| 1 | VIX Override | VIX ≥ 25 |
-| 2 | MC Override | VIX < 25 AND (MC < 15 OR MC > 80) |
-| 3 | Regular Market | VIX < 25 AND MC 15–80 |
+| 1 | VIX Override - Max Fear - Aggressive Buy (Include QQQ) | VIX ≥ 30 |
+| 1 | VIX Override - High Fear - Confident Buy (Include QQQ) | VIX 25-29 |
+| 2 | Very Slow Market - Stay on the Sideline | MC < 20 |
+| 3 | Over-Heated Market - Only Great Stocks | MC > 80 |
+| 4 | Normal Market - Buy Quality Stocks | MC 40-60 |
+| 5 | Heated Market - Buy Carefuly | MC 60-80 |
+| 6 | Slow Market - Monitor | MC 20-39 |
 
-### Step 2: Issue Market Signal
-- Use the **Market Signals** table from the active condition (Step 1).
-- Displayed once in the top bar alongside QQQ price, MC Score, and VIX.
-
-### Step 3: Issue Stock Signal (per stock row)
-1. **Universal Rule first** — if SA < 59 → apply Universal Rule. Done. Skip to next stock.
-2. **If SA ≥ 59** — use the **Stock Signals** table from the active condition (Step 1).
 
 ---
 
-## Universal Rule (Stock Signal Override)
-- **Fields:** SA Score (Module 1 Normalized Score)
-- **Applies to:** Every stock row, in ALL conditions, checked before condition-specific stock signals.
 
-| SA Condition | Signal | Current Holdings Actions | Color |
+### Stock Signal 
+1. Based on the Normalized Score of Module-1 or SA Test Score.
+2. Each stock gets its own signal
+3. If VIX and MC Override don't superceed the action find the signal for the stock below
+
+
+| SA Score | Signal | Current Holdings Actions | Color |
 |--------------|--------|--------------------------|-------|
-| 35 to 59 | Find Better | Sell if Holding | t-yellow |
-| < 35 | Avoid | Sell if holding | t-red |
+| > 80 | Buy in Good Market | Hold and Add if Tier Allows | t-green |
+| 75-79 | Buy if Stable | Hold and Add if Tier Allows | t-teal |
+| 70-74 | Consider Buying | Add 10% Trailing Stop Loss | t-blue |
+| 60-70 | Monitor | Sell if Holding | t-yellow |
+| 35-59 | Find a Better Stock | Sell if Holding | t-orange |
+| < 35 | Avoid the Stock | Sell if holding | t-red |
+
 
 ---
 
-## CONDITION 1: VIX Override
-- **Trigger:** VIX Level (FMP `^VIX` Price) ≥ 25
-- **Fields:** VIX Level, MC Score (Module 2 Normalized), SA Score (Module 1 Normalized)
+## Exceptions 
+1: VIX Override: - **Trigger:** VIX Level (FMP `^VIX` Price) ≥ 25
 
-### Market Signals
 
-| VIX Condition | MC Condition | Signal | Signal Details | Cash at Hand | Color |
-|---------------|--------------|--------|----------------|--------------|-------|
-| VIX ≥ 30 | Any | Aggressive Buy | Fear is maximized, great buying opportunity | 5% | a-green |
-| VIX 25 to 29 | Any | Confident Buy | Market panic drop, buy including QQQ positions | 20% | t-green |
+
 
 ### Stock Signals
 
