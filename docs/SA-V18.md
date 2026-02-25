@@ -1213,6 +1213,54 @@ Do not Stack Points
 
 ---
 
+#### Q39: Free Cash Flow Yield
+- Fields: Free Cash Flow (TTM), Market Cap
+- FMP Endpoint: `/api/v3/key-metrics/{symbol}` → `freeCashFlowYield`
+- Formula: `FCF / Market Cap × 100`
+- Max Points: +2
+- Min Points: -2
+
+| Condition | Points |
+|-----------|--------|
+| FCF Yield ≥ 8% | +2 |
+| FCF Yield ≥ 4% | +1 |
+| FCF Yield 0% to 4% | 0 |
+| FCF Yield -5% to 0% | -1 |
+| FCF Yield < -5% | -2 |
+
+---
+
+#### Q40: Float Turnover
+- Fields: 20-Day Average Volume, Float Shares
+- FMP Endpoint: `/api/v3/profile/{symbol}` → `floatShares` + `/api/v3/quote/{symbol}` → `avgVolume` (both already fetched)
+- Formula: `(Avg Volume / Float Shares) × 100`
+- Max Points: +1
+- Min Points: 0
+
+| Condition | Points |
+|-----------|--------|
+| Float Turnover ≥ 2% daily | +1 |
+| Float Turnover < 2% | 0 |
+
+---
+
+#### Q41: Post-Earnings Price Reaction
+- Fields: Last Earnings Date, Stock Price 1 Day Before Earnings, Stock Price 1 Day After Earnings
+- FMP Endpoints: `/api/v3/earnings-surprises/{symbol}` (date) + `/api/v3/historical-price-full/{symbol}` (prices)
+- Formula: `((Price Day After - Price Day Before) / Price Day Before) × 100`
+- Max Points: +2
+- Min Points: -2
+- Note: Skip if last earnings date > 90 days ago. Assign 0.
+
+| Condition | Points |
+|-----------|--------|
+| Post-earnings gap ≥ +5% | +2 |
+| Post-earnings gap > 0% | +1 |
+| Post-earnings gap 0% to -5% | 0 |
+| Post-earnings gap ≤ -5% | -2 |
+
+---
+
 ### Final Score Calculation
 **Master Score** This is the main score for the stock including Stock, Market Condition and VIX all included for a final Signal to act on.
 
