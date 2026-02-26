@@ -264,30 +264,20 @@ After calculating the SA Score (Module 1) and MC Score (Module 2), apply a penal
 **End of Signals Instructions**
 
 ## Star Rating (1–5 ★)
-
-A simple scoring system that awards 1 point for each criterion met:
+The rating is purely informational and independent of the SA scoring engine.
+A simple scoring system that awards 1 point for each criterion met.
+Fieds: P/E Ratio (TTM), Net Profit Margin, Return on Equity (TTM), EPS Growth % (Prior Fiscal Year)
 
 | Criterion | Condition |
 |-----------|-----------|
 | P/E Ratio | Between 0 and 25 |
-| Net Margin | > 15% |
+| Net Profit Margin | > 15% |
 | ROE | > 15% |
 | D/E Ratio | Between 0 and 1 |
-| Revenue Growth | > 10% |
+| Revenue Growth (EPS) | > 10% |
 
 **Total stars = count of criteria met (0–5).**
 
----
-
-### Key Metrics Source
-
-- **Market Cap, P/E, D/E** → from `keyMetrics` or `ratios` (TTM variants prioritized)
-- **Net Margin, ROE** → from `ratios` (`netProfitMarginTTM`, `returnOnEquityTTM`)
-- **Revenue/EPS/FCF Growth** → manually computed YoY from `incomeAnnual` and `cashFlowAnnual` arrays (current year vs previous year)
-
-The rating is purely informational and independent of the SA scoring engine.
-
----
 ---
 
 ## Healthcare / Binary Event Risk Alert
