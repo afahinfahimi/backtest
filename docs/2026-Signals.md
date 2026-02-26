@@ -266,27 +266,17 @@ Fieds: P/E Ratio (TTM), Net Profit Margin, Return on Equity (TTM), EPS Growth % 
 
 ## Matrix Movement Confirmations
 
-The followings are messages that are applied to Signals based on the movements of the price and stability of changes.
+The followings are messages that are applied to Signals based on the movements of the SA and Price and stability of changes.
 These conclusions are based on thousands of backtests on matrix stock records. 
-Two groups of entry and exit confirmations are below.
-#### Required Data
-- Score history table: daily SA scores per stock (minimum 6 days of history)
-- Track consecutive days below each threshold per stock
-#### Display
-When a confirmed exit signal fires, show in the stock row:
-- **Sell signal:** Red indicator with "Score Exit" label
-- **Caution signal:** Yellow indicator with "Score Weakening" label
-- **Tooltip/detail:** Shows which threshold was broken and how many days confirmed
-#### Signal Hierarchy
-Exit signals override buy signals. If a stock has both a buy signal (from SA level) and a confirmed exit signal (from score movement), the exit signal takes priority.
+Score history table: daily SA scores per stock (minimum 4 days of history).
+**Display** When a confirmation fires, show in the stock row under 'Check' column
+
 
 
 ### Entry Confirmation
 
-**New rule:** For SA ≥ 80 stocks, add a "Confirmed" badge when the stock has been at SA ≥ 80 for 3 consecutive days.
-
-| Title | Conditions | Color |
-|-------|------------|-------|
+| Message | Conditions | Color |
+|---------|------------|-------|
 | Stable Buy | SA > 80 for over > 3 days in a row | t-green | 
 | Temporary Dip Buy | SA Fresh Cross 80 but has been 80 for > 2 Day within the last 5 days | t-green |
 | Stable Buy Confirmation | SA has been > 80 for > 2 days | t-green |
@@ -296,45 +286,35 @@ Exit signals override buy signals. If a stock has both a buy signal (from SA lev
 | Buy | SA ≥ 80, fresh cross (< 3 days) | t-green |
 
 
-### EXIT CONFIRMATION 
+### EXIT Confirmation 
+| Message | Conditions | Color |
+|---------|-----------|--------|
+| Sell immediately | SA Cross below 65, holds 3d | t-red |
+| Sell or 5% Stop Loss | Cross below 65, holds 3d | t-red  |
+| Tighten stop (5%) / reduce position | Cross below 70, holds for 3 days |
+| Tighten stop (10%) | Cross below 75, holds 3d | 
+| Monitor — not yet actionable | Cross below 80, holds 3d | t-yellow |
+| Sell — momentum broken | SA drops ≥ 5 pts over 3 days AND stays down next 3 days | t-red |
 
-#### Key Thresholds
+### Hold Confirmation
+| Condition | WR | Avg 1M% | N | Action |
+|-----------|-----|---------|---|--------|
+| Hold — dip buy opportunity |Cross below 65, recovers within 3d | t-green |
+| Hod | Cross below 70, recovers within 3d | t-blue |
+| Hold - Strong Stock | Cross below 80, recovers within 3d | t-teal |
+| Hold - Buy on Dips | SA drops ≥ 5 pts but recovers next 3d | t-teal |
+| 10% fixed stop, 10% trailing stop | SA < 70 + in red, SA drop 5/10 pts. None beat hold. | t-teal |
+| Hold | Stocks move below 70 or 75 but recoverd in one day | t-yellow |
 
-| Line | Meaning |
-|------|---------|
+
+| Message | Conditions | Color |
+|-------|------------|-------|
 | 80 | Elite zone — dropping below is a warning but not actionable alone |
 | 75 | Caution zone — tighten stops if confirmed below |
 | 70 | Danger zone — confirmed drop means reduce position |
 | 65 | Exit zone — confirmed drop = sell |
 | 60 | Hard exit — confirmed drop = sell immediately, negative expected return |
 
-
-
-| Signal | Condition | WR | Avg 1M% | N | Action |
-|--------|-----------|-----|---------|---|--------|
-| **Sell** | Cross below 60, holds 3d |  Sell immediately |
-| **Sell** | Cross below 65, holds 3d |  Sell — below coin flip |
-| **Caution** | Cross below 70, holds 3d |  Tighten stop / reduce position |
-| **Caution** | Cross below 75, holds 3d | Tighten stop |
-| **Watch** | Cross below 80, holds 3d |  Monitor — not yet actionable |
-| **Sell** | SA drops ≥ 5 pts over 3 days AND stays down next 3 days | 45.7% | +0.16% | 2,549 | Sell — momentum broken |
-
-
-
-### Hold Confirmation
-| Condition | WR | Avg 1M% | N | Action |
-|-----------|-----|---------|---|--------|
-| Cross below 65, recovers within 3d | 62.9% | +9.91% | 911 | **Hold — dip buy opportunity** |
-| Cross below 70, recovers within 3d | 65.0% | +7.63% | 877 | **Hold** |
-| Cross below 80, recovers within 3d | 69.2% | +8.98% | 360 | **Hold — strong stock** |
-| SA drops ≥ 5 pts but recovers next 3d | 64.5% | +10.04% | 3,657 | **Hold — buy the dip** |
-
-
-| SA  ≥ 80 stocks held for a 1-month swing trade just hold. No score-based or price-based exit improves returns.
-| 10% fixed stop, 10% trailing stop, SA < 70 + in red, SA drop 5/10 pts. None beat hold. | EXIT REJECTED
-Stocks that cross below a threshold but recover within 3 days perform well
-
-score recovers above the threshold on Day 1 or Day 2, the signal is cancelled. Do not act.
 
 **End of Signals Instructions**
 
