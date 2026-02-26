@@ -1,8 +1,9 @@
-# Module-2 - Analysis 
+hi
+# Stock Analysis Test (SAT)
 
-**Lovable Trade V17 - Updated 2/23/2026**
+**Lovable Trade V19 - Updated 2/24/2026**
 
-## Stock Analysis (SA) Score Overview
+## SAT Score Overview
 
 - Score each stock provided by the user (via CSV or direct entry).
 - Answer each question below and find the points that apply.
@@ -17,11 +18,11 @@
 
 ---
 
-## Stock Analysis Score Questions 
+## SAT Questions 
 
-### Growth Metrics 
+### Growth 
 
-**Q1: Sales Growth**
+#### Q1: Sales Growth
 - Fields: Annual Revenue Growth %, Quarterly Revenue Growth % (YoY)
 - Max Points: 6
 - Min Points: 0
@@ -37,7 +38,7 @@
 | 1 | Annual <0 AND Quarterly > 0 | Recovering |
 | 0 | Annual <0 AND Quarterly ≤ 0 | Declining |
 
-**Q2: Operating Income Growth**
+#### Q2: Operating Income Growth
 - Fields: Annual Operating Income Growth %, Quarterly Operating Income Growth % (YoY)
 - Max Points: 6
 - Min Points: 0
@@ -53,7 +54,7 @@
 | 1 | Annual <0 AND Quarterly > 0 | Recovering |
 | 0 | Annual <0 AND Quarterly ≤ 0 | Declining |
 
-**Q3: Cash Flow Growth**
+#### Q3: Cash Flow Growth
 - Fields: Annual Operating Cash Flow Growth %, Quarterly Operating Cash Flow Growth % (YoY)
 - Max Points: 6
 - Min Points: 0
@@ -69,22 +70,33 @@
 | 1 | Annual <0 AND Quarterly > 0 | Recovering |
 | 0 | Annual <0 AND Quarterly ≤ 0 | Declining |
 
-### Cyclical Sector Cap
-
+##### Cyclical Sector Cap
 **Applies to Sectors:** Basic Materials, Energy, Mining
-
 **Rule:** For stocks in these sectors, the maximum score for **Q1, Q2, and Q3** is capped at **4 points** each (instead of 6).
 
 **Exception (Breakout Rule):**
-If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, and the stock may earn the full 6 points for growth.
+If **Q13 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, and the stock may earn the full 6 points for growth.
+
+#### Q4: EPS Growth
+- Field: EPS Growth % (Prior Fiscal Year)
+- Max Points: 4
+- Min Points: 0
+
+| Growth | Points |
+|--------|--------|
+| ≥100% | 4 |
+| ≥50% | 3 |
+| ≥25% | 2 |
+| >0% | 1 |
+| ≤0% | 0 |
 
 ---
 
 ### Profitability
 
-**Q4: Net Profit Margin**
+#### Q5: Net Profit Margin
 - Field: Net Profit Margin
-- `Net Profit Margin` = Net Income ÷ Revenue (TTM).
+- Formula: `Net Profit Margin` = Net Income ÷ Revenue (TTM).
 - Max Points: 5
 - Min Points: 0
 
@@ -101,7 +113,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Momentum 
 
-**Q5: 1-Month Price Change**
+#### Q6: 1-Month Price Change
 - Field: 1-Month Price Change %
 - Max Points: 4
 - Min Points: 0
@@ -114,7 +126,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | >0% | 1 |
 | ≤0% | 0 |
 
-**Q6: 10-Day Price Change**
+#### Q7: 10-Day Price Change
 - Field: 10-Day Price Change %
 - Max Points: 3
 - Min Points: 0
@@ -128,9 +140,37 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
+#### Q8: Weighted Momentum Magnitude
+- Field: 52-Week Price Change %, 3-Month Price Change %
+- Formula: 52W %Chg + 3M %Chg
+- Max Points: 3
+- Min Points: 0
+
+| Sum | Points | Backtest Win Rate |
+|-----|--------|-------------------|
+| >150% | 3 | 73% |
+| >100% | 2 | 63% |
+| >50% | 1 | 55% |
+| ≤50% | 0 | 47% |
+
+#### Q9: Momentum Quality
+- Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
+- Max Points: 2
+- Min Points: -1
+- **Evaluate in order listed (stop at first match):**
+
+| Pattern | Condition | Points |
+|---------|-----------|--------|
+| Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
+| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg | +2 |
+| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
+| Other | Default | 0 |
+
+---
+
 ### Liquidity 
 
-**Q7: 20-Day Average Volume**
+#### Q10: 20-Day Average Volume
 - Field: 20-Day Average Volume
 - Max Points: 3
 - Min Points: 0
@@ -146,7 +186,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Analyst & Institutions
 
-**Q8: Ownership & Coverage**
+#### Q11: Ownership & Coverage
 - Field: Number of Analyst Ratings, Institutional Ownership %
 - Conditional Points
 - Max Points: 2
@@ -161,7 +201,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Technical 
 
-**Q9: Price vs Moving Averages**
+#### Q12: Price vs Moving Averages
 - Field: Current Price, 20-Day SMA, 50-Day SMA
 - Max Points: 4
 - Min Points: 0
@@ -173,11 +213,25 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Above 20D only | 2 |
 | Below both | 0 |
 
+
+#### Q13: Range %B Position (Bollinger Bands — Momentum)
+- Field: Bollinger Bands %B (Period 20, StdDev 2)
+- Max Points: 4
+- Min Points: 0
+
+| Position | Points |
+|----------|--------|
+| Breakout (>100%) | 4 |
+| Near top (>95%) | 3 |
+| Upper zone (80-95%) | 2 |
+| Mid-range (20-80%) | 1 |
+| Buy zone (≤20%) | 0 |
+
 ---
 
 ### Financial Health 
 
-**Q10: Debt-to-Equity Ratio**
+#### Q14: Debt-to-Equity Ratio
 - Field: Total Debt / Total Equity (Most Recent Quarter)
 - Max Points: 3
 - Min Points: -3
@@ -191,45 +245,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | <2.0 | 1 |
 | ≥2.0 | 0 |
 
----
-
-### Weighted Momentum
-
-**Q11: Momentum Magnitude**
-- Field: 52-Week Price Change %, 3-Month Price Change %
-- Formula: 52W %Chg + 3M %Chg
-- Max Points: 3
-- Min Points: 0
-
-| Sum | Points | Backtest Win Rate |
-|-----|--------|-------------------|
-| >150% | 3 | 73% |
-| >100% | 2 | 63% |
-| >50% | 1 | 55% |
-| ≤50% | 0 | 47% |
-
----
-
-### EPS Growth
-
-**Q12: EPS Growth Prior Year**
-- Field: EPS Growth % (Prior Fiscal Year)
-- Max Points: 4
-- Min Points: 0
-
-| Growth | Points |
-|--------|--------|
-| ≥100% | 4 |
-| ≥50% | 3 |
-| ≥25% | 2 |
-| >0% | 1 |
-| ≤0% | 0 |
-
----
-
-### Returns 
-
-**Q13: Return on Equity (ROE)**
+#### Q15: Return on Equity (ROE)
 - Field: Return on Equity (TTM)
 - Max Points: 2
 - Min Points: 0
@@ -240,7 +256,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | ≥10% | 1 |
 | <10% | 0 |
 
-**Q14: Return on Assets (ROA)**
+#### Q16: Return on Assets (ROA)
 - Field: Return on Assets (TTM)
 - Max Points: 3
 - Min Points: 0
@@ -252,11 +268,23 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | ≥5% | 1 |
 | <5% | 0 |
 
+#### Q17: Financial Strength
+- Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
+- Max Points: 3
+- Min Points: 0
+
+| Condition | Points |
+|-----------|--------|
+| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
+| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
+| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
+| Fails thresholds or missing data | 0 |
+
 ---
 
 ### Country 
 
-**Q15: Country** 
+#### Q18: Country
 - Field: Country (from FMP `/api/v3/profile/{symbol}`)
 - Max Points: 1
 - Min Points: -2
@@ -271,7 +299,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ### Risk Penalties
 
-**Q16: Cash Burn Risk**
+#### Q19: Cash Burn Risk
 - Fields: Net Profit Margin, Operating Cash Flow (Quarterly), Market Cap
 - Max Points: 0
 - Min Points: -3
@@ -285,9 +313,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Note:** FMP API provides the full raw number (e.g., 10,000,000,000 for $10B). *Note: Do not treat as thousands.*
 
----
-
-**Q17: Deterioration Risk**
+#### Q20: Deterioration Risk
 - Fields: Quarterly Revenue, Quarterly Operating Income, Quarterly Operating Cash Flow (vs Same Qtr Year Ago)
 - Max Points: 0
 - Min Points: -3
@@ -297,29 +323,9 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 | Quarterly Revenue < Sales(q-4) AND Quarterly Operating Income < OpIncome(q-4) AND Quarterly Operating Cash Flow < CashFlow(q-4) | -3 |
 | Otherwise | 0 |
 
-**Combined Penalty Cap:** If both Q16 and Q17 trigger, apply -4 total (not cumulative)
+**Combined Penalty Cap:** If both Q19 and Q20 trigger, apply -4 total (not cumulative)
 
----
-
-### Trend & Strength 
-
-**Q18: Financial Strength**
-- Fields: Net Profit Margin, Return on Equity, Debt/Equity Ratio
-- Max Points: 3
-- Min Points: 0
-
-| Condition | Points |
-|-----------|--------|
-| Net Profit Margin ≥20% AND Return on Equity ≥20% AND Debt/Equity Ratio <0.5 | 3 |
-| Net Profit Margin ≥10% AND Return on Equity ≥10% AND Debt/Equity Ratio <1.5 | 2 |
-| Net Profit Margin ≥0% AND Return on Equity ≥5% AND Debt/Equity Ratio <3.0 | 1 |
-| Fails thresholds or missing data | 0 |
-
----
-
-### Risk Detection
-
-**Q19: Momentum Divergence Penalty**
+#### Q21: Momentum Divergence Penalty
 - Fields: 52-Week Price Change %, 3-Month Price Change %, 1-Month Price Change %, 10-Day Price Change %
 - Max Points: 0
 - Min Points: -3
@@ -328,8 +334,39 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 |-----------|--------|
 | 52-Week Price Change % > 0% AND 3-Month Price Change % < 0% AND 1-Month Price Change % < 0% AND 10-Day Price Change % < 0% | -3 |
 | Otherwise | 0 |
+ 
 
-**Q20: Sector Preference**
+#### Q22: High P/E Momentum Trap
+- Fields: P/E Ratio (TTM), 10-Day Price Change %
+- Max Points: 0
+- Min Points: -4
+
+| Condition | Points |
+|-----------|--------|
+| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -3 |
+| P/E > 100 (positive only) | -4 |
+
+**First Match**
+Do not Stack Points
+
+#### Q23: Short Interest Risk
+- Fields: Short % of Float
+- Category: Risk Penalty
+- Max Points: 0 
+- Min Points: -1
+- Logic: High short interest amplifies volatility in both directions.
+
+| Short % Float | Penalty |
+|---------------|---------|
+| > 20% | -1 |
+| ≤ 20% | 0 |
+
+- Data Source: FMP institutional/short interest endpoint
+- Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
+
+---
+
+#### Q24: Sector Preference
 - Field: Sector (GICS)
 - Max Points: 2
 - Min Points: -4
@@ -347,57 +384,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-### Range Position
-
-**Q21: %B Position (Bollinger Bands — Momentum)**
-- Field: Bollinger Bands %B (Period 20, StdDev 2)
-- Max Points: 4
-- Min Points: 0
-
-| Position | Points |
-|----------|--------|
-| Breakout (>100%) | 4 |
-| Near top (>95%) | 3 |
-| Upper zone (80-95%) | 2 |
-| Mid-range (20-80%) | 1 |
-| Buy zone (≤20%) | 0 |
-
----
-
-### Momentum Quality 
-
-**Q22: Momentum Quality**
-- Fields: 52-Week %Chg, 3-Month %Chg, 1-Month %Chg, 10-Day %Chg
-- Max Points: 2
-- Min Points: -1
-- **Evaluate in order listed (stop at first match):**
-
-| Pattern | Condition | Points |
-|---------|-----------|--------|
-| Spike Risk | 10-Day %Chg >20% AND 1-Month %Chg <10% | -1 |
-| Smooth | 52-Week %Chg >0 AND 3-Month %Chg >0 AND 1-Month %Chg >0 AND 52-Week %Chg > 3-Month %Chg > 1-Month %Chg > 10-Day %Chg | +2 |
-| Accelerating | 3-Month %Chg >0 AND (3-Month %Chg × 4) > 52-Week %Chg | +1 |
-| Other | Default | 0 |
-
----
-
-### Risk Detection - Part 2 
-
-**Q23: High P/E Momentum Trap**
-- Fields: P/E Ratio (TTM), 10-Day Price Change %
-- Max Points: 0
-- Min Points: -4
-
-| Condition | Points |
-|-----------|--------|
-| P/E Ratio (TTM) > 50 AND 10-Day Price Change < -5% | -4 |
-| P/E > 100 (positive only) | -4 |
-
-**First Match** Do not Stack Points
-
----
-
-**Q24: Biotech Binary Event Burn** 
+#### Q25: Biotech Binary Event Burn*
 - Max Points: 0 
 - Min Points: -3
 - Fields: Sector, 10-Day Price Change %
@@ -410,7 +397,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q25: Sustained Downtrend**
+#### Q26: Sustained Downtrend
 - Fields: 1-Day Price Change %, 5-Day Price Change %, 1-Month Price Change %
 - Max Points: 0 
 - Min Points: -3
@@ -422,7 +409,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q26: Sudden Drop / Slide**
+#### Q27: Sudden Drop / Slide
 - Fields: Historical Daily Close Prices (last 5 trading days)
 - **Category:** Risk Penalty
 - Max Points: 0 
@@ -442,41 +429,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q27: Short Interest Risk**
-- Fields: Short % of Float
-- Category: Risk Penalty
-- Max Points: 0 
-- Min Points: -1
-- Logic: High short interest amplifies volatility in both directions.
-
-| Short % Float | Penalty |
-|---------------|---------|
-| > 20% | -1 |
-| ≤ 20% | 0 |
-
-- Data Source: FMP institutional/short interest endpoint
-- Rationale: Heavily shorted stocks have unpredictable, amplified moves. For 1-month swing trades, this adds risk regardless of direction.
-
----
-
-**Q28: Low Float Risk**
-- Fields: Float Shares
-- Category: Risk Penalty
-- Max Points: 0 
-- Min Points: -1
-- Logic: Low float stocks have amplified price swings on normal volume.
-
-| Float | Penalty |
-|-------|---------|
-| < 20M shares | 0 |
-| ≥ 20M shares | 0 |
-
-- Data Source: FMP company profile (float shares)
-- Rationale: Minor risk factor. Low float amplifies volatility but isn't inherently negative.
-
----
-
-**Q29: Sector Performance vs Peers**
+#### Q28: Sector Performance vs SPY
 - Fields: 1-Month Price Change %, SPY 1-Month Return % (spyChange1m)
 - Category: Momentum
 - Max Points: +1 
@@ -493,7 +446,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q30: 5-Day Relative Strength (Alpha)**
+#### Q29: 5-Day Relative Strength (Alpha)
 - Fields: Stock 5-Day Price Change %, QQQ 5-Day Price Change %
 - Formula: Alpha = Stock 5D % minus QQQ 5D %
 - Category: Momentum
@@ -515,10 +468,10 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-**Q31: Trend Deterioration (Lower Lows & Lower Highs)**
+#### Q30: Trend Structure (Lower Lows & Lower Highs)
 - Fields: Daily OHLC (last 30 trading days)
-- Category: Risk Penalty
-- Max Points: +3 
+- Category: Momentum Bonus
+- Max Points: +3
 - Min Points: 0
 
 **Calculation:**
@@ -530,7 +483,7 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 | Condition | Points |
 |-----------|--------|
-| Lower highs AND lower lows (2+ swing points each) | 3 |
+| Lower highs AND lower lows (2+ swing points each) | +3 |
 | Otherwise | 0 |
 
 - Data Source: FMP `/api/v3/historical-price-full/{symbol}` (daily OHLC)
@@ -538,43 +491,177 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 ---
 
-## Final Score Calculation
-- **Raw Score** = Sum of assigned points from all questions
+#### Q31: Price-to-Sales Ratio
+- Field: Price-to-Sales Ratio (TTM)
+- Max Points: 0
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| P/S Ratio > 50 | -1 |
+| P/S Ratio ≤ 50 | 0 |
+- Note: Requires sector-adjusted thresholds. Do not score until points defined.
+
+---
+
+#### Q32: Earnings Surprise
+- Fields: Actual EPS vs Estimated EPS (Most Recent Quarter)
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Actual EPS > Estimated EPS (Beat) | +1 |
+| Actual EPS = Estimated EPS (In Line) | 0 |
+| Actual EPS < Estimated EPS (Miss) | -1 |
+| No data available | 0 |
+
+---
+
+#### Q33: Gross Margin Trend
+- Fields: Gross Profit / Revenue — Current Quarter vs Prior Quarter
+- Max Points: +1
+- Min Points: 0
+
+| Condition | Points |
+|-----------|--------|
+| Gross Margin improving QoQ | +1 |
+| Otherwise | 0 |
+
+---
+
+#### Q34: Insider Buying
+- Fields: Net Insider Transactions (Open Market Buys vs Sells, Last 90 Days)
+- Max Points: +1
+- Min Points: -1
+- Note: Filter scheduled/compensation purchases. Open market buys/sells only.
+
+| Condition | Points |
+|-----------|--------|
+| Net Insider Buying (Buys > Sells) | +1 |
+| Neutral / No Data | 0 |
+| Net Insider Selling (Sells > Buys) | -1 |
+
+---
+
+#### Q35: Volume Surge on Up/Down Day
+- Fields: Today's Volume, 20-Day Average Volume, 1-Day Price Change %, Current Price, 52-Week High, 52-Week Low
+- Max Points: +2
+- Min Points: -2
+- Evaluate in order listed (stop at first match):
+
+| Condition | Points |
+|-----------|--------|
+| Volume ≥ 2x Average AND Price Up AND Within 5% of 52-Week High | +2 |
+| Volume ≥ 2x Average AND Price Up | +1 |
+| Volume ≥ 2x Average AND Price Down AND Within 5% of 52-Week Low | -2 |
+| Volume ≥ 2x Average AND Price Down | -1 |
+| Otherwise | 0 |
+
+---
+
+#### Q36: Revenue Acceleration
+- Fields: Quarterly Revenue Growth % — Last 3-4 Quarters
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Revenue Growth Rate Accelerating (Each Quarter Higher Than Previous) | +1 |
+| Flat / Insufficient Data | 0 |
+| Revenue Growth Rate Decelerating (Each Quarter Lower Than Previous) | -1 |
+
+---
+
+#### Q37: 52-Week High/Low Proximity
+- Fields: Current Price, 52-Week High, 52-Week Low
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Within 5% of 52-Week High | +1 |
+| Within 5% of 52-Week Low | -1 |
+| Otherwise | 0 |
+
+---
+
+#### Q38: Institutional Accumulation
+- Fields: Institutional Ownership % — Current Quarter vs Prior Quarter
+- Max Points: +1
+- Min Points: -1
+
+| Condition | Points |
+|-----------|--------|
+| Institutional Ownership % Increased by ≥ 1% QoQ | +1 |
+| Institutional Ownership % Decreased by ≥ 1% QoQ | -1 |
+| Change < 1% either direction / No Data | 0 |
+
+---
+
+#### Q39: Free Cash Flow Yield
+- Fields: Free Cash Flow (TTM), Market Cap
+- FMP Endpoint: `/api/v3/key-metrics/{symbol}` → `freeCashFlowYield`
+- Formula: `FCF / Market Cap × 100`
+- Max Points: +2
+- Min Points: -2
+
+| Condition | Points |
+|-----------|--------|
+| FCF Yield ≥ 8% | +2 |
+| FCF Yield ≥ 4% | +1 |
+| FCF Yield 0% to 4% | 0 |
+| FCF Yield -5% to 0% | -1 |
+| FCF Yield < -5% | -2 |
+
+---
+
+#### Q40: Float Turnover
+- Fields: 20-Day Average Volume, Float Shares
+- FMP Endpoint: `/api/v3/profile/{symbol}` → `floatShares` + `/api/v3/quote/{symbol}` → `avgVolume` (both already fetched)
+- Formula: `(Avg Volume / Float Shares) × 100`
+- Max Points: +1
+- Min Points: 0
+
+| Condition | Points |
+|-----------|--------|
+| Float Turnover ≥ 2% daily | +1 |
+| Float Turnover < 2% | 0 |
+
+---
+
+#### Q41: Post-Earnings Price Reaction
+- Fields: Last Earnings Date, Stock Price 1 Day Before Earnings, Stock Price 1 Day After Earnings
+- FMP Endpoints: `/api/v3/earnings-surprises/{symbol}` (date) + `/api/v3/historical-price-full/{symbol}` (prices)
+- Formula: `((Price Day After - Price Day Before) / Price Day Before) × 100`
+- Max Points: +2
+- Min Points: -2
+- Note: Skip if last earnings date > 90 days ago. Assign 0.
+
+| Condition | Points |
+|-----------|--------|
+| Post-earnings gap ≥ +5% | +2 |
+| Post-earnings gap > 0% | +1 |
+| Post-earnings gap 0% to -5% | 0 |
+| Post-earnings gap ≤ -5% | -2 |
+
+---
+
+### Final Score Calculation
+
+**Raw Score** = Sum of all question points (Q1–Q41)
 
 **Current Config Reference:**
-- **Max Raw Score:** 70 points
-- **Min Raw Score:** -50 points
-- **Span:** 120 points
+- **Max Raw Score:** 86 points
+- **Min Raw Score:** -50 points (Q19+Q20 combined cap of -4 applied)
+- **Span:** 136 points
 
-**Normalization Formula :**
-((Raw Score + 50) / 123) * 100
-
----
-
-**Change from V17**
-- SA Score Color Codes is moved to Signals module
-- Alerts Section details are moved to Signal module
-- The dynamic formula of normalization:  `((Raw Score - Min) / (Max - Min)) × 100` is changed by a static version above.
+**Normalization Formula:**
+`((Raw Score + 50) / 120) × 100`
 
 ---
 
-**End of Stock Analysis Test Instructions**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**End of Stock Analysis Test**
 
 
 
