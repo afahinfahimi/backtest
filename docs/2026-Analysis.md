@@ -543,11 +543,11 @@ If **Q21 (Range Position)** equals **"Breakout"** (Score 4), the cap is lifted, 
 
 **Current Config Reference:**
 - **Max Raw Score:** 70 points
-- **Min Raw Score:** -42 points
-- **Span:** 112 points
+- **Min Raw Score:** -50 points
+- **Span:** 120 points
 
 **Normalization Formula :**
-((Raw Score + 42) / 112) * 100
+((Raw Score + 50) / 123) * 100
 
 ---
 
