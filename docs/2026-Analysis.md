@@ -479,7 +479,7 @@ Do not Stack Points
 2. Find swing lows: days where the low < lows of 2 days before and 2 days after
 3. Compare last 2-3 swing highs: are they decreasing?
 4. Compare last 2-3 swing lows: are they decreasing?
-5. Both decreasing → penalty
+5. Both decreasing → Reverse Effect
 
 | Condition | Points |
 |-----------|--------|
@@ -500,7 +500,6 @@ Do not Stack Points
 |-----------|--------|
 | P/S Ratio > 50 | -1 |
 | P/S Ratio ≤ 50 | 0 |
-- Note: Requires sector-adjusted thresholds. Do not score until points defined.
 
 ---
 
