@@ -177,8 +177,8 @@ The app must calculate these values using the API data:
 |----------------|--------|----------------|
 | < 0.10 (Bottom 10%) | +3 | Near Support — Bounce Potential |
 | 0.10–0.45 | +1 | Lower Half |
-| 0.45–0.55 | 0 | Near Middle |
-| 0.55–0.90 | +1 | Upper Half |
+| 0.46–0.54 | 0 | Near Middle |
+| 0.55–0.89 | +1 | Upper Half |
 | > 0.90 (Top 10%) | -2 | Near Resistance — Extended |
 
 ---
