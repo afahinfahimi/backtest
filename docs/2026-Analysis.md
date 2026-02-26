@@ -656,7 +656,8 @@ Do not Stack Points
 - **Span:** 111 points
 
 **Normalization Formula:**
-`((Raw Score + Min Score) / Span) × 100`
+((Raw Score + 50) / 123) × 100
+<!-- Dynamic Formula Refrence ((Raw Score + Min Score) / Span) × 100 -->
 
 ---
 
