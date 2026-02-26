@@ -10,8 +10,8 @@ Modules 1 (Analysis) and 2 (Market) focus solely on calculating scores. This mod
 
 | Field | Source | Description |
 |-------|--------|-------------|
-| **SA Score** | Module 1 (Analysis) — Normalized Score | `((Raw Score + 50) / 123) * 100`. Range: 0–100 |
-| **MC Score** | Module 2 (Market) — Normalized Score | `((Raw Score + 40) / 92) * 100`. Range: 0–100 |
+| **SA Score** | Module 1 (Analysis) — Normalized Score | 
+| **MC Score** | Module 2 (Market) — Normalized Score | 
 | **VIX Level** | FMP API — `^VIX` Current Price (Level) | CBOE Volatility Index spot value |
 | **Net Profit Margin** | Module 1 Q4 / FMP API — `Net Income ÷ Revenue (TTM)` | Used for Tier profitability check |
 | **Market Cap** | FMP API — `/api/v3/profile/{symbol}` → `mktCap` | Full raw number (e.g., 50,000,000,000 = $50B) |
