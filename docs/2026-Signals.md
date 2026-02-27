@@ -282,20 +282,20 @@ Confirmed 80+ crossings achieve 70–78% win rates vs 66% for instant entry. Con
 
 #### Entry
 
-| Message | Conditions | Color |
-|---------|------------|-------|
-| 3D of 80+ | SA crosses above 80, holds 3 days | t-green |
-| 3D of 75+ | SA crosses above 75, holds 3 days | t-teal |
-| 3D of 70+ | SA crosses above 70 and holds for 3 days | t-blue |
+| Message | Holding Message | Conditions | Color |
+|---------|-----------------|------------|-------|
+| 3D of 80+ | Continue Hiolding | SA crosses above 80, holds 3 days | t-green |
+| 3D of 75+ | Continue Holding | SA crosses above 75, holds 3 days | t-teal |
+| 3D of 70+ | Consider Selling | SA crosses above 70 and holds for 3 days | t-blue |
 
 #### Exit
 
-| Message | Conditions | MC Filter | Color |
-|---------|------------|-----------|-------|
-| Under 65 exit | SA crosses below 65, holds 3 days | t-red |
-| Under 70 exit | SA crosses below 70, holds 3 days | t-orange |
+| Message | Holding Message | Conditions | MC Filter | Color |
+|---------|-----------------|------------|-----------|-------|
+| Do Not Buy | Under 65 exit | SA crosses below 65, holds 3 days | t-red |
+| Wait and Monitor | Under 70 exit | SA crosses below 70, holds 3 days | t-orange |
 | Reduce Position | SA crosses below 75, holds 3 days | t-orange |
-| Mobe Under 80. Monitor | SA crosses below 80, holds 3 days | Any | t-yellow |
+| Move Under 80. Monitor | Watch Carefully | SA crosses below 80, holds 3 days | Any | t-yellow |
 
 ---
 
@@ -303,11 +303,11 @@ Confirmed 80+ crossings achieve 70–78% win rates vs 66% for instant entry. Con
 **Score already in a zone — confirming stability or recovery.**
 Stocks that dip and recover outperform those that don't dip at all. Recovery within 3 days is a hold signal, not an exit.
 
-| Message | Conditions | Color |
+| Message | Holding Message | Conditions | Color |
 |---------|------------|-------|
-| Drop 80 Recovery | SA drops below 80, recovers within 3 days | t-green |
-| Drop 75 Recovery | SA drops below 75, recovers on the next day | t-teal |
-| Drop 70 Recovery | SA drops below 70, recovers on the next day | t-yellow |
+| Good Buy Time | Drop 80 Recovery Hold |  SA drops below 80, recovers within 3 days | t-green |
+| OK to Buy | Drop 75 Recovery | SA drops below 75 - Hold | recovers on the next day | t-teal |
+| Ready to Buy | Drop 70 Recovery | SA drops below 70 - Consider Selling | recovers on the next day | t-yellow |
 
 ---
 
@@ -315,10 +315,10 @@ Stocks that dip and recover outperform those that don't dip at all. Recovery wit
 *Score drops ≥ 5 pts over 3–4 days with no single-day recovery > 1 pt.*
 Gradual declines landing above 75 produce 78–89% win rates — stronger than fresh entries. Gradual declines landing below 65 confirm deterioration and are a sell signal.
 
-| Message | Conditions | MC Filter | Color |
-|---------|------------|-----------|-------|
-| 6+ Drop | SA score drops over 5 points (not crossing 65) within two days and stays down for two days |
-| 6+ Drop Recovery | SA score drops 6 points or more (not crossing 65) but recovers the next day | 
+| Message | Holding Message | Conditions | MC Filter | Color |
+|---------|-----------------|------------|-----------|-------|
+| 6+ Drop | Consider Selling | SA score drops over 5 points (not crossing 65) within two days and stays down for two days | t-yellow |
+| 6+ Drop Recovery | Watch Carefully | SA score drops 6 points or more (not crossing 65) but recovers the next day | t-yellow |
 
 ---
 
