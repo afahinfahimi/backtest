@@ -26,36 +26,36 @@ They help contextualize the Master Signals but do not drive any actions on their
 
 ## SA Score Grades
 
-| SA Score | Grade | Color |
+| SA Score | Title | Color |
 |----------|-------|-------|
-| 80 to 99 | Elite | t-green |
-| 70 to 79 | Solid | t-teal |
-| 60 to 69 | Potential | t-yellow |
-| 50 to 59 | In Transition | t-orange |
-| 40 to 49 | Weak | t-red |
-| < 40 | Avoid | t-red-2 |
+| 80 to 99 | Elite Stock | t-green |
+| 70 to 79 | Solid Stock | t-teal |
+| 60 to 69 | With Potential | t-yellow |
+| 50 to 59 | Monitor Worthy | t-orange |
+| 40 to 49 | Weak Stock | t-red |
+| < 40 | Avoid This Stock | t-red-2 |
 
 ## MC Score Grades
 
-| MC Score | Grade | Color |
+| MC Score | Title | Color |
 |----------|-------|-------|
-| ≥ 76 | Overheated | t-red |
-| 61 to 75 | Heated | t-yellow |
-| 40 to 60 | Normal | t-green |
-| 30 to 39 | Sub-Normal | t-yellow |
-| 10 to 29 | Weak | t-orange |
-| < 10 | Very Weak | t-red |
+| ≥ 76 | Overheated Market | t-red |
+| 61 to 75 | Heated Market | t-yellow |
+| 40 to 60 | Normal Market | t-green |
+| 30 to 39 | Sub-Normal Market | t-yellow |
+| 10 to 29 | Weak Market | t-orange |
+| < 10 | Frozen Market | t-red |
 
 ## VIX Score Grades
 High VIX = elevated fear = historically a buying opportunity. Colors reflect opportunity level, not danger level.
 
-| VIX Level | Grade | Color |
+| VIX Level | Title | Color |
 |-----------|-------|-------|
-| > 30 | Extreme Fear — Strong Buy Opportunity | t-green |
+| > 30 | Extreme Fear — Great Buy Opportunity | t-green |
 | 25–29 | High Fear — Buy Opportunity | t-teal |
-| 20–24 | Elevated | t-blue |
-| 15–20 | Normal | t-blue |
-| < 15 | Complacent | t-orange |
+| 20–24 | Elevated Worry | t-blue |
+| 15–20 | Normal Volatility| t-blue |
+| < 15 | Complacent Traders | t-orange |
 
 ---
 
@@ -104,7 +104,7 @@ Clicking on an alert icon opens an extension panel with the content of the Alert
 ### Market Level Alerts
 
 In the MC bar results, show an alert for important upcoming events or news headlines that may/have/can affect the market.
-Use the same data sources you use for stock alerts above. Including API, Google and Yahoo Finance, and other reliable financial and company publications.
+Use the same data sources you use sources Including API, Google and Yahoo Finance, and other reliable financial and company publications.
 Alerts for events are only triggered when the event is happening within the next three days.
 
 These are some examples:
@@ -114,7 +114,7 @@ Earnings Season Peak [MEDIUM] (Mid-Jan) — Elevated single-stock volatility.
 
 #### How to display
 Show a large alert icon with a vertical separator in front of the 'Signal' and when clicked on display it in an extension panel.
-**Format:** Event Name [HIGH/MEDIUM/LOW] (Date) — One-line description
+**Format:** Event Name [HIGH/MEDIUM/LOW] — One-line description (date)
 
 ---
 
@@ -125,7 +125,7 @@ They are determined by the relationship between SA, MC, and VIX using conditiona
 
 Signals for stocks and market condition are determined separately.
 Market Signal is displayed in the top MC bar.
-Stock Action Signal is displayed in the main analysis table in each stock's row.
+Stock Action Signal is displayed in the main analysis table in each stock's row in the Signals column.
 
 ## Table Columns — Signal Display
 Each stock row displays two signal-related columns:
