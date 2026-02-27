@@ -129,8 +129,8 @@ Stock Action Signal is displayed in the main analysis table in each stock's row 
 
 ## Table Columns — Signal Display
 Each stock row displays two signal-related columns:
-- **Signal** — The main action signal determined by SA score, MC, and VIX logic (this section).
-- **Pattern** — Secondary score-movement confirmations based on SA history (see Matrix Movement Confirmations). Displayed alongside Signal. Both columns are always visible. They may occasionally differ — this is intentional.
+- **Signals** — The main action signal determined by SA score, MC, and VIX logic (this file).
+- **Chart** — Secondary score-movement confirmations based on SA history (see Matrix Movement Confirmations). Displayed alongside Signal in Chart column. Both columns are always visible. They may occasionally differ — this is intentional.
 
 ---
 
@@ -141,15 +141,15 @@ Each stock row displays two signal-related columns:
 - **Fields:** VIX Level (`^VIX` Price from FMP), MC Score (From Module 2 Normalized)
 - Place the Market Signal to the right of VIX number
 
-| Priority | Signal | Trigger |
-|----------|--------|---------|
-| 1 | VIX Override — Max Fear — Aggressive Buy (Include QQQ) | VIX ≥ 30 |
-| 1 | VIX Override — High Fear — Confident Buy (Include QQQ) | VIX 25–29 |
-| 2 | Very Weak Market — Exit Positions | MC < 20 |
-| 3 | Slow Market — Be Careful, Reduce Risk | MC 20–39 |
-| 4 | Over-Heated Market — Only Great Stocks | MC ≥ 81 |
-| 5 | Heated Market — Buy Carefully | MC 61–80 |
-| 6 | Normal Market — Buy Quality Stocks | MC 40–60 |
+| Priority | Signal | Trigger | Color |
+|----------|--------|---------|-------|
+| 1 | VIX Override — Max Fear — Aggressive Buy (Including QQQ) | VIX ≥ 30 | t-green |
+| 1 | VIX Override — High Fear — Confident Buy (Including QQQ) | VIX 25–29 | t-teal
+| 2 | Very Weak Market — Exit Positions | MC < 20 | t-orange |
+| 3 | Slow Market — Be Careful, Reduce Risk | MC 20–39 | t-yellow |
+| 4 | Over-Heated Market — Only Great Stocks | MC ≥ 81 | t-blue |
+| 5 | Heated Market — Buy Carefully | MC 61–80 | t-orange |
+| 6 | Normal Market — Buy Quality Stocks | MC 40–60 | t-green |
 
 ---
 
@@ -158,7 +158,7 @@ Each stock row displays two signal-related columns:
 2. Each stock gets its own signal.
 3. If VIX and MC Override don't supersede the action, find the signal for the stock below.
 
-| SA Score | Signal | Current Holdings Actions | Color |
+| SA Score | Signal | Holding Signal | Color |
 |----------|--------|--------------------------|-------|
 | ≥ 80 | Buy in Good Market | Hold and Add if Tier Allows | t-green |
 | 75–79 | Buy if Stable | Hold and Add if Tier Allows | t-teal |
@@ -170,37 +170,39 @@ Each stock row displays two signal-related columns:
 **Exception — VIX Override**
 **Trigger:** VIX Level (FMP `^VIX` Price) ≥ 25.
 - **Signal column:** Overwritten with the VIX Override signal (Max Fear or High Fear).
-- **Pattern column:** VIX Override alert is added alongside the existing Pattern message. The Pattern signal is not replaced — both are shown so the user can see the score movement context during the override.
+- **Chart column:** VIX Override alert is added alongside the existing Pattern message.
+- The Chart signal is not replaced — both are shown so the user can see the score movement context during the override.
 
 ---
 
 ## Filters and Exceptions
 These filters apply only to buy-type signals. Non-buy signals are not affected.
+the signals below take over and replace the regular signals.
 
 ### 1. Crypto Filter
 - **Applies to:** IREN, MARA, CLSK, RIOT, BITF, WULF, HUT, CIFR, COIN, MSTR, CORZ, BTBT, HIVE, BTDR
 - **Trigger:** Any Buy-type signal
 
-| Condition | Signal Override | Color |
-|-----------|-----------------|-------|
-| Symbol is in crypto list AND signal is Buy-type | No Buy (Crypto) | t-red |
+| Condition | Replacement Signal | Color |
+|-----------|--------------------|-------|
+| Symbol is in crypto list AND signal is Buy-type | Don't Buy (Crypto) | t-red |
 | Otherwise | No change | — |
 
 ### 2. Basic Materials Sector Cap (Max 2)
 - **Applies to Sectors:** Basic Materials, Mining
 - **Trigger:** 3 or more stocks in these sectors qualify for buy signals in the same scan
 
-| Condition | Signal Override | Color |
-|-----------|-----------------|-------|
+| Condition | Replacement Signal | Color |
+|-----------|--------------------|-------|
 | Top 2 by SA score (tiebreak: higher Net Profit Margin) | No change | — |
-| 3rd stock and beyond | No Buy (Sector Cap) | t-yellow |
+| 3rd stock and beyond | Don't Buy (Sector Cap) | t-yellow |
 
 ### 3. Unprofitable Stock Override
 - **Trigger:** Net Profit Margin < 0%
 - **Applies to signals:** Buy in Good Market, Buy if Stable, Consider Buying
 
-| Condition | Signal Override | Color |
-|-----------|-----------------|-------|
+| Condition |Replacement Signal | Color |
+|-----------|-------------------|-------|
 | Net Profit Margin < 0% AND signal is Buy-type | Append "(Unprofitable)" to signal label | t-yellow |
 | Otherwise | No change | — |
 
@@ -208,8 +210,8 @@ These filters apply only to buy-type signals. Non-buy signals are not affected.
 - **Trigger:** Stock's sector is Healthcare, Medical, or Pharma.
 - **Impact:** Warns that healthcare stocks carry binary event risk from FDA decisions, clinical trial results, drug approvals/rejections, and patent cliffs.
 
-| Condition | Signal Override | Color |
-|-----------|-----------------|-------|
+| Condition | Replacemlent Signal | Color |
+|-----------|---------------------|-------|
 | Sector is Healthcare, Medical, Pharma, Biotech, Drug Manufacturers | Append "(Medical)" to Signal Label | t-yellow |
 
 ---
@@ -223,7 +225,7 @@ These filters apply only to buy-type signals. Non-buy signals are not affected.
 
 | Field | Source | Definition |
 |-------|--------|------------|
-| SA Score | Module 1 Normalized Score | `((Raw Score + 50) / 123) * 100` |
+| SA Score | Module 2 Normalized Score | `((Raw Score + 50) / 123) * 100` |
 | Profitable | FMP API — Net Profit Margin (TTM) | Net Profit Margin ≥ 0% |
 | Market Cap | FMP API — `/api/v3/profile/{symbol}` → `mktCap` | Full raw number. $50B = 50,000,000,000 |
 | Growth | FMP API — Annual Revenue Growth % | Annual Revenue Growth % > 0% |
@@ -232,25 +234,11 @@ These filters apply only to buy-type signals. Non-buy signals are not affected.
 ## Portfolio Concentration Limits
 
 | Tier | SA Condition | Company Condition | Max Position Size | Color |
-|------|-------------|-------------------|-------------------|-------|
+|------|--------------|-------------------|-------------------|-------|
 | T1 | ≥ 65 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $50B | $100,000 | t-green |
 | T2 | ≥ 65 | Profitable (Net Profit Margin ≥ 0%) + Market Cap > $2B | $50,000 | t-blue-2 |
 | T3 | ≥ 65 | Market Cap > $100M + (Growth > 0% OR Small Profitable) | $20,000 | t-yellow |
 | SELL | Does not qualify for any tier | $0 — Do not buy | t-red |
-
----
-
-## MC Zone Alert
-Issue an alert regarding Market Condition effect on trade quality.
-
-| MC Score | Alert | Color |
-|----------|-------|-------|
-| ≥ 76 | Over Heated Market | t-red |
-| 61 to 75 | Heated Market | t-yellow |
-| 40 to 60 | No Alert Issued | t-green |
-| 30 to 39 | Slow Market | t-yellow |
-| 10 to 29 | Very Weak Market | t-orange |
-| < 10 | Avoid Market | t-red |
 
 ---
 
@@ -272,19 +260,14 @@ Displayed in the **Stars** column in the main stock table. A visual guide only �
 
 ## Matrix Movement Confirmations
 
-The following messages are applied to Signals based on SA score movements, price movements, and stability of changes.
-Based on backtests on 62+ stocks across 2023–2026 matrix records using 3-day confirmation rule.
-Score history requirement: minimum 4 days of daily SA scores per stock.
+The following messages are applied to stocks based on SA score movements, price movements, and stability of changes.
 
 **Confirmation Rule:** Day 0 = trigger fires. Day 1 = still holds. Day 2 = ACT.
 Waiting 3 days filters out 39–46% of false signals with no meaningful cost to returns.
 
-**Display:** Shown in the **Pattern** column, next to the main Signal column.
-The Pattern column is independent — both columns are always visible so users can compare.
-Pattern signals are score-movement based and may occasionally differ from the main Signal column. This is intentional.
-
-**MC Exception:** When MC Score < 30, all exit signals are downgraded one level or ignored.
-Market weakness — not stock deterioration — is likely the cause of score drops.
+**Display:** Shown in the **Chart** column, next to the main Signal column.
+The Chart column is independent — both columns are always visible so users can compare.
+Chart signals are score-movement based and may occasionally differ from the main Signal column. This is intentional.
 
 ---
 
@@ -294,12 +277,11 @@ Confirmed 80+ crossings achieve 70–78% win rates vs 66% for instant entry. Con
 
 #### Entry
 
-| Message | Conditions | MC Filter | Color |
-|---------|------------|-----------|-------|
-| Strong Buy | SA crosses above 80, holds 3 days | MC 30+ | t-green |
-| Fear Buy | SA crosses above 80, holds 3 days | MC < 30 | t-green |
-| Buy | SA crosses above 75, holds 3 days | MC 30–70 | t-green |
-| Skip | SA crosses above 75 or 70 | MC 70+ | — |
+| Message | Conditions | Color |
+|---------|------------|-------|
+| 3D of 80+ | SA crosses above 80, holds 3 days | MC 30+ | t-green |
+| 3D of 75+ | SA crosses above 75, holds 3 days | MC 30–70 | t-teal |
+| 3D of 70+ | SA crosses above 70 and holds for 3 daysMC 70+ | t-blue |
 
 #### Exit
 
