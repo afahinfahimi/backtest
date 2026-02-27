@@ -279,32 +279,30 @@ Confirmed 80+ crossings achieve 70–78% win rates vs 66% for instant entry. Con
 
 | Message | Conditions | Color |
 |---------|------------|-------|
-| 3D of 80+ | SA crosses above 80, holds 3 days | MC 30+ | t-green |
-| 3D of 75+ | SA crosses above 75, holds 3 days | MC 30–70 | t-teal |
-| 3D of 70+ | SA crosses above 70 and holds for 3 daysMC 70+ | t-blue |
+| 3D of 80+ | SA crosses above 80, holds 3 days | t-green |
+| 3D of 75+ | SA crosses above 75, holds 3 days | t-teal |
+| 3D of 70+ | SA crosses above 70 and holds for 3 days | t-blue |
 
 #### Exit
 
 | Message | Conditions | MC Filter | Color |
 |---------|------------|-----------|-------|
-| Sell Immediately | SA crosses below 65, holds 3 days | MC 30+ | t-red |
-| Sell | SA crosses below 70, holds 3 days | MC 50+ | t-red |
-| Reduce Position | SA crosses below 75, holds 3 days | MC 50+ | t-orange |
-| Monitor | SA crosses below 80, holds 3 days | Any | t-yellow |
-| Ignore | Any exit signal | MC < 30 | t-yellow |
+| Under 65 exit | SA crosses below 65, holds 3 days | t-red |
+| Under 70 exit | SA crosses below 70, holds 3 days | t-orange |
+| Reduce Position | SA crosses below 75, holds 3 days | t-orange |
+| Mobe Under 80. Monitor | SA crosses below 80, holds 3 days | Any | t-yellow |
 
 ---
 
 ### 2. Sustained Level Signals
-*Score already in a zone — confirming stability or recovery.*
+**Score already in a zone — confirming stability or recovery.**
 Stocks that dip and recover outperform those that don't dip at all. Recovery within 3 days is a hold signal, not an exit.
 
 | Message | Conditions | Color |
 |---------|------------|-------|
-| Hold — Strong Stock | SA drops below 80, recovers within 3 days | t-teal |
-| Hold — Watch | SA drops below 70 or 75, recovers on Day 1 only | t-yellow |
-| Hold | SA drops below 70, recovers on Day 2 or Day 3 (not Day 1) | t-blue |
-| Hold — Dip Opportunity | SA drops below 65, recovers within 3 days | t-green |
+| Drop 80 Recovery | SA drops below 80, recovers within 3 days | t-green |
+| Drop 75 Recovery | SA drops below 75, recovers on the next day | t-teal |
+| Drop 70 Recovery | SA drops below 70, recovers on the next day | t-yellow |
 
 ---
 
@@ -314,10 +312,8 @@ Gradual declines landing above 75 produce 78–89% win rates — stronger than f
 
 | Message | Conditions | MC Filter | Color |
 |---------|------------|-----------|-------|
-| Buy the Dip | 5pt drop over 4 days, lands ≥ 75, no recovery > 1pt | Any | t-green |
-| Watch | 5pt drop over 4 days, lands 65–75, no recovery > 1pt | Any | t-yellow |
-| Sell | 5pt drop over 4 days, lands < 65, no recovery > 1pt | MC 30+ | t-red |
-| Caution | 5pt drop over 4 days, lands < 65, no recovery > 1pt | MC < 30 | t-yellow |
+| 6+ Drop | SA score drops over 5 points (not crossing 65) within two days and stays down for two days |
+| 6+ Drop Recovery | SA score drops 6 points or more (not crossing 65) but recovers the next day | 
 
 ---
 
@@ -329,7 +325,7 @@ Gradual declines landing above 75 produce 78–89% win rates — stronger than f
 | 75 | Secondary entry / caution exit | Entry in MC < 70 only; tighten stops if confirmed below |
 | 70 | Danger zone | Confirmed drop = reduce or sell (MC 50+) |
 | 65 | Exit line | Confirmed drop = sell |
-| MC 30 | Market exception | Below this, downgrade all exit signals one level |
+
 
 ---
 
