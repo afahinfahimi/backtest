@@ -1,8 +1,13 @@
 # Module-4 — Signals
-**Lovable Trade V17 — Updated 2/23/2026**
+**Lovable Trade V18 — Updated 2/26/2026**
 
-This module consolidates all color coding, grading, alerts, and action signals in one place.
-Modules 1 (Analysis) and 2 (Market) focus solely on calculating scores. This module interprets them.
+* This module consolidates all color coding, grading, alerts, and action signals in one place.
+* There are multiple signals and alerts to cummunicates action suggestions ke modifiers
+**Market Signal:** The master signals communicatong the overall market condition. they appear on the MC top bar.
+**Action Signals:** This is the main buy or sell signal based on SA score and combination of it with MC and VIX. They appear in Signals column in Stock analysis table.
+**Alerts:** The supplemental information about subjective events, changes or news articles, they sppear as on icon next to the symbol with an extension panel.
+**Matrix Signals:** These signals are issued based on review of SA patterns and wqhat they mean as a secondary signal. They are displayed in the Chart columns.
+**Holding Signals:** Both the main stock signals and SA chart pattern signals also offer advice for those who are holding the stock. they appear in the Hold column in two lines.
 
 ---
 
@@ -10,12 +15,12 @@ Modules 1 (Analysis) and 2 (Market) focus solely on calculating scores. This mod
 
 | Field | Source | Description |
 |-------|--------|-------------|
-| **SA Score** | Module 1 (Analysis) — Normalized Score | 
-| **MC Score** | Module 2 (Market) — Normalized Score | 
+| **SA Score** | Module 2 (Analysis) — Normalized Score | 
+| **MC Score** | Module 3 (Market) — Normalized Score | 
 | **VIX Level** | FMP API — `^VIX` Current Price (Level) | CBOE Volatility Index spot value |
 | **Net Profit Margin** | Module 1 Q4 / FMP API — `Net Income ÷ Revenue (TTM)` | Used for Tier profitability check |
 | **Market Cap** | FMP API — `/api/v3/profile/{symbol}` → `mktCap` | Full raw number (e.g., 50,000,000,000 = $50B) |
-| **Annual Revenue Growth %** | Module 1 Q1 / FMP API | Used for Tier T3 "growth" condition |
+| **Annual Revenue Growth %** | Module2 Q1 / FMP API | Used for Tier T3 "growth" condition |
 
 ---
 
@@ -51,11 +56,11 @@ High VIX = elevated fear = historically a buying opportunity. Colors reflect opp
 
 | VIX Level | Title | Color |
 |-----------|-------|-------|
-| > 30 | Extreme Fear — Great Buy Opportunity | t-green |
-| 25–29 | High Fear — Buy Opportunity | t-teal |
+| > 30 | Extreme Fear — Great Buying Opportunity | t-green |
+| 25–29 | High Fear — Buying Opportunity | t-teal |
 | 20–24 | Elevated Worry | t-blue |
-| 15–20 | Normal Volatility| t-blue |
-| < 15 | Complacent Traders | t-orange |
+| 15–20 | Normal Fluctuation | t-blue |
+| < 15 | Traders Discoraged | t-orange |
 
 ---
 
@@ -101,7 +106,7 @@ Clicking on an alert icon opens an extension panel with the content of the Alert
 
 ---
 
-### Market Level Alerts
+### Market Level Signal
 
 In the MC bar results, show an alert for important upcoming events or news headlines that may/have/can affect the market.
 Use the same data sources you use sources Including API, Google and Yahoo Finance, and other reliable financial and company publications.
@@ -141,31 +146,31 @@ Each stock row displays two signal-related columns:
 - **Fields:** VIX Level (`^VIX` Price from FMP), MC Score (From Module 2 Normalized)
 - Place the Market Signal to the right of VIX number
 
-| Priority | Signal | Trigger | Color |
+| Priority | Signal | Holding Signal | Condition | Color |
 |----------|--------|---------|-------|
-| 1 | VIX Override — Max Fear — Aggressive Buy (Including QQQ) | VIX ≥ 30 | t-green |
-| 1 | VIX Override — High Fear — Confident Buy (Including QQQ) | VIX 25–29 | t-teal
-| 2 | Very Weak Market — Exit Positions | MC < 20 | t-orange |
-| 3 | Slow Market — Be Careful, Reduce Risk | MC 20–39 | t-yellow |
-| 4 | Over-Heated Market — Only Great Stocks | MC ≥ 81 | t-blue |
-| 5 | Heated Market — Buy Carefully | MC 61–80 | t-orange |
-| 6 | Normal Market — Buy Quality Stocks | MC 40–60 | t-green |
+| 1 | VIX Override — Max Fear — Aggressive Buy (Including QQQ) | Hold snd Add | VIX ≥ 30 | t-green |
+| 1 | VIX Override — High Fear — Confident Buy (Including QQQ) | Hold and Add | VIX 25–29 | t-teal
+| 2 | Very Weak Market Wait for Opportunity | Consider Exit Positions | MC < 20 | t-orange |
+| 3 | Slow Market — Be Careful | Reduce Risk | MC 20–39 | t-yellow |
+| 4 | Over-Heated Market — Only Great Stocks | Exit Risky Positions | MC ≥ 81 | t-blue |
+| 5 | Heated Market — Buy Carefully | Hold with Stops | MC 61–80 | t-orange |
+| 6 | Normal Market — Buy Quality Stocks | Hold Quality Stocks | MC 40–60 | t-green |
 
 ---
 
 ### Stock Signal
-1. Based on the Normalized Score of Module 1 or SA Test Score.
+1. Based on the Normalized Score of Module 2 or SA Test Score.
 2. Each stock gets its own signal.
-3. If VIX and MC Override don't supersede the action, find the signal for the stock below.
+3. If VIX and MC Override don't superseed the action, find and display the signal for the stock below as well. 
 
-| SA Score | Signal | Holding Signal | Color |
-|----------|--------|--------------------------|-------|
+| SA Score Condition | Signal | Holding Signal | Color |
+|--------------------|--------|----------------|-------|
 | ≥ 80 | Buy in Good Market | Hold and Add if Tier Allows | t-green |
 | 75–79 | Buy if Stable | Hold and Add if Tier Allows | t-teal |
 | 70–74 | Consider Buying | Consider Selling — Add 10% Trailing Stop Loss | t-blue |
-| 60–69 | Monitor | Sell if Holding | t-yellow |
-| 35–59 | Find a Better Stock | Sell if Holding | t-orange |
-| < 35 | Avoid the Stock | Sell if Holding | t-red |
+| 60–69 | Monitor | Sell Low Quality. Add tight Stops | t-yellow |
+| 35–59 | Find a Better Stock | Sell Them | t-orange |
+| < 35 | Avoid the Stock | Sell All t-red |
 
 **Exception — VIX Override**
 **Trigger:** VIX Level (FMP `^VIX` Price) ≥ 25.
